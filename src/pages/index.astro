@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { CtaButton } from "../components/ui/CtaButton";
+import { CtaButton, ctaStyles } from "../components/ui/CtaButton";
 import { siteConfig } from "../config/site";
 import { links } from "../config/links";
 ---
@@ -16,7 +16,7 @@ import { links } from "../config/links";
         쇼츠에서 본 이슈를 사실과 시장 관측으로 나눠 보고, 앱에서 더 깊은 데이터로 이어지세요.
       </p>
       <div class="mt-8 flex flex-wrap gap-4">
-        <a href="/radar" class="inline-flex items-center justify-center rounded-md bg-slate-900 px-5 py-3 text-sm font-semibold text-white transition hover:bg-slate-700">
+        <a href="/radar" class={ctaStyles.primary}>
           이슈 레이더 보기
         </a>
         <CtaButton client:load href={links.playStore} label="플레이스토어에서 앱 받기" variant="secondary" />

@@ -4,7 +4,7 @@ interface Props {
   variant?: "primary" | "secondary";
 }
 
-const styles = {
+export const ctaStyles = {
   primary:
     "inline-flex items-center justify-center rounded-md bg-slate-900 px-5 py-3 text-sm font-semibold text-white transition hover:bg-slate-700",
   secondary:
@@ -13,7 +13,7 @@ const styles = {
 
 export function CtaButton({ href, label, variant = "primary" }: Props) {
   return (
-    <a href={href} className={styles[variant]} target="_blank" rel="noopener noreferrer">
+    <a href={href} className={ctaStyles[variant]} target="_blank" rel="noopener noreferrer">
       {label}
     </a>
   );
