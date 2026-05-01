@@ -18,6 +18,6 @@ test("radar page shows issue cards and a disclaimer", async ({ page }) => {
 
 test("iOS notice is visible near Play Store CTA without scrolling", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 }); // iPhone 14
-  await page.goto("/");
+  await page.goto("/radar");
   await expect(page.getByText(/Android.*전용/)).toBeVisible();
 });
