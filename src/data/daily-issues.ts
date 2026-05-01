@@ -8,7 +8,6 @@ export interface DailyIssue {
   marketObservation: string;
   watchPoints: string[];
   appDataPoints: string[];
-  ctaLabel: string;
 }
 
 export const dailyIssues: DailyIssue[] = [
@@ -23,7 +22,6 @@ export const dailyIssues: DailyIssue[] = [
       "섹터 동반 움직임이 지속되는지 장중에 체크한다.",
     ],
     appDataPoints: ["뉴스 번역", "관련 ETF 흐름", "종목별 이슈 묶음"],
-    ctaLabel: "앱에서 자세히 보기",
   },
   {
     headline: "정책 발언 이후 금리 민감 성장주의 반응 체크",
@@ -36,7 +34,6 @@ export const dailyIssues: DailyIssue[] = [
       "기술주 반응이 섹터 전반으로 번지는지 체크한다.",
     ],
     appDataPoints: ["거시 이슈 요약", "관련 종목 뉴스", "ETF 흐름"],
-    ctaLabel: "앱에서 자세히 보기",
   },
   {
     headline: "특정 종목 공급 계약설이 관련 밸류체인에 미치는 파급",
@@ -49,6 +46,5 @@ export const dailyIssues: DailyIssue[] = [
       "후속 확인 보도 유무를 루머와 분리해서 본다.",
     ],
     appDataPoints: ["실시간 이슈 요약", "관련 뉴스 묶음", "종목 관심 등록"],
-    ctaLabel: "앱에서 자세히 보기",
   },
 ];
