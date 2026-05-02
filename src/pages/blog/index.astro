@@ -1,0 +1,71 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import BlogCard from "../../components/blog/BlogCard.astro";
+import { siteConfig } from "../../config/site";
+
+const posts = await getCollection("blog");
+const sorted = posts.sort(
+  (a, b) => new Date(b.data.publishedAt).getTime() - new Date(a.data.publishedAt).getTime()
+);
+
+const categories = [
+  { value: "etf", label: "ETF" },
+  { value: "news-rumor", label: "뉴스/루머" },
+  { value: "analyst-report", label: "애널리스트" },
+  { value: "insider-congress", label: "내부자/의원" },
+  { value: "stock-data", label: "종목데이터" },
+];
+---
+
+<BaseLayout
+  title={`미국주식 투자 정보 블로그 | ${siteConfig.siteName}`}
+  description="미국주식 ETF, 뉴스/루머, 애널리스트 리포트, 내부자 거래 정보를 한국어로 정리합니다."
+>
+  <div class="bg-warm-bg min-h-screen py-12">
+    <div class="max-w-5xl mx-auto px-4">
+      <!-- Page header -->
+      <div class="mb-10">
+        <h1 class="text-warm-text text-3xl font-bold mb-2">미국주식 투자 정보</h1>
+        <p class="text-warm-muted text-base">ETF·뉴스·루머·리포트·내부자 거래를 한국어로 정리합니다</p>
+      </div>
+
+      <!-- Category filter nav -->
+      <nav class="flex flex-wrap gap-2 mb-8">
+        <a
+          href="/blog"
+          class="text-xs font-bold uppercase tracking-wide px-3 py-1.5 rounded border border-warm-primary bg-warm-primary text-white"
+        >
+          전체
+        </a>
+        {categories.map((cat) => (
+          <a
+            href={`/blog/category/${cat.value}`}
+            class="text-xs font-bold uppercase tracking-wide px-3 py-1.5 rounded border border-warm-border text-warm-muted hover:border-warm-primary hover:text-warm-primary transition"
+          >
+            {cat.label}
+          </a>
+        ))}
+      </nav>
+
+      <!-- Post grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {sorted.map((post) => (
+          <BlogCard
+            slug={post.id.replace(/\.[^.]+$/, "")}
+            title={post.data.title}
+            description={post.data.description}
+            category={post.data.category}
+            tags={post.data.tags}
+            publishedAt={post.data.publishedAt}
+            thumbnail={post.data.thumbnail}
+          />
+        ))}
+      </div>
+
+      {sorted.length === 0 && (
+        <p class="text-warm-subtle text-center py-20">아직 게시물이 없습니다.</p>
+      )}
+    </div>
+  </div>
+</BaseLayout>

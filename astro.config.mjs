@@ -8,4 +8,7 @@ export default defineConfig({
   site: "https://datadnp.co.kr",
   integrations: [react(), tailwind(), mdx(), sitemap()],
   output: "static",
+  legacy: {
+    collectionsBackwardsCompat: true,
+  },
 });
