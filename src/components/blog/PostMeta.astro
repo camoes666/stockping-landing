@@ -1,0 +1,43 @@
+---
+interface Props {
+  category: string;
+  tags: string[];
+  publishedAt: string;
+  updatedAt?: string;
+}
+
+const { category, tags, publishedAt, updatedAt } = Astro.props;
+
+const categoryLabels: Record<string, string> = {
+  etf: "ETF",
+  "news-rumor": "뉴스/루머",
+  "analyst-report": "애널리스트",
+  "insider-congress": "내부자/의원",
+  "stock-data": "종목데이터",
+};
+
+function formatKoreanDate(dateStr: string): string {
+  const [year, month, day] = dateStr.split("-");
+  return `${year}년 ${month}월 ${day}일`;
+}
+
+const categoryLabel = categoryLabels[category] ?? category;
+const showUpdated = updatedAt && updatedAt !== publishedAt;
+---
+
+<div class="flex flex-wrap items-center gap-2 mb-4">
+  <span class="bg-warm-surface-high text-warm-primary text-xs font-bold uppercase tracking-wide rounded px-2 py-1">
+    {categoryLabel}
+  </span>
+  {tags.map((tag) => (
+    <span class="text-warm-muted text-xs border border-warm-border rounded px-2 py-0.5">
+      {tag}
+    </span>
+  ))}
+  <span class="text-warm-subtle text-xs ml-auto">
+    {formatKoreanDate(publishedAt)}
+    {showUpdated && (
+      <span class="ml-2">수정: {formatKoreanDate(updatedAt!)}</span>
+    )}
+  </span>
+</div>

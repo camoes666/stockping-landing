@@ -1,0 +1,86 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+import PostMeta from "../components/blog/PostMeta.astro";
+import CTABox from "../components/blog/CTABox.astro";
+import DisclaimerBox from "../components/blog/DisclaimerBox.astro";
+import type { CtaType } from "../components/blog/cta-copy";
+
+interface Props {
+  frontmatter: {
+    title: string;
+    description: string;
+    category: string;
+    tags: string[];
+    publishedAt: string;
+    updatedAt: string;
+    thumbnail?: string;
+    ctaType: string;
+    disclaimer: boolean;
+  };
+}
+
+const { frontmatter } = Astro.props;
+const {
+  title,
+  description,
+  category,
+  tags,
+  publishedAt,
+  updatedAt,
+  thumbnail,
+  ctaType,
+  disclaimer,
+} = frontmatter;
+---
+
+<BaseLayout title={title} description={description}>
+  <div class="bg-warm-bg min-h-screen">
+    {thumbnail && (
+      <div class="w-full aspect-[2/1] overflow-hidden">
+        <img
+          src={thumbnail}
+          alt={title}
+          class="w-full h-full object-cover"
+          loading="eager"
+        />
+      </div>
+    )}
+
+    <article class="max-w-2xl mx-auto px-4 py-10">
+      <PostMeta
+        category={category}
+        tags={tags}
+        publishedAt={publishedAt}
+        updatedAt={updatedAt}
+      />
+
+      <h1 class="text-warm-text text-3xl font-bold leading-tight mt-4 mb-3">
+        {title}
+      </h1>
+
+      <p class="text-warm-muted text-lg leading-relaxed mb-6">
+        {description}
+      </p>
+
+      <hr class="border-warm-border mb-8" />
+
+      <div
+        class="
+          prose max-w-none
+          prose-headings:text-warm-text
+          prose-p:leading-7 prose-p:text-warm-text
+          prose-a:text-warm-primary prose-a:no-underline hover:prose-a:underline
+          prose-strong:text-warm-text
+          prose-li:text-warm-text
+          prose-hr:border-warm-border
+        "
+      >
+        <slot />
+      </div>
+
+      <CTABox ctaType={ctaType as CtaType} />
+
+      {disclaimer && <DisclaimerBox />}
+    </article>
+  </div>
+</BaseLayout>
