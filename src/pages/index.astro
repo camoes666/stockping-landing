@@ -1,27 +1,292 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { CtaButton, ctaStyles } from "../components/ui/CtaButton";
+import { TrackedCtaButton } from "../components/islands/TrackedCtaButton";
+import { FaqAccordion } from "../components/islands/FaqAccordion";
+import IssueCard from "../components/radar/IssueCard.astro";
+import { dailyIssues } from "../data/daily-issues";
 import { siteConfig } from "../config/site";
 import { links } from "../config/links";
 ---
 
 <BaseLayout title={siteConfig.defaultTitle} description={siteConfig.defaultDescription}>
-  <section class="mx-auto max-w-6xl px-4 py-20">
-    <div class="max-w-3xl">
-      <p class="text-sm font-semibold text-slate-500">미국장 핵심 이슈 정리</p>
-      <h1 class="mt-4 text-4xl font-bold tracking-normal text-slate-900 sm:text-5xl">
-        미국장 정보와 이슈를 더 빠르게 보는 방법
+
+  <!-- ═══════════════════════════════════════════════
+       1. HERO — Headline + Sub-headline + Hero Visual
+  ════════════════════════════════════════════════ -->
+  <section class="bg-slate-900 px-4 pb-0 pt-14 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-7xl">
+
+      <!-- Eyebrow -->
+      <span class="inline-flex items-center gap-2 rounded-full border border-slate-700 bg-slate-800 px-4 py-1.5 text-xs font-semibold text-amber-400">
+        <span class="h-1.5 w-1.5 rounded-full bg-amber-400 animate-pulse"></span>
+        매일 미국 장 마감 후 업데이트
+      </span>
+
+      <!-- Headline -->
+      <h1 class="mt-6 text-4xl font-bold leading-[1.12] tracking-tight text-white sm:text-5xl lg:text-[60px]">
+        미국장 이슈,<br />
+        <span class="text-amber-400">루머와 사실을</span><br />
+        구분해서 보세요
       </h1>
-      <p class="mt-6 text-lg leading-8 text-slate-600">
-        쇼츠에서 본 이슈를 사실과 시장 관측으로 나눠 보고, 앱에서 더 깊은 데이터로 이어지세요.
+
+      <!-- Sub-headline -->
+      <p class="mt-5 max-w-2xl text-lg leading-8 text-slate-300">
+        쇼츠에서 본 이슈가 진짜인지 루머인지 — 확인된 사실과 시장 관측으로 나눠 매일 정리합니다.
+        긴 기사 없이, 투자자가 지금 봐야 할 포인트만.
       </p>
-      <div class="mt-8 flex flex-wrap gap-4">
-        <a href="/radar" class={ctaStyles.primary}>
-          이슈 레이더 보기
+
+      <!-- CTAs -->
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a
+          href="/radar"
+          class="inline-flex items-center justify-center rounded-xl bg-amber-400 px-6 py-3.5 text-sm font-bold text-slate-900 transition hover:bg-amber-300"
+        >
+          오늘의 이슈 레이더 보기 →
         </a>
-        <CtaButton client:load href={links.playStore} label="플레이스토어에서 앱 받기" variant="secondary" />
+        <TrackedCtaButton
+          client:load
+          href={links.playStore}
+          label="플레이스토어에서 앱 받기"
+          page="index"
+          section="hero"
+          variant="secondary"
+        />
       </div>
-      <p class="mt-3 text-xs text-slate-400">현재 Android(구글 플레이) 전용입니다. iOS 버전은 준비 중입니다.</p>
+      <p class="mt-3 text-xs text-slate-500">현재 Android(구글 플레이) 전용 · iOS 버전 준비 중</p>
+
+      <!-- Hero Visual: issue card preview strip -->
+      <div class="mt-12 overflow-hidden rounded-t-2xl border border-b-0 border-slate-700 bg-slate-800">
+        <div class="flex items-center justify-between border-b border-slate-700 px-5 py-3.5">
+          <span class="text-sm font-semibold text-white">오늘의 미국장 이슈 레이더</span>
+          <span class="rounded-full bg-amber-400/20 px-3 py-1 text-[11px] font-bold text-amber-400">Daily Update</span>
+        </div>
+        <div class="grid grid-cols-1 gap-3 p-4 sm:grid-cols-3">
+          <!-- Card 1 — full opacity -->
+          <div class="rounded-xl border border-slate-700 bg-slate-900 p-4">
+            <div class="mb-3 flex flex-wrap gap-2">
+              <span class="rounded-full bg-amber-400/15 px-2.5 py-1 text-[10px] font-bold text-amber-400">시장 관측</span>
+              <span class="rounded-full bg-blue-400/15 px-2.5 py-1 text-[10px] font-bold text-blue-400">NVDA · SMH</span>
+            </div>
+            <p class="text-xs font-semibold leading-snug text-white">반도체 실적 기대가 기술주 심리에 주는 영향</p>
+            <div class="mt-2.5 space-y-1.5">
+              <div class="rounded-lg bg-slate-800 px-3 py-2">
+                <p class="mb-0.5 text-[10px] font-bold text-slate-500">확인된 사실</p>
+                <p class="text-[11px] leading-relaxed text-slate-300">실적 발표 일정 집중, 시장 관심 고조</p>
+              </div>
+              <div class="rounded-lg bg-slate-800 px-3 py-2">
+                <p class="mb-0.5 text-[10px] font-bold text-slate-500">시장 관측</p>
+                <p class="text-[11px] leading-relaxed text-slate-300">선반영 후 변동성 확대 가능성</p>
+              </div>
+            </div>
+          </div>
+          <!-- Card 2 — 60% opacity -->
+          <div class="hidden rounded-xl border border-slate-700/60 bg-slate-900/60 p-4 opacity-60 sm:block">
+            <div class="mb-3 flex flex-wrap gap-2">
+              <span class="rounded-full bg-emerald-400/15 px-2.5 py-1 text-[10px] font-bold text-emerald-400">확인된 사실</span>
+              <span class="rounded-full bg-blue-400/15 px-2.5 py-1 text-[10px] font-bold text-blue-400">QQQ · AAPL</span>
+            </div>
+            <p class="text-xs font-semibold leading-snug text-white">정책 발언 이후 금리 민감 성장주 반응 체크</p>
+            <div class="mt-2.5 space-y-1.5">
+              <div class="rounded-lg bg-slate-800/60 px-3 py-2">
+                <p class="mb-0.5 text-[10px] font-bold text-slate-500">확인된 사실</p>
+                <p class="text-[11px] leading-relaxed text-slate-400">정책 발언으로 시장 금리 기대 변화</p>
+              </div>
+            </div>
+          </div>
+          <!-- Card 3 — faded, teaser -->
+          <div class="hidden rounded-xl border border-slate-700/30 bg-slate-900/30 p-4 opacity-30 sm:block">
+            <div class="mb-3 flex flex-wrap gap-2">
+              <span class="rounded-full bg-rose-400/15 px-2.5 py-1 text-[10px] font-bold text-rose-400">루머</span>
+              <span class="rounded-full bg-blue-400/15 px-2.5 py-1 text-[10px] font-bold text-blue-400">PLTR · MSFT</span>
+            </div>
+            <p class="text-xs font-semibold leading-snug text-white">공급 계약설이 밸류체인에 미치는 파급</p>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
+
+  <!-- ═══════════════════════════════════════════════
+       2. SOCIAL PROOF — Trust indicators
+  ════════════════════════════════════════════════ -->
+  <section class="border-y border-slate-200 bg-slate-50 px-4 py-8 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-7xl">
+      <div class="grid grid-cols-2 gap-6 text-center sm:grid-cols-4">
+        <div>
+          <p class="text-2xl font-bold text-slate-900">매일</p>
+          <p class="mt-1 text-xs text-slate-500">미국 장 마감 후 업데이트</p>
+        </div>
+        <div>
+          <p class="text-2xl font-bold text-slate-900">3~5개</p>
+          <p class="mt-1 text-xs text-slate-500">핵심 이슈 정리</p>
+        </div>
+        <div>
+          <p class="text-2xl font-bold text-slate-900">3가지</p>
+          <p class="mt-1 text-xs text-slate-500">사실 · 관측 · 루머 분류</p>
+        </div>
+        <div>
+          <p class="text-2xl font-bold text-slate-900">무료</p>
+          <p class="mt-1 text-xs text-slate-500">앱 다운로드</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       3. BENEFITS — 사용자 관점 핵심 이점
+  ════════════════════════════════════════════════ -->
+  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-7xl">
+      <div class="mb-12 text-center">
+        <p class="text-xs font-bold uppercase tracking-widest text-amber-500">Why 이슈 레이더</p>
+        <h2 class="mt-3 text-3xl font-bold text-slate-900 sm:text-4xl">왜 이슈 레이더인가요</h2>
+        <p class="mt-4 text-slate-500">단순한 뉴스 요약이 아닙니다. 투자자가 실제로 필요한 것만 남깁니다.</p>
+      </div>
+      <div class="grid grid-cols-1 gap-6 sm:grid-cols-3">
+        <div class="rounded-2xl bg-slate-50 p-7">
+          <div class="mb-4 text-3xl">🚫</div>
+          <h3 class="text-lg font-bold text-slate-900">루머를 사실처럼 믿지 마세요</h3>
+          <p class="mt-3 text-sm leading-7 text-slate-500">
+            SNS에서 본 이슈가 공식 확인된 것인지, 시장 해석인지, 아직 루머인지 — 3가지로 명확히 분리해 드립니다.
+          </p>
+        </div>
+        <div class="rounded-2xl bg-slate-50 p-7">
+          <div class="mb-4 text-3xl">⚡</div>
+          <h3 class="text-lg font-bold text-slate-900">긴 기사 안 읽어도 됩니다</h3>
+          <p class="mt-3 text-sm leading-7 text-slate-500">
+            투자자 관점에서 지금 봐야 할 포인트만 정리합니다. 기사형 긴 글 없이, 스캔하듯 빠르게 파악하는 구조입니다.
+          </p>
+        </div>
+        <div class="rounded-2xl bg-slate-50 p-7">
+          <div class="mb-4 text-3xl">📊</div>
+          <h3 class="text-lg font-bold text-slate-900">앱에서 데이터로 바로 이어집니다</h3>
+          <p class="mt-3 text-sm leading-7 text-slate-500">
+            이슈 확인 후 관련 종목, ETF 흐름, 뉴스 번역까지 앱에서 바로 이어서 볼 수 있습니다.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       4. ISSUE RADAR — 오늘의 이슈 레이더 미리보기
+  ════════════════════════════════════════════════ -->
+  <section class="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-7xl">
+      <div class="mb-4 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+        <div>
+          <p class="text-xs font-bold uppercase tracking-widest text-amber-500">오늘의 이슈</p>
+          <h2 class="mt-2 text-3xl font-bold text-slate-900 sm:text-4xl">
+            {siteConfig.radarPageTitle}
+          </h2>
+          <p class="mt-2 text-sm text-slate-500">
+            확인된 사실과 시장 관측을 구분해 매일 정리합니다
+          </p>
+        </div>
+        <a
+          href="/radar"
+          class="inline-flex items-center gap-1.5 rounded-xl bg-slate-900 px-5 py-2.5 text-sm font-bold text-white transition hover:bg-slate-700 sm:flex-shrink-0"
+        >
+          전체 이슈 보기 →
+        </a>
+      </div>
+
+      <!-- Issue cards -->
+      <div class="mt-8 grid gap-5">
+        {dailyIssues.map((issue) => <IssueCard issue={issue} />)}
+      </div>
+
+      <!-- Inline disclaimer -->
+      <div class="mt-6 rounded-xl border border-amber-200 bg-amber-50 px-5 py-4 text-xs leading-6 text-amber-800">
+        {siteConfig.radarDisclaimer}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       5. HOW IT WORKS — 3단계 이용 흐름
+  ════════════════════════════════════════════════ -->
+  <section class="bg-slate-900 px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-7xl">
+      <div class="mb-14 text-center">
+        <p class="text-xs font-bold uppercase tracking-widest text-amber-400">How It Works</p>
+        <h2 class="mt-3 text-3xl font-bold text-white sm:text-4xl">이렇게 사용하세요</h2>
+      </div>
+      <div class="grid grid-cols-1 gap-10 sm:grid-cols-3">
+        <div class="text-center">
+          <div class="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-amber-400 text-xl font-black text-slate-900">
+            1
+          </div>
+          <h3 class="text-base font-bold text-white">SNS에서 이슈를 발견한다</h3>
+          <p class="mt-3 text-sm leading-7 text-slate-400">
+            쇼츠, 틱톡, 스레드에서 미국장 관련 이슈를 봤다. 사실인지 루머인지 모르겠다.
+          </p>
+        </div>
+        <div class="text-center">
+          <div class="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-amber-400 text-xl font-black text-slate-900">
+            2
+          </div>
+          <h3 class="text-base font-bold text-white">이슈 레이더에서 확인한다</h3>
+          <p class="mt-3 text-sm leading-7 text-slate-400">
+            오늘의 이슈 레이더에서 확인된 사실 / 시장 관측 / 루머를 분리해서 빠르게 스캔한다.
+          </p>
+        </div>
+        <div class="text-center">
+          <div class="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-amber-400 text-xl font-black text-slate-900">
+            3
+          </div>
+          <h3 class="text-base font-bold text-white">앱에서 데이터를 더 깊이 본다</h3>
+          <p class="mt-3 text-sm leading-7 text-slate-400">
+            관련 종목, ETF, 내부자 거래 흐름까지 앱에서 이어서 확인한다. 판단은 내가 한다.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       6. FAQ — 자주 묻는 질문 (React island)
+  ════════════════════════════════════════════════ -->
+  <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-3xl">
+      <div class="mb-10 text-center">
+        <p class="text-xs font-bold uppercase tracking-widest text-amber-500">FAQ</p>
+        <h2 class="mt-3 text-3xl font-bold text-slate-900">자주 묻는 질문</h2>
+      </div>
+      <FaqAccordion client:load />
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════
+       7. FINAL CTA
+  ════════════════════════════════════════════════ -->
+  <section class="bg-slate-900 px-4 py-24 text-center sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl">
+      <p class="text-xs font-bold uppercase tracking-widest text-amber-400">지금 바로</p>
+      <h2 class="mt-4 text-3xl font-bold text-white sm:text-4xl">
+        오늘 미국장에서<br />무슨 일이 있었는지 확인하세요
+      </h2>
+      <p class="mt-4 text-slate-400">
+        사실과 루머를 구분한 오늘의 이슈 레이더, 무료로 바로 확인할 수 있습니다.
+      </p>
+      <div class="mt-8 flex flex-wrap justify-center gap-4">
+        <a
+          href="/radar"
+          class="inline-flex items-center justify-center rounded-xl bg-amber-400 px-8 py-4 text-base font-bold text-slate-900 transition hover:bg-amber-300"
+        >
+          오늘의 이슈 레이더 보기 →
+        </a>
+        <TrackedCtaButton
+          client:load
+          href={links.playStore}
+          label="앱 다운로드"
+          page="index"
+          section="final-cta"
+          variant="secondary"
+        />
+      </div>
+      <p class="mt-4 text-xs text-slate-600">현재 Android(구글 플레이) 전용 · iOS 버전 준비 중</p>
+    </div>
+  </section>
+
 </BaseLayout>

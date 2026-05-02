@@ -1,11 +1,13 @@
 ---
 import { ctaCopy, type CtaType } from "./cta-copy";
+import { TrackedCtaButton } from "../islands/TrackedCtaButton";
 
 interface Props {
   ctaType: CtaType;
+  page?: string;
 }
 
-const { ctaType } = Astro.props;
+const { ctaType, page = "blog" } = Astro.props;
 const copy = ctaCopy[ctaType];
 const playStoreUrl = "https://play.google.com/store/apps/details?id=kr.datadnp.app";
 ---
@@ -13,12 +15,12 @@ const playStoreUrl = "https://play.google.com/store/apps/details?id=kr.datadnp.a
 <div class="bg-warm-surface border border-warm-border rounded-xl p-6 my-8">
   <p class="text-warm-primary text-xs font-bold uppercase tracking-wider mb-2">앱에서 더 보기</p>
   <p class="text-warm-text font-bold text-lg mb-4">{copy.headline}</p>
-  <a
+  <TrackedCtaButton
+    client:load
     href={playStoreUrl}
-    target="_blank"
-    rel="noopener noreferrer"
-    class="inline-flex items-center gap-2 bg-warm-primary text-white rounded px-5 py-2.5 text-sm font-semibold hover:bg-warm-primary-dark transition"
-  >
-    {copy.button}
-  </a>
+    label={copy.button}
+    page={page}
+    section={`cta-box:${ctaType}`}
+    variant="warm"
+  />
 </div>

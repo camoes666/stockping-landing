@@ -1,0 +1,42 @@
+import { trackCtaClick } from "../../lib/analytics";
+
+interface Props {
+  href: string;
+  label: string;
+  page: string;
+  section: string;
+  variant?: "primary" | "secondary" | "warm";
+}
+
+const variantClass: Record<string, string> = {
+  primary:
+    "inline-flex items-center justify-center rounded-md bg-slate-900 px-5 py-3 text-sm font-semibold text-white transition hover:bg-slate-700",
+  secondary:
+    "inline-flex items-center justify-center rounded-md border border-slate-300 px-5 py-3 text-sm font-semibold text-slate-900 transition hover:bg-slate-50",
+  warm:
+    "inline-flex items-center gap-2 bg-warm-primary text-white rounded px-5 py-2.5 text-sm font-semibold hover:bg-warm-primary-dark transition",
+};
+
+export function TrackedCtaButton({
+  href,
+  label,
+  page,
+  section,
+  variant = "primary",
+}: Props) {
+  const handleClick = () => {
+    trackCtaClick("cta_click", page, `${section}:${label}`);
+  };
+
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={variantClass[variant]}
+      onClick={handleClick}
+    >
+      {label}
+    </a>
+  );
+}
