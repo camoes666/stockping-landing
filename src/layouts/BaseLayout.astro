@@ -5,9 +5,11 @@ import SiteFooter from "../components/site/SiteFooter.astro";
 interface Props {
   title: string;
   description: string;
+  ogImage?: string;
 }
 
-const { title, description } = Astro.props;
+const { title, description, ogImage } = Astro.props;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? "https://stockping-landing.camoes666.workers.dev");
 ---
 
 <!doctype html>
@@ -17,9 +19,16 @@ const { title, description } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalURL} />
+    {ogImage && <meta property="og:image" content={ogImage} />}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    {ogImage && <meta name="twitter:image" content={ogImage} />}
     <!-- Pretendard Variable — Korean web standard font -->
     <link
       rel="stylesheet"
