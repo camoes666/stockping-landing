@@ -1,7 +1,7 @@
 # Stockping Landing — 프로젝트 컨텍스트 문서
 
 > **새 세션 시작 시 이 파일을 먼저 읽어 현재 상태를 파악하세요.**
-> 마지막 업데이트: 2026-05-02
+> 마지막 업데이트: 2026-05-02 (Keystatic 500 fix, GitHub Actions 추가)
 
 ---
 
@@ -30,7 +30,8 @@
 | CMS | Keystatic (`@keystatic/astro`) — GitHub 저장 모드 |
 | 댓글 | Supabase `comments` 테이블 |
 | 분석 | Supabase `cta_events` 테이블 |
-| 배포 | Cloudflare Workers (`npx wrangler deploy`) |
+| 배포 | Cloudflare Workers (`npx wrangler deploy`) + GitHub Actions 자동 배포 |
+| CI/CD | `.github/workflows/deploy.yml` — release/v0.1.0 push 시 자동 배포 |
 | 테스트 | Vitest + Testing Library + Playwright |
 
 ---
@@ -283,7 +284,49 @@ Windows 환경에서 한글 파일을 `sed`, `awk` 등 터미널 명령으로 �
 
 ---
 
-## 13. 완료된 작업 목록
+## 13. 알려진 버그 및 패치 이력
+
+### Keystatic + Astro v6 호환성 패치 (`src/middleware.ts`)
+`@keystatic/astro` v5.0.6이 `Astro.locals.runtime.env`를 사용하는데
+Astro v6에서 이 API가 제거됨 → `/api/keystatic/*` 요청 시 HTTP 500 발생.
+
+**패치**: `src/middleware.ts`에서 `cloudflare:workers` 모듈로 실제 env를
+가져와 `locals.runtime.env`에 다시 주입함. 최신 Keystatic 버전이 나오면
+이 미들웨어 제거 가능.
+
+### 한글 인코딩 손상 주의
+Windows에서 `sed`/`awk` 터미널 명령으로 `.astro` 파일 수정 시 한글이
+CP949로 깨짐. **반드시 Edit/Write 툴로만 파일 편집.**
+
+---
+
+## 14. GitHub Actions CI/CD
+
+### 워크플로 파일
+- `.github/workflows/deploy.yml` — `release/v0.1.0` push 시 자동 빌드+배포
+- `.github/workflows/cms-merge.yml` — `cms/*` 브랜치 PR 자동 머지
+
+### 필요한 GitHub Repository Secrets
+**https://github.com/camoes666/stockping-landing/settings/secrets/actions**
+
+| Secret 이름 | 값 |
+|------------|-----|
+| `CLOUDFLARE_API_TOKEN` | Cloudflare API Token (Workers Scripts Edit 권한) |
+| `CLOUDFLARE_ACCOUNT_ID` | `8b7068a3aae6ad3e59feaeb245787574` |
+| `PUBLIC_SUPABASE_URL` | `https://jczdryhzgbyvxmughuth.supabase.co` |
+| `PUBLIC_SUPABASE_ANON_KEY` | `sb_publishable__fXC9RT_UShJKw_wnD8iig_f-Sr3bcH` |
+| `KEYSTATIC_GITHUB_CLIENT_ID` | `0v23limRN6BNTSH7nbSm` |
+| `KEYSTATIC_GITHUB_CLIENT_SECRET` | `cd89500272b3f75cd81a4e856be0543b3aef6a46` |
+| `KEYSTATIC_SECRET` | `fe651fe768065c2c4c78d85f9bf13ddcdbac9f3ae9f31451ab6ef35d7acec753` |
+
+### Cloudflare API Token 생성 방법
+1. https://dash.cloudflare.com/profile/api-tokens → Create Token
+2. Custom Token → 권한: **Account · Workers Scripts · Edit**, **Account · Workers KV Storage · Edit**
+3. Account Resources: camoes666@gmail.com
+
+---
+
+## 15. 완료된 작업 목록
 
 - [x] Astro 6 프로젝트 초기 세팅 (React, Tailwind, MDX, Sitemap)
 - [x] 메인 랜딩 페이지 (Hero, Social Proof, Benefits, Issue Radar, How It Works, FAQ, CTA)
@@ -300,13 +343,17 @@ Windows 환경에서 한글 파일을 `sed`, `awk` 등 터미널 명령으로 �
 - [x] Cloudflare Workers 배포 (wrangler deploy)
 - [x] 환경변수 Workers Secrets 등록
 - [x] GitHub `release/v0.1.0` 브랜치 푸시
+- [x] 한글 인코딩 손상 복구 (index.astro, radar.astro)
+- [x] Keystatic 500 에러 수정 (middleware.ts shim)
+- [x] GitHub Actions 자동 배포 워크플로
 
 ---
 
-## 14. 남은 작업 (TODO)
+## 16. 남은 작업 (TODO)
 
-- [ ] **Supabase `comments` 테이블 생성** (섹션 7 SQL 실행)
-- [ ] **Keystatic OAuth Callback URL 업데이트** (섹션 8 참고)
+- [ ] **GitHub Secrets 7개 등록** (섹션 14 표 참고) — Actions 자동 배포 활성화
+- [ ] **GitHub OAuth Callback URL 추가** — `https://stockping-landing.camoes666.workers.dev/keystatic/github/oauth/callback`
+- [x] **Supabase `comments` 테이블 생성** ✅ (확인 완료)
 - [ ] `src/config/site.ts`에서 `siteName: "회사명"` → 실제 서비스명으로 교체
 - [ ] `src/config/links.ts`에서 iOS App Store 링크 추가 (출시 후)
 - [ ] Cloudflare R2 활성화 → `stockping-images` 버킷 생성 → Keystatic 이미지 업로드 R2 연동
@@ -316,7 +363,7 @@ Windows 환경에서 한글 파일을 `sed`, `awk` 등 터미널 명령으로 �
 
 ---
 
-## 15. 빠른 명령어 참고
+## 17. 빠른 명령어 참고
 
 ```bash
 # 로컬 개발
