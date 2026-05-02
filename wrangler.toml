@@ -1,3 +1,8 @@
-name = "issue-radar-site"
+name = "stockping-landing"
 compatibility_date = "2026-05-01"
-pages_build_output_dir = "./dist"
+
+# Cloudflare Workers Bindings (used by @astrojs/cloudflare adapter)
+# KV Namespace for Keystatic CMS sessions - create with: wrangler kv namespace create SESSION
+# [[kv_namespaces]]
+# binding = "SESSION"
+# id = "YOUR_KV_NAMESPACE_ID"
