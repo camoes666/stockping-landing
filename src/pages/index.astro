@@ -1,4 +1,4 @@
-﻿---
+---
 export const prerender = true;
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { TrackedCtaButton } from "../components/islands/TrackedCtaButton";
@@ -11,27 +11,29 @@ import { links } from "../config/links";
 
 <BaseLayout title={siteConfig.defaultTitle} description={siteConfig.defaultDescription}>
 
-  <!-- ?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧??       1. HERO ??Headline + Sub-headline + Hero Visual
-  ?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧 -->
+  <!-- ════════════════════════════════════════════
+       1. HERO — Headline + Sub-headline + Hero Visual
+  ════════════════════════════════════════════ -->
   <section class="bg-slate-900 px-4 pb-0 pt-14 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-7xl">
 
       <!-- Eyebrow -->
       <span class="inline-flex items-center gap-2 rounded-full border border-slate-700 bg-slate-800 px-4 py-1.5 text-xs font-semibold text-amber-400">
         <span class="h-1.5 w-1.5 rounded-full bg-amber-400 animate-pulse"></span>
-        留ㅼ씪 誘멸뎅 ??留덇컧 ???낅뜲?댄듃
+        매일 미국장 핵심 이슈 업데이트
       </span>
 
       <!-- Headline -->
       <h1 class="mt-6 text-4xl font-bold leading-[1.12] tracking-tight text-white sm:text-5xl lg:text-[60px]">
-        誘멸뎅???댁뒋,<br />
-        <span class="text-amber-400">猷⑤㉧? ?ъ떎??/span><br />
-        援щ텇?댁꽌 蹂댁꽭??      </h1>
+        미국장 최신 이슈,<br />
+        <span class="text-amber-400">루머와 사실</span><br />
+        구분해서 확인하세요
+      </h1>
 
       <!-- Sub-headline -->
       <p class="mt-5 max-w-2xl text-lg leading-8 text-slate-300">
-        ?쇱툩?먯꽌 蹂??댁뒋媛 吏꾩쭨?몄? 猷⑤㉧?몄? ???뺤씤???ъ떎怨??쒖옣 愿痢≪쑝濡??섎닠 留ㅼ씪 ?뺣━?⑸땲??
-        湲?湲곗궗 ?놁씠, ?ъ옄?먭? 吏湲?遊먯빞 ???ъ씤?몃쭔.
+        SNS에서 퍼지는 이슈가 진짜인지 루머인지, 확인된 사실과 시장 관측으로 나눠 매일 정리합니다.
+        유료 구독 없이, 투자자가 직접 살펴봐야 할 정보만 담았습니다.
       </p>
 
       <!-- CTAs -->
@@ -40,148 +42,154 @@ import { links } from "../config/links";
           href="/radar"
           class="inline-flex items-center justify-center rounded-xl bg-amber-400 px-6 py-3.5 text-sm font-bold text-slate-900 transition hover:bg-amber-300"
         >
-          ?ㅻ뒛???댁뒋 ?덉씠??蹂닿린 ??        </a>
+          오늘의 이슈 레이더 바로가기 →
+        </a>
         <TrackedCtaButton
           client:load
           href={links.playStore}
-          label="?뚮젅?댁뒪?좎뼱?먯꽌 ??諛쏄린"
+          label="구글플레이에서 앱 내려받기"
           page="index"
           section="hero"
           variant="secondary"
         />
       </div>
-      <p class="mt-3 text-xs text-slate-500">?꾩옱 Android(援ш? ?뚮젅?? ?꾩슜 쨌 iOS 踰꾩쟾 以鍮?以?/p>
+      <p class="mt-3 text-xs text-slate-500">현재 Android(구글 플레이) 서비스 중 · iOS 버전 준비 중</p>
 
       <!-- Hero Visual: issue card preview strip -->
       <div class="mt-12 overflow-hidden rounded-t-2xl border border-b-0 border-slate-700 bg-slate-800">
         <div class="flex items-center justify-between border-b border-slate-700 px-5 py-3.5">
-          <span class="text-sm font-semibold text-white">?ㅻ뒛??誘멸뎅???댁뒋 ?덉씠??/span>
+          <span class="text-sm font-semibold text-white">오늘의 미국장 이슈 레이더</span>
           <span class="rounded-full bg-amber-400/20 px-3 py-1 text-[11px] font-bold text-amber-400">Daily Update</span>
         </div>
         <div class="grid grid-cols-1 gap-3 p-4 sm:grid-cols-3">
-          <!-- Card 1 ??full opacity -->
+          <!-- Card 1 — full opacity -->
           <div class="rounded-xl border border-slate-700 bg-slate-900 p-4">
             <div class="mb-3 flex flex-wrap gap-2">
-              <span class="rounded-full bg-amber-400/15 px-2.5 py-1 text-[10px] font-bold text-amber-400">?쒖옣 愿痢?/span>
-              <span class="rounded-full bg-blue-400/15 px-2.5 py-1 text-[10px] font-bold text-blue-400">NVDA 쨌 SMH</span>
+              <span class="rounded-full bg-amber-400/15 px-2.5 py-1 text-[10px] font-bold text-amber-400">시장 관측</span>
+              <span class="rounded-full bg-blue-400/15 px-2.5 py-1 text-[10px] font-bold text-blue-400">NVDA · SMH</span>
             </div>
-            <p class="text-xs font-semibold leading-snug text-white">諛섎룄泥??ㅼ쟻 湲곕?媛 湲곗닠二??щ━??二쇰뒗 ?곹뼢</p>
+            <p class="text-xs font-semibold leading-snug text-white">반도체 대형주 실적 기대가 기술주 전체 심리에 미치는 영향</p>
             <div class="mt-2.5 space-y-1.5">
               <div class="rounded-lg bg-slate-800 px-3 py-2">
-                <p class="mb-0.5 text-[10px] font-bold text-slate-500">?뺤씤???ъ떎</p>
-                <p class="text-[11px] leading-relaxed text-slate-300">?ㅼ쟻 諛쒗몴 ?쇱젙 吏묒쨷, ?쒖옣 愿??怨좎“</p>
+                <p class="mb-0.5 text-[10px] font-bold text-slate-500">확인된 사실</p>
+                <p class="text-[11px] leading-relaxed text-slate-300">주요 반도체 실적 발표 일정, 시장 관심 집중</p>
               </div>
               <div class="rounded-lg bg-slate-800 px-3 py-2">
-                <p class="mb-0.5 text-[10px] font-bold text-slate-500">?쒖옣 愿痢?/p>
-                <p class="text-[11px] leading-relaxed text-slate-300">?좊컲????蹂?숈꽦 ?뺣? 媛?μ꽦</p>
+                <p class="mb-0.5 text-[10px] font-bold text-slate-500">시장 관측</p>
+                <p class="text-[11px] leading-relaxed text-slate-300">단기 수급이 선반영되며 변동성 확대 가능</p>
               </div>
             </div>
           </div>
-          <!-- Card 2 ??60% opacity -->
+          <!-- Card 2 — 60% opacity -->
           <div class="hidden rounded-xl border border-slate-700/60 bg-slate-900/60 p-4 opacity-60 sm:block">
             <div class="mb-3 flex flex-wrap gap-2">
-              <span class="rounded-full bg-emerald-400/15 px-2.5 py-1 text-[10px] font-bold text-emerald-400">?뺤씤???ъ떎</span>
-              <span class="rounded-full bg-blue-400/15 px-2.5 py-1 text-[10px] font-bold text-blue-400">QQQ 쨌 AAPL</span>
+              <span class="rounded-full bg-emerald-400/15 px-2.5 py-1 text-[10px] font-bold text-emerald-400">확인된 사실</span>
+              <span class="rounded-full bg-blue-400/15 px-2.5 py-1 text-[10px] font-bold text-blue-400">QQQ · AAPL</span>
             </div>
-            <p class="text-xs font-semibold leading-snug text-white">?뺤콉 諛쒖뼵 ?댄썑 湲덈━ 誘쇨컧 ?깆옣二?諛섏쓳 泥댄겕</p>
+            <p class="text-xs font-semibold leading-snug text-white">정책 발언 이후 금리 민감 성장주의 반응 체크</p>
             <div class="mt-2.5 space-y-1.5">
               <div class="rounded-lg bg-slate-800/60 px-3 py-2">
-                <p class="mb-0.5 text-[10px] font-bold text-slate-500">?뺤씤???ъ떎</p>
-                <p class="text-[11px] leading-relaxed text-slate-400">?뺤콉 諛쒖뼵?쇰줈 ?쒖옣 湲덈━ 湲곕? 蹂??/p>
+                <p class="mb-0.5 text-[10px] font-bold text-slate-500">확인된 사실</p>
+                <p class="text-[11px] leading-relaxed text-slate-400">정책 발언으로 시장 금리 기대에 변화</p>
               </div>
             </div>
           </div>
-          <!-- Card 3 ??faded, teaser -->
+          <!-- Card 3 — faded, teaser -->
           <div class="hidden rounded-xl border border-slate-700/30 bg-slate-900/30 p-4 opacity-30 sm:block">
             <div class="mb-3 flex flex-wrap gap-2">
-              <span class="rounded-full bg-rose-400/15 px-2.5 py-1 text-[10px] font-bold text-rose-400">猷⑤㉧</span>
-              <span class="rounded-full bg-blue-400/15 px-2.5 py-1 text-[10px] font-bold text-blue-400">PLTR 쨌 MSFT</span>
+              <span class="rounded-full bg-rose-400/15 px-2.5 py-1 text-[10px] font-bold text-rose-400">루머</span>
+              <span class="rounded-full bg-blue-400/15 px-2.5 py-1 text-[10px] font-bold text-blue-400">PLTR · MSFT</span>
             </div>
-            <p class="text-xs font-semibold leading-snug text-white">怨듦툒 怨꾩빟?ㅼ씠 諛몃쪟泥댁씤??誘몄튂???뚭툒</p>
+            <p class="text-xs font-semibold leading-snug text-white">특정 종목 공급 계약설이 관련 밸류체인에 미치는 파급</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧??       2. SOCIAL PROOF ??Trust indicators
-  ?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧 -->
+  <!-- ════════════════════════════════════════════
+       2. SOCIAL PROOF — Trust indicators
+  ════════════════════════════════════════════ -->
   <section class="border-y border-slate-200 bg-slate-50 px-4 py-8 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-7xl">
       <div class="grid grid-cols-2 gap-6 text-center sm:grid-cols-4">
         <div>
-          <p class="text-2xl font-bold text-slate-900">留ㅼ씪</p>
-          <p class="mt-1 text-xs text-slate-500">誘멸뎅 ??留덇컧 ???낅뜲?댄듃</p>
+          <p class="text-2xl font-bold text-slate-900">매일</p>
+          <p class="mt-1 text-xs text-slate-500">미국장 핵심 이슈 업데이트</p>
         </div>
         <div>
-          <p class="text-2xl font-bold text-slate-900">3~5媛?/p>
-          <p class="mt-1 text-xs text-slate-500">?듭떖 ?댁뒋 ?뺣━</p>
+          <p class="text-2xl font-bold text-slate-900">3~5개</p>
+          <p class="mt-1 text-xs text-slate-500">당일 이슈 정리</p>
         </div>
         <div>
-          <p class="text-2xl font-bold text-slate-900">3媛吏</p>
-          <p class="mt-1 text-xs text-slate-500">?ъ떎 쨌 愿痢?쨌 猷⑤㉧ 遺꾨쪟</p>
+          <p class="text-2xl font-bold text-slate-900">3가지</p>
+          <p class="mt-1 text-xs text-slate-500">사실 · 관측 · 루머 분류</p>
         </div>
         <div>
-          <p class="text-2xl font-bold text-slate-900">臾대즺</p>
-          <p class="mt-1 text-xs text-slate-500">???ㅼ슫濡쒕뱶</p>
+          <p class="text-2xl font-bold text-slate-900">무료</p>
+          <p class="mt-1 text-xs text-slate-500">앱 다운로드</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧??       3. BENEFITS ???ъ슜??愿???듭떖 ?댁젏
-  ?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧 -->
+  <!-- ════════════════════════════════════════════
+       3. BENEFITS — 사용의 핵심 장점
+  ════════════════════════════════════════════ -->
   <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-7xl">
       <div class="mb-12 text-center">
-        <p class="text-xs font-bold uppercase tracking-widest text-amber-500">Why ?댁뒋 ?덉씠??/p>
-        <h2 class="mt-3 text-3xl font-bold text-slate-900 sm:text-4xl">???댁뒋 ?덉씠?붿씤媛??/h2>
-        <p class="mt-4 text-slate-500">?⑥닚???댁뒪 ?붿빟???꾨떃?덈떎. ?ъ옄?먭? ?ㅼ젣濡??꾩슂??寃껊쭔 ?④퉩?덈떎.</p>
+        <p class="text-xs font-bold uppercase tracking-widest text-amber-500">Why 이슈 레이더?</p>
+        <h2 class="mt-3 text-3xl font-bold text-slate-900 sm:text-4xl">왜 이슈 레이더인가요?</h2>
+        <p class="mt-4 text-slate-500">기존의 투자 앱과 다릅니다. 투자자가 실제로 필요한 정보만 담았습니다.</p>
       </div>
       <div class="grid grid-cols-1 gap-6 sm:grid-cols-3">
         <div class="rounded-2xl bg-slate-50 p-7">
-          <div class="mb-4 text-3xl">?슟</div>
-          <h3 class="text-lg font-bold text-slate-900">猷⑤㉧瑜??ъ떎泥섎읆 誘우? 留덉꽭??/h3>
+          <div class="mb-4 text-3xl">🔍</div>
+          <h3 class="text-lg font-bold text-slate-900">루머를 사실처럼 믿는 일을 없앱니다</h3>
           <p class="mt-3 text-sm leading-7 text-slate-500">
-            SNS?먯꽌 蹂??댁뒋媛 怨듭떇 ?뺤씤??寃껋씤吏, ?쒖옣 ?댁꽍?몄?, ?꾩쭅 猷⑤㉧?몄? ??3媛吏濡?紐낇솗??遺꾨━???쒕┰?덈떎.
+            SNS에서 퍼지는 이슈가 진짜 확인된 사실인지, 시장 관측인지, 아니면 루머인지를 세 가지로 나눠서 정리해 드립니다.
           </p>
         </div>
         <div class="rounded-2xl bg-slate-50 p-7">
-          <div class="mb-4 text-3xl">??/div>
-          <h3 class="text-lg font-bold text-slate-900">湲?湲곗궗 ???쎌뼱???⑸땲??/h3>
+          <div class="mb-4 text-3xl">📊</div>
+          <h3 class="text-lg font-bold text-slate-900">비용 걱정 없이 활용합니다</h3>
           <p class="mt-3 text-sm leading-7 text-slate-500">
-            ?ъ옄??愿?먯뿉??吏湲?遊먯빞 ???ъ씤?몃쭔 ?뺣━?⑸땲?? 湲곗궗??湲?湲 ?놁씠, ?ㅼ틪?섎벏 鍮좊Ⅴ寃??뚯븙?섎뒗 援ъ“?낅땲??
+            투자자가 관심 종목에서 직접 살펴봐야 할 정보를 정리합니다. 유료 리포트나 구독 없이, 핵심만 빠르게 파악하는 방식입니다.
           </p>
         </div>
         <div class="rounded-2xl bg-slate-50 p-7">
-          <div class="mb-4 text-3xl">?뱤</div>
-          <h3 class="text-lg font-bold text-slate-900">?깆뿉???곗씠?곕줈 諛붾줈 ?댁뼱吏묐땲??/h3>
+          <div class="mb-4 text-3xl">📱</div>
+          <h3 class="text-lg font-bold text-slate-900">앱에서 데이터로 바로 이어집니다</h3>
           <p class="mt-3 text-sm leading-7 text-slate-500">
-            ?댁뒋 ?뺤씤 ??愿??醫낅ぉ, ETF ?먮쫫, ?댁뒪 踰덉뿭源뚯? ?깆뿉??諛붾줈 ?댁뼱??蹂????덉뒿?덈떎.
+            이슈 확인 후 종목 뉴스, ETF 흐름, 관련 데이터를 앱에서 바로 이어서 확인합니다.
           </p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧??       4. ISSUE RADAR ???ㅻ뒛???댁뒋 ?덉씠??誘몃━蹂닿린
-  ?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧 -->
+  <!-- ════════════════════════════════════════════
+       4. ISSUE RADAR — 오늘의 이슈 레이더 미리보기
+  ════════════════════════════════════════════ -->
   <section class="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-7xl">
       <div class="mb-4 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <p class="text-xs font-bold uppercase tracking-widest text-amber-500">?ㅻ뒛???댁뒋</p>
+          <p class="text-xs font-bold uppercase tracking-widest text-amber-500">오늘의 이슈</p>
           <h2 class="mt-2 text-3xl font-bold text-slate-900 sm:text-4xl">
             {siteConfig.radarPageTitle}
           </h2>
           <p class="mt-2 text-sm text-slate-500">
-            ?뺤씤???ъ떎怨??쒖옣 愿痢≪쓣 援щ텇??留ㅼ씪 ?뺣━?⑸땲??          </p>
+            확인된 사실과 시장 관측을 구분해 매일 정리합니다.
+          </p>
         </div>
         <a
           href="/radar"
           class="inline-flex items-center gap-1.5 rounded-xl bg-slate-900 px-5 py-2.5 text-sm font-bold text-white transition hover:bg-slate-700 sm:flex-shrink-0"
         >
-          ?꾩껜 ?댁뒋 蹂닿린 ??        </a>
+          전체 이슈 보러 가기 →
+        </a>
       </div>
 
       <!-- Issue cards -->
@@ -196,84 +204,90 @@ import { links } from "../config/links";
     </div>
   </section>
 
-  <!-- ?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧??       5. HOW IT WORKS ??3?④퀎 ?댁슜 ?먮쫫
-  ?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧 -->
+  <!-- ════════════════════════════════════════════
+       5. HOW IT WORKS — 3단계 사용 방법
+  ════════════════════════════════════════════ -->
   <section class="bg-slate-900 px-4 py-20 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-7xl">
       <div class="mb-14 text-center">
         <p class="text-xs font-bold uppercase tracking-widest text-amber-400">How It Works</p>
-        <h2 class="mt-3 text-3xl font-bold text-white sm:text-4xl">?대젃寃??ъ슜?섏꽭??/h2>
+        <h2 class="mt-3 text-3xl font-bold text-white sm:text-4xl">어떻게 사용하시죠?</h2>
       </div>
       <div class="grid grid-cols-1 gap-10 sm:grid-cols-3">
         <div class="text-center">
           <div class="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-amber-400 text-xl font-black text-slate-900">
             1
           </div>
-          <h3 class="text-base font-bold text-white">SNS?먯꽌 ?댁뒋瑜?諛쒓껄?쒕떎</h3>
+          <h3 class="text-base font-bold text-white">SNS에서 이슈를 접합니다</h3>
           <p class="mt-3 text-sm leading-7 text-slate-400">
-            ?쇱툩, ?깊넚, ?ㅻ젅?쒖뿉??誘멸뎅??愿???댁뒋瑜?遊ㅻ떎. ?ъ떎?몄? 猷⑤㉧?몄? 紐⑤Ⅴ寃좊떎.
+            트위터, 유튜브, 뉴스에서 미국장 관련 이슈를 봅니다. 사실인지 루머인지 모릅니다.
           </p>
         </div>
         <div class="text-center">
           <div class="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-amber-400 text-xl font-black text-slate-900">
             2
           </div>
-          <h3 class="text-base font-bold text-white">?댁뒋 ?덉씠?붿뿉???뺤씤?쒕떎</h3>
+          <h3 class="text-base font-bold text-white">이슈 레이더에서 확인합니다</h3>
           <p class="mt-3 text-sm leading-7 text-slate-400">
-            ?ㅻ뒛???댁뒋 ?덉씠?붿뿉???뺤씤???ъ떎 / ?쒖옣 愿痢?/ 猷⑤㉧瑜?遺꾨━?댁꽌 鍮좊Ⅴ寃??ㅼ틪?쒕떎.
+            오늘의 이슈 레이더에서 확인된 사실 / 시장 관측 / 루머로 나눠서 한눈에 정리합니다.
           </p>
         </div>
         <div class="text-center">
           <div class="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-amber-400 text-xl font-black text-slate-900">
             3
           </div>
-          <h3 class="text-base font-bold text-white">?깆뿉???곗씠?곕? ??源딆씠 蹂몃떎</h3>
+          <h3 class="text-base font-bold text-white">앱에서 데이터가 더 깊이 됩니다</h3>
           <p class="mt-3 text-sm leading-7 text-slate-400">
-            愿??醫낅ぉ, ETF, ?대???嫄곕옒 ?먮쫫源뚯? ?깆뿉???댁뼱???뺤씤?쒕떎. ?먮떒? ?닿? ?쒕떎.
+            종목 뉴스, ETF, 관련 업종별 흐름 데이터를 앱에서 이어서 확인합니다. 무료로 내려받습니다.
           </p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧??       6. FAQ ???먯＜ 臾삳뒗 吏덈Ц (React island)
-  ?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧 -->
+  <!-- ════════════════════════════════════════════
+       6. FAQ — 자주 묻는 질문 (React island)
+  ════════════════════════════════════════════ -->
   <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-3xl">
       <div class="mb-10 text-center">
         <p class="text-xs font-bold uppercase tracking-widest text-amber-500">FAQ</p>
-        <h2 class="mt-3 text-3xl font-bold text-slate-900">?먯＜ 臾삳뒗 吏덈Ц</h2>
+        <h2 class="mt-3 text-3xl font-bold text-slate-900">자주 묻는 질문</h2>
       </div>
       <FaqAccordion client:load />
     </div>
   </section>
 
-  <!-- ?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧??       7. FINAL CTA
-  ?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧?먥븧 -->
+  <!-- ════════════════════════════════════════════
+       7. FINAL CTA
+  ════════════════════════════════════════════ -->
   <section class="bg-slate-900 px-4 py-24 text-center sm:px-6 lg:px-8">
     <div class="mx-auto max-w-2xl">
-      <p class="text-xs font-bold uppercase tracking-widest text-amber-400">吏湲?諛붾줈</p>
+      <p class="text-xs font-bold uppercase tracking-widest text-amber-400">지금 바로</p>
       <h2 class="mt-4 text-3xl font-bold text-white sm:text-4xl">
-        ?ㅻ뒛 誘멸뎅?μ뿉??br />臾댁뒯 ?쇱씠 ?덉뿀?붿? ?뺤씤?섏꽭??      </h2>
+        오늘 미국장에서<br />
+        놓친 것이 없는지 확인하세요
+      </h2>
       <p class="mt-4 text-slate-400">
-        ?ъ떎怨?猷⑤㉧瑜?援щ텇???ㅻ뒛???댁뒋 ?덉씠?? 臾대즺濡?諛붾줈 ?뺤씤?????덉뒿?덈떎.
+        사실과 루머를 구분해서 오늘의 이슈 레이더, 무료로 바로 확인할 수 있습니다.
       </p>
       <div class="mt-8 flex flex-wrap justify-center gap-4">
         <a
           href="/radar"
           class="inline-flex items-center justify-center rounded-xl bg-amber-400 px-8 py-4 text-base font-bold text-slate-900 transition hover:bg-amber-300"
         >
-          ?ㅻ뒛???댁뒋 ?덉씠??蹂닿린 ??        </a>
+          오늘의 이슈 레이더 바로가기 →
+        </a>
         <TrackedCtaButton
           client:load
           href={links.playStore}
-          label="???ㅼ슫濡쒕뱶"
+          label="무료 다운로드"
           page="index"
           section="final-cta"
           variant="secondary"
         />
       </div>
-      <p class="mt-4 text-xs text-slate-600">?꾩옱 Android(援ш? ?뚮젅?? ?꾩슜 쨌 iOS 踰꾩쟾 以鍮?以?/p>
+      <p class="mt-4 text-xs text-slate-600">현재 Android(구글 플레이) 서비스 중 · iOS 버전 준비 중</p>
     </div>
   </section>
 
