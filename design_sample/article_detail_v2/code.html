@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FinHub | The Industrial Intelligence</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-dim": "#f2d4ca",
+                        "on-secondary-container": "#656464",
+                        "surface-container": "#ffe9e3",
+                        "on-tertiary-container": "#fdfcff",
+                        "on-error-container": "#93000a",
+                        "on-surface": "#281812",
+                        "secondary-container": "#e5e2e1",
+                        "surface": "#fff8f6",
+                        "on-primary": "#ffffff",
+                        "on-surface-variant": "#5c4037",
+                        "inverse-primary": "#ffb59c",
+                        "inverse-on-surface": "#ffede8",
+                        "on-primary-fixed": "#380c00",
+                        "surface-variant": "#fadcd3",
+                        "secondary-fixed": "#e5e2e1",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-fixed": "#001c39",
+                        "tertiary-fixed": "#d3e3ff",
+                        "on-background": "#281812",
+                        "primary": "#a63500",
+                        "error": "#ba1a1a",
+                        "outline-variant": "#e5beb2",
+                        "tertiary": "#005da6",
+                        "surface-container-high": "#ffe2d9",
+                        "on-primary-container": "#fffbff",
+                        "surface-bright": "#fff8f6",
+                        "on-tertiary-fixed-variant": "#004882",
+                        "secondary-fixed-dim": "#c8c6c5",
+                        "secondary": "#5f5e5e",
+                        "primary-container": "#d04500",
+                        "on-secondary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "outline": "#907065",
+                        "surface-tint": "#aa3700",
+                        "background": "#fff8f6",
+                        "on-primary-fixed-variant": "#822800",
+                        "on-tertiary": "#ffffff",
+                        "primary-fixed": "#ffdbcf",
+                        "surface-container-low": "#fff1ec",
+                        "surface-container-highest": "#fadcd3",
+                        "inverse-surface": "#3e2c26",
+                        "primary-fixed-dim": "#ffb59c",
+                        "tertiary-container": "#0076d0",
+                        "tertiary-fixed-dim": "#a3c9ff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-fixed": "#1c1b1b",
+                        "on-secondary-fixed-variant": "#474646"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "md": "16px",
+                        "sm": "8px",
+                        "unit": "4px",
+                        "xs": "4px",
+                        "margin": "32px",
+                        "xl": "40px",
+                        "lg": "24px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Manrope"],
+                        "label-caps": ["Manrope"],
+                        "h1": ["Manrope"],
+                        "h2": ["Manrope"],
+                        "body-lg": ["Manrope"],
+                        "display": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "body-md": ["15px", {"lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400"}],
+                        "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "h1": ["32px", {"lineHeight": "1.1", "letterSpacing": "-0.03em", "fontWeight": "700"}],
+                        "h2": ["24px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+                        "display": ["48px", {"lineHeight": "1.05", "letterSpacing": "-0.04em", "fontWeight": "800"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .oat-border { border: 1px solid #dedbd6; }
+        .transition-interaction:active { transform: scale(0.95); }
+        .transition-hover-scale:hover { transform: scale(1.05); }
+    </style>
+</head>
+<body class="bg-background font-body-md text-on-background selection:bg-surface-dim">
+<!-- TopNavBar -->
+<header class="bg-white dark:bg-stone-950 border-b border-stone-200 dark:border-stone-800 sticky top-0 z-50">
+<nav class="flex justify-between items-center w-full px-6 h-16 max-w-screen-2xl mx-auto">
+<div class="flex items-center gap-8">
+<span class="text-xl font-black text-stone-900 dark:text-stone-50 tracking-tighter">FinHub</span>
+<div class="hidden md:flex gap-6 items-center">
+<a class="font-manrope tracking-tight text-sm font-semibold text-stone-500 dark:text-stone-400 hover:text-orange-600 transition-all duration-200" href="#">ETF</a>
+<a class="font-manrope tracking-tight text-sm font-semibold text-orange-600 dark:text-orange-500 border-b-2 border-orange-600 pb-5 pt-5" href="#">News</a>
+<a class="font-manrope tracking-tight text-sm font-semibold text-stone-500 dark:text-stone-400 hover:text-orange-600 transition-all duration-200" href="#">Reports</a>
+<a class="font-manrope tracking-tight text-sm font-semibold text-stone-500 dark:text-stone-400 hover:text-orange-600 transition-all duration-200" href="#">Insider</a>
+<a class="font-manrope tracking-tight text-sm font-semibold text-stone-500 dark:text-stone-400 hover:text-orange-600 transition-all duration-200" href="#">Basics</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="bg-primary text-white px-6 py-2 rounded-lg font-manrope text-sm font-semibold transition-hover-scale shadow-sm">Subscribe</button>
+</div>
+</nav>
+</header>
+<main class="max-w-screen-2xl mx-auto px-6 py-12 flex flex-col md:flex-row gap-gutter">
+<!-- Left Content Area (70%) -->
+<article class="w-full md:w-[70%] space-y-xl">
+<!-- Breadcrumb & Metadata -->
+<div class="space-y-sm">
+<div class="flex items-center gap-2">
+<span class="text-label-caps font-label-caps text-primary uppercase">Special Report</span>
+<span class="text-secondary">•</span>
+<span class="text-label-caps font-label-caps text-secondary uppercase">June 24, 2024</span>
+</div>
+<h1 class="text-display font-display text-on-surface">The Data Center Renaissance: Powering the Age of Industrial AI</h1>
+<p class="text-body-lg font-body-lg text-secondary max-w-3xl">An in-depth analysis of the infrastructure demands required to sustain the current trajectory of generative intelligence and the fiscal implications for global energy markets.</p>
+</div>
+<!-- TL;DR Bento Card -->
+<div class="bg-white oat-border p-lg rounded-lg space-y-md">
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined" data-icon="lightbulb">lightbulb</span>
+<span class="font-label-caps text-label-caps">Executive Summary</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-lg">
+<div class="space-y-xs">
+<h4 class="font-h2 text-body-md font-bold">Infrastucture Gap</h4>
+<p class="text-body-md text-secondary">Global data center capacity must grow by 140% by 2030 to meet AI compute demands.</p>
+</div>
+<div class="space-y-xs">
+<h4 class="font-h2 text-body-md font-bold">Energy Pivot</h4>
+<p class="text-body-md text-secondary">Nuclear and renewable integration is no longer optional for industrial-scale compute hubs.</p>
+</div>
+<div class="space-y-xs">
+<h4 class="font-h2 text-body-md font-bold">Market Alpha</h4>
+<p class="text-body-md text-secondary">Early movers in liquid cooling technology are showing 22% higher margin efficiency.</p>
+</div>
+</div>
+</div>
+<!-- Main Imagery -->
+<figure class="space-y-sm">
+<div class="aspect-[21/9] overflow-hidden rounded-lg oat-border">
+<img alt="Industrial Data Center" class="w-full h-full object-cover grayscale-[0.2] hover:scale-105 transition-transform duration-700" data-alt="A high-tech data center interior with rows of server racks illuminated by cool blue and soft orange LED lights. The perspective creates a sense of infinite scale and precision. The visual style is clinical yet editorial, featuring high-contrast lighting and a pristine, industrial-sophistication aesthetic that aligns with a professional financial intelligence platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBM9q-rWBp87WdBR9zxHppMJNHWKZ2aQouIJfqfBFjyYtkzKsBG9XJNKcwWDMYEbBdgQ5j3Lfxi9kCOCq-leJSX4cRhEnLc67zfZBDGd3H6OQ_u5WOFezX1C8tZGOTxDCasWN28BRhnCtb6AV4uzEsbaO0BbUE5SBDltGK0AeWwZ0YUcy3dxxa2i1wR0rq9a80jnRM-fjwinpi_C1tMRCQxEeTQM3aBzurFkPEMBOQXmmAdcl_AfNq-iMjKOtGyQyZ3eyZyffcRDnFx"/>
+</div>
+<figcaption class="text-xs text-secondary font-manrope text-center italic">Figure 1.1: Next-generation immersion-cooled server arrays at the Oslo Hub.</figcaption>
+</figure>
+<!-- Content Body -->
+<div class="space-y-lg max-w-4xl">
+<h2 class="text-h1 font-h1 text-on-surface">The Architecture of Intelligence</h2>
+<p class="text-body-lg font-body-lg text-on-surface leading-relaxed">
+                    The shift from traditional cloud storage to intensive generative AI training requires a fundamental redesign of the industrial floor. No longer are we looking at simple stacks of hardware; we are observing the birth of the <span class="font-bold">Compute Refinery</span>. These facilities process raw electricity and data into high-value intelligence, much like a traditional refinery processes crude into fuel.
+                </p>
+<p class="text-body-lg font-body-lg text-on-surface leading-relaxed">
+                    Financial analysts must look beyond the chip manufacturers. The real bottleneck—and therefore the real opportunity—lies in the specialized physical infrastructure: heat exchangers, modular power grids, and high-frequency interconnects.
+                </p>
+<!-- Data Table Section -->
+<div class="py-md">
+<h3 class="text-h2 font-h2 mb-sm">Projected Capacity Growth (MW)</h3>
+<div class="overflow-x-auto oat-border rounded-lg bg-white">
+<table class="w-full text-left">
+<thead class="bg-surface-container-low border-b border-stone-200">
+<tr>
+<th class="px-lg py-md font-label-caps text-label-caps text-secondary">Region</th>
+<th class="px-lg py-md font-label-caps text-label-caps text-secondary">2024 Current</th>
+<th class="px-lg py-md font-label-caps text-label-caps text-secondary">2026 Forecast</th>
+<th class="px-lg py-md font-label-caps text-label-caps text-secondary">Growth %</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-stone-100">
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="px-lg py-md font-bold">North America</td>
+<td class="px-lg py-md">4,200 MW</td>
+<td class="px-lg py-md">6,850 MW</td>
+<td class="px-lg py-md text-primary font-bold">+63.1%</td>
+</tr>
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="px-lg py-md font-bold">EMEA Central</td>
+<td class="px-lg py-md">2,800 MW</td>
+<td class="px-lg py-md">4,120 MW</td>
+<td class="px-lg py-md text-primary font-bold">+47.1%</td>
+</tr>
+<tr class="hover:bg-surface-container-lowest transition-colors">
+<td class="px-lg py-md font-bold">APAC Core</td>
+<td class="px-lg py-md">3,100 MW</td>
+<td class="px-lg py-md">5,900 MW</td>
+<td class="px-lg py-md text-primary font-bold">+90.3%</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p class="text-body-lg font-body-lg text-on-surface leading-relaxed">
+                    The geopolitical implications of these growth rates cannot be overstated. Countries that provide both the regulatory stability for data governance and the raw electrical output are becoming the new nodes of global economic power.
+                </p>
+</div>
+<!-- Tags -->
+<div class="flex flex-wrap gap-sm pt-xl border-t border-stone-200">
+<span class="bg-[#f2f0ed] text-on-surface px-4 py-2 rounded-lg font-label-caps text-label-caps">Infrastructure</span>
+<span class="bg-[#f2f0ed] text-on-surface px-4 py-2 rounded-lg font-label-caps text-label-caps">Artificial Intelligence</span>
+<span class="bg-[#f2f0ed] text-on-surface px-4 py-2 rounded-lg font-label-caps text-label-caps">Energy Sector</span>
+<span class="bg-[#f2f0ed] text-on-surface px-4 py-2 rounded-lg font-label-caps text-label-caps">Growth Equity</span>
+</div>
+</article>
+<!-- Right Sidebar (30%) -->
+<aside class="w-full md:w-[30%] space-y-lg">
+<!-- Sticky CTA Card -->
+<div class="sticky top-24 space-y-lg">
+<div class="bg-stone-900 text-white p-lg rounded-lg shadow-xl space-y-md">
+<div class="w-12 h-12 bg-primary rounded-xl flex items-center justify-center">
+<span class="material-symbols-outlined text-white" data-icon="signal_cellular_alt" data-weight="fill">signal_cellular_alt</span>
+</div>
+<h3 class="text-h2 font-h2">Unlock the Full Intelligence</h3>
+<p class="text-stone-400 text-sm">Join 50k+ institutional investors using FinHub to navigate industrial shifts in real-time.</p>
+<ul class="space-y-sm">
+<li class="flex items-center gap-2 text-xs text-stone-300">
+<span class="material-symbols-outlined text-primary text-sm" data-icon="check_circle">check_circle</span>
+                            Proprietary Sector Dashboards
+                        </li>
+<li class="flex items-center gap-2 text-xs text-stone-300">
+<span class="material-symbols-outlined text-primary text-sm" data-icon="check_circle">check_circle</span>
+                            Daily Insider Alerts
+                        </li>
+</ul>
+<button class="w-full bg-primary py-3 rounded-lg font-manrope font-bold text-sm transition-hover-scale">Get the App</button>
+<div class="text-center">
+<a class="text-xs text-stone-500 hover:text-white transition-colors" href="#">Learn more about Premium</a>
+</div>
+</div>
+<!-- Related Content -->
+<div class="space-y-md">
+<h4 class="font-label-caps text-label-caps text-secondary border-b border-stone-200 pb-sm">Related Reports</h4>
+<div class="space-y-lg">
+<a class="group block space-y-xs" href="#">
+<h5 class="text-body-md font-bold group-hover:text-primary transition-colors">The Copper Squeeze: Mining for the AI Boom</h5>
+<p class="text-xs text-secondary">Analysis of metal supply chain vulnerabilities in electronics.</p>
+</a>
+<a class="group block space-y-xs" href="#">
+<h5 class="text-body-md font-bold group-hover:text-primary transition-colors">SMRs: The Nuclear Future of Big Tech</h5>
+<p class="text-xs text-secondary">Why small modular reactors are the endgame for compute energy.</p>
+</a>
+<a class="group block space-y-xs" href="#">
+<h5 class="text-body-md font-bold group-hover:text-primary transition-colors">Nvidia Post-Earnings Deep Dive</h5>
+<p class="text-xs text-secondary">Quantitative analysis of the Q2 performance metrics.</p>
+</a>
+</div>
+</div>
+<!-- Author Bio -->
+<div class="p-lg oat-border bg-white rounded-lg flex items-start gap-md">
+<div class="w-12 h-12 rounded-full overflow-hidden shrink-0">
+<img alt="Marcus Thorne" data-alt="A professional portrait of a male financial journalist in his late 40s. He is wearing a dark navy blazer and a white linen shirt, looking directly at the camera with a confident, authoritative expression. The background is a blurred high-end office with warm wood tones. The lighting is soft and flattering, emphasizing a premium editorial feel." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDsOvnod1U8mfRkowDC9LHsnVxtL90FOFhX6sdHPpsDwzAZZhCX2zavosreQpQYYJqobVGH1nEppXjIpiu9FhoEpkIE6G5pzFCic0adVU2L_B-dPsgGy5rNUE4qUkI1JzLbVJwo3QPPyuK4kps97Zug5hZfuQixFiaWb4n3mkKOfPLaTze3vLUNTcqMknivWxsK2anT3DX97qFFvYs32xpxYY4oDB7J74l8X-QyD5VvedzpfYCFA0CNrf7O-0v0tpbiTk0QZwOJGZof"/>
+</div>
+<div>
+<span class="font-bold text-body-md block">Marcus Thorne</span>
+<span class="text-xs text-secondary">Head of Industrial Research</span>
+</div>
+</div>
+</div>
+</aside>
+</main>
+<!-- Footer -->
+<footer class="bg-stone-50 dark:bg-stone-950 border-t border-stone-200 dark:border-stone-800">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 px-8 py-12 max-w-screen-2xl mx-auto">
+<div class="space-y-md">
+<span class="font-bold text-stone-900 dark:text-stone-50 text-xl tracking-tighter">FinHub</span>
+<p class="font-manrope text-xs leading-relaxed text-stone-500">
+                    © 2024 FinHub Industrial Sophistication. Precise Financial Intelligence for the institutional era. Delivered with clinical accuracy.
+                </p>
+</div>
+<div class="flex flex-col gap-sm">
+<span class="font-label-caps text-label-caps text-stone-900 mb-sm">Resources</span>
+<a class="font-manrope text-xs text-stone-500 hover:text-stone-900 transition-colors" href="#">Regulatory Disclosures</a>
+<a class="font-manrope text-xs text-stone-500 hover:text-stone-900 transition-colors" href="#">API Documentation</a>
+<a class="font-manrope text-xs text-stone-500 hover:text-stone-900 transition-colors" href="#">Support</a>
+</div>
+<div class="flex flex-col gap-sm">
+<span class="font-label-caps text-label-caps text-stone-900 mb-sm">Legal</span>
+<a class="font-manrope text-xs text-stone-500 hover:text-stone-900 transition-colors" href="#">Terms of Service</a>
+<a class="font-manrope text-xs text-stone-500 hover:text-stone-900 transition-colors" href="#">Privacy Policy</a>
+</div>
+</div>
+</footer>
+</body></html>

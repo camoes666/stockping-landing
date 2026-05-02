@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FinEdit | Premium Editor</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "background": "#fff8f6",
+                        "surface-container": "#ffe9e3",
+                        "on-error": "#ffffff",
+                        "inverse-on-surface": "#ffede8",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-fixed-variant": "#004882",
+                        "on-tertiary-container": "#fdfcff",
+                        "on-primary-container": "#fffbff",
+                        "on-tertiary-fixed": "#001c39",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed-dim": "#a3c9ff",
+                        "primary-fixed": "#ffdbcf",
+                        "on-error-container": "#93000a",
+                        "on-secondary-container": "#656464",
+                        "secondary-container": "#e5e2e1",
+                        "surface-container-highest": "#fadcd3",
+                        "secondary-fixed": "#e5e2e1",
+                        "on-secondary": "#ffffff",
+                        "on-secondary-fixed-variant": "#474646",
+                        "outline": "#907065",
+                        "on-secondary-fixed": "#1c1b1b",
+                        "tertiary-fixed": "#d3e3ff",
+                        "on-background": "#281812",
+                        "on-primary-fixed-variant": "#822800",
+                        "on-primary": "#ffffff",
+                        "surface": "#fff8f6",
+                        "secondary-fixed-dim": "#c8c6c5",
+                        "secondary": "#5f5e5e",
+                        "surface-bright": "#fff8f6",
+                        "on-surface": "#281812",
+                        "surface-container-high": "#ffe2d9",
+                        "on-primary-fixed": "#380c00",
+                        "surface-container-low": "#fff1ec",
+                        "primary-container": "#d04500",
+                        "on-surface-variant": "#5c4037",
+                        "surface-tint": "#aa3700",
+                        "primary": "#a63500",
+                        "error-container": "#ffdad6",
+                        "tertiary": "#005da6",
+                        "error": "#ba1a1a",
+                        "primary-fixed-dim": "#ffb59c",
+                        "outline-variant": "#e5beb2",
+                        "surface-dim": "#f2d4ca",
+                        "surface-variant": "#fadcd3",
+                        "tertiary-container": "#0076d0",
+                        "inverse-surface": "#3e2c26",
+                        "inverse-primary": "#ffb59c"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "xl": "40px",
+                        "sm": "8px",
+                        "xs": "4px",
+                        "unit": "4px",
+                        "lg": "24px",
+                        "gutter": "24px",
+                        "md": "16px",
+                        "margin": "32px"
+                    },
+                    "fontFamily": {
+                        "h1": ["Manrope"],
+                        "body-md": ["Manrope"],
+                        "body-lg": ["Manrope"],
+                        "display": ["Manrope"],
+                        "h2": ["Manrope"],
+                        "label-caps": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "h1": ["32px", {"lineHeight": "1.1", "letterSpacing": "-0.03em", "fontWeight": "700"}],
+                        "body-md": ["15px", {"lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+                        "display": ["48px", {"lineHeight": "1.05", "letterSpacing": "-0.04em", "fontWeight": "800"}],
+                        "h2": ["24px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "700"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { background-color: #faf9f6; }
+        .editor-container { max-width: 900px; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .active-scale:active { transform: scale(0.95); }
+        .hover-scale:hover { transform: scale(1.05); }
+    </style>
+</head>
+<body class="font-body-md text-on-surface antialiased">
+<!-- TopAppBar Component -->
+<header class="fixed top-0 left-0 right-0 z-50 bg-[#faf9f6] border-b border-[#dedbd6]">
+<div class="flex justify-between items-center w-full px-6 h-16 max-w-screen-2xl mx-auto font-['Manrope'] antialiased tracking-tight">
+<div class="flex items-center gap-6">
+<span class="text-xl font-extrabold tracking-tighter text-stone-900">FinEdit</span>
+<nav class="hidden md:flex items-center space-x-6 text-sm">
+<span class="text-stone-400">Library</span>
+<span class="material-symbols-outlined text-xs text-stone-300">chevron_right</span>
+<span class="text-stone-900 font-bold border-b-2 border-[#ff5600] pb-1">New Post</span>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="px-4 py-2 text-label-caps font-bold text-stone-600 bg-white border border-[#dedbd6] rounded-lg hover:bg-stone-50 transition-all active-scale">
+                    Save Draft
+                </button>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined p-2 text-stone-500 hover:scale-[1.1] transition-transform cursor-pointer">notifications</span>
+<span class="material-symbols-outlined p-2 text-stone-500 hover:scale-[1.1] transition-transform cursor-pointer">account_circle</span>
+</div>
+</div>
+</div>
+</header>
+<main class="pt-24 pb-xl flex min-h-screen">
+<!-- Main Canvas: Left Side Editor -->
+<div class="flex-grow px-margin md:px-xl overflow-y-auto">
+<div class="editor-container mx-auto">
+<!-- Floating Formatting Bar -->
+<div class="sticky top-20 z-40 mb-lg flex items-center gap-1 p-1.5 bg-white border border-[#dedbd6] rounded-xl shadow-[0px_10px_30px_rgba(0,0,0,0.04)] w-fit mx-auto">
+<button class="p-2 hover:bg-[#faf9f6] rounded text-stone-600 flex items-center justify-center transition-colors">
+<span class="material-symbols-outlined">format_bold</span>
+</button>
+<button class="p-2 hover:bg-[#faf9f6] rounded text-stone-600 flex items-center justify-center transition-colors">
+<span class="material-symbols-outlined">format_italic</span>
+</button>
+<button class="p-2 hover:bg-[#faf9f6] rounded text-stone-600 flex items-center justify-center transition-colors">
+<span class="material-symbols-outlined">link</span>
+</button>
+<div class="w-[1px] h-6 bg-[#dedbd6] mx-1"></div>
+<button class="p-2 hover:bg-[#faf9f6] rounded text-stone-600 flex items-center justify-center transition-colors">
+<span class="text-xs font-bold px-1">H1</span>
+</button>
+<button class="p-2 hover:bg-[#faf9f6] rounded text-stone-600 flex items-center justify-center transition-colors">
+<span class="text-xs font-bold px-1">H2</span>
+</button>
+<div class="w-[1px] h-6 bg-[#dedbd6] mx-1"></div>
+<button class="p-2 hover:bg-[#faf9f6] rounded text-stone-600 flex items-center justify-center transition-colors">
+<span class="material-symbols-outlined">format_quote</span>
+</button>
+<button class="p-2 hover:bg-[#faf9f6] rounded text-stone-600 flex items-center justify-center transition-colors">
+<span class="material-symbols-outlined">format_list_bulleted</span>
+</button>
+</div>
+<!-- Text Area -->
+<div class="space-y-sm">
+<textarea class="w-full bg-transparent border-none focus:ring-0 font-h1 text-h1 placeholder:text-stone-300 resize-none overflow-hidden" placeholder="Article Title..." rows="1"></textarea>
+<textarea class="w-full bg-transparent border-none focus:ring-0 font-body-lg text-body-lg text-stone-700 placeholder:text-stone-300 min-h-[600px] resize-none" placeholder="Start your story..."></textarea>
+</div>
+</div>
+</div>
+<!-- SideNavBar: Editor Settings -->
+<aside class="fixed right-0 top-16 bottom-0 w-72 bg-white border-l border-[#dedbd6] flex flex-col p-6 space-y-6 font-['Manrope'] text-sm font-medium z-40 overflow-y-auto">
+<div>
+<h3 class="text-lg font-bold text-stone-900">Editor Settings</h3>
+<p class="text-xs text-stone-500 uppercase tracking-widest mt-1">Manage metadata</p>
+</div>
+<div class="space-y-4">
+<div class="space-y-2">
+<label class="text-label-caps text-stone-600">SEO Title</label>
+<input class="w-full px-3 py-2 bg-white border border-[#dedbd6] rounded text-stone-900 focus:border-[#ff5600] focus:ring-0 transition-colors" placeholder="Page meta title" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="text-label-caps text-stone-600">SEO Description</label>
+<textarea class="w-full px-3 py-2 bg-white border border-[#dedbd6] rounded text-stone-900 focus:border-[#ff5600] focus:ring-0 transition-colors" placeholder="Brief summary..." rows="3"></textarea>
+</div>
+<div class="space-y-2">
+<label class="text-label-caps text-stone-600">Category</label>
+<select class="w-full px-3 py-2 bg-white border border-[#dedbd6] rounded text-stone-900 focus:border-[#ff5600] focus:ring-0 appearance-none transition-colors">
+<option>News</option>
+<option>ETF</option>
+<option>Reports</option>
+<option>Analysis</option>
+</select>
+</div>
+<div class="space-y-2">
+<label class="text-label-caps text-stone-600">Featured Image</label>
+<div class="relative group cursor-pointer border-2 border-dashed border-[#dedbd6] rounded-xl aspect-video flex flex-col items-center justify-center gap-2 hover:border-[#ff5600] transition-colors overflow-hidden">
+<img class="absolute inset-0 w-full h-full object-cover opacity-20 grayscale group-hover:opacity-30 transition-opacity" data-alt="A sophisticated digital rendering of abstract financial data visualizations, using a clean light-mode aesthetic. Glowing orange lines curve through a minimal white space representing market trends. The mood is professional, editorial, and high-tech, perfectly reflecting an industrial sophistication brand identity for financial news reporting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDK99wb2Qm70dFYW8rjLuJgILo90jpIwGQ4SrISa40hYFJymRsh9DUYE6TAJZuN_sx1l3l-9MrE9_m81Wcla3l9k5Ap2wFFqJCuTtLSSomIlbh31jZnGHLebAZ6rNC0HlwwRSoclalHVe897_25oUjpAiywjnZVKgT7MWe9lK9V-Gp4QFeHu2bxqw-6Go8p0glZVCFt9JBGTX0sg37s2OyI83eo3dWWiBNFQ_Xs00ROSOWND0kt6aiwUk-RGtpaeZ3xkLBHJH9ZSglo"/>
+<span class="material-symbols-outlined text-stone-400">image</span>
+<span class="text-xs text-stone-500 font-bold">Upload Asset</span>
+</div>
+</div>
+</div>
+<div class="pt-xl space-y-3">
+<button class="w-full py-4 bg-[#ff5600] text-white font-bold rounded hover:scale-105 transition-transform active:scale-95 shadow-lg shadow-[#ff5600]/20">
+                    Review &amp; Publish
+                </button>
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-3 p-2 bg-[#f2f0ed] rounded cursor-pointer transition-colors">
+<span class="material-symbols-outlined text-stone-900 text-sm">settings</span>
+<span class="text-stone-900 font-semibold">Post Settings</span>
+</div>
+<div class="flex items-center gap-3 p-2 hover:bg-stone-50 rounded cursor-pointer text-stone-500 transition-colors">
+<span class="material-symbols-outlined text-sm">search</span>
+<span>SEO Metadata</span>
+</div>
+<div class="flex items-center gap-3 p-2 hover:bg-stone-50 rounded cursor-pointer text-stone-500 transition-colors">
+<span class="material-symbols-outlined text-sm">image</span>
+<span>Featured Image</span>
+</div>
+<div class="flex items-center gap-3 p-2 hover:bg-stone-50 rounded cursor-pointer text-stone-500 transition-colors">
+<span class="material-symbols-outlined text-sm">send</span>
+<span>Publishing</span>
+</div>
+</div>
+</div>
+</aside>
+</main>
+<!-- Footer Component -->
+<footer class="mt-auto bg-[#faf9f6] border-t border-[#dedbd6]">
+<div class="w-full py-8 px-6 flex flex-col md:flex-row justify-between items-center gap-4 max-w-screen-2xl mx-auto font-['Manrope'] text-xs uppercase tracking-widest">
+<div class="text-stone-900 font-bold text-sm">© 2024 FinEdit. Industrial Sophistication.</div>
+<div class="flex gap-6">
+<a class="text-stone-400 hover:text-[#ff5600] transition-colors" href="#">Terms of Service</a>
+<a class="text-stone-400 hover:text-[#ff5600] transition-colors" href="#">Privacy Policy</a>
+<a class="text-stone-400 hover:text-[#ff5600] transition-colors" href="#">Contact Support</a>
+</div>
+</div>
+</footer>
+</body></html>

@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Today's Market Radar | FinHub</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-dim": "#f2d4ca",
+                        "on-secondary-container": "#656464",
+                        "surface-container": "#ffe9e3",
+                        "on-tertiary-container": "#fdfcff",
+                        "on-error-container": "#93000a",
+                        "on-surface": "#281812",
+                        "secondary-container": "#e5e2e1",
+                        "surface": "#fff8f6",
+                        "on-primary": "#ffffff",
+                        "on-surface-variant": "#5c4037",
+                        "inverse-primary": "#ffb59c",
+                        "inverse-on-surface": "#ffede8",
+                        "on-primary-fixed": "#380c00",
+                        "surface-variant": "#fadcd3",
+                        "secondary-fixed": "#e5e2e1",
+                        "error-container": "#ffdad6",
+                        "on-tertiary-fixed": "#001c39",
+                        "tertiary-fixed": "#d3e3ff",
+                        "on-background": "#281812",
+                        "primary": "#a63500",
+                        "error": "#ba1a1a",
+                        "outline-variant": "#e5beb2",
+                        "tertiary": "#005da6",
+                        "surface-container-high": "#ffe2d9",
+                        "on-primary-container": "#fffbff",
+                        "surface-bright": "#fff8f6",
+                        "on-tertiary-fixed-variant": "#004882",
+                        "secondary-fixed-dim": "#c8c6c5",
+                        "secondary": "#5f5e5e",
+                        "primary-container": "#d04500",
+                        "on-secondary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "outline": "#907065",
+                        "surface-tint": "#aa3700",
+                        "background": "#fff8f6",
+                        "on-primary-fixed-variant": "#822800",
+                        "on-tertiary": "#ffffff",
+                        "primary-fixed": "#ffdbcf",
+                        "surface-container-low": "#fff1ec",
+                        "surface-container-highest": "#fadcd3",
+                        "inverse-surface": "#3e2c26",
+                        "primary-fixed-dim": "#ffb59c",
+                        "tertiary-container": "#0076d0",
+                        "tertiary-fixed-dim": "#a3c9ff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary-fixed": "#1c1b1b",
+                        "on-secondary-fixed-variant": "#474646",
+                        "oat-border": "#dedbd6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "4px",
+                        "lg": "4px",
+                        "xl": "8px",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "md": "16px",
+                        "sm": "8px",
+                        "unit": "4px",
+                        "xs": "4px",
+                        "margin": "32px",
+                        "xl": "40px",
+                        "lg": "24px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Manrope"],
+                        "label-caps": ["Manrope"],
+                        "h1": ["Manrope"],
+                        "h2": ["Manrope"],
+                        "body-lg": ["Manrope"],
+                        "display": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "body-md": ["15px", {"lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400"}],
+                        "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "h1": ["32px", {"lineHeight": "1.1", "letterSpacing": "-0.03em", "fontWeight": "700"}],
+                        "h2": ["24px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "1.6", "letterSpacing": "-0.01em", "fontWeight": "400"}],
+                        "display": ["48px", {"lineHeight": "1.05", "letterSpacing": "-0.04em", "fontWeight": "800"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .oat-line { border-color: #dedbd6; }
+        body { background-color: #fff8f6; }
+    </style>
+</head>
+<body class="font-body-md text-on-background min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="bg-white dark:bg-stone-950 border-b border-stone-200 dark:border-stone-800 fixed top-0 z-50 w-full">
+<div class="flex justify-between items-center w-full px-6 h-16 max-w-screen-2xl mx-auto">
+<div class="flex items-center gap-8">
+<span class="text-xl font-black text-stone-900 dark:text-stone-50 tracking-tighter">FinHub</span>
+<nav class="hidden md:flex gap-6 items-center">
+<a class="font-manrope tracking-tight text-sm font-semibold text-stone-500 dark:text-stone-400 pb-5 hover:text-orange-600 dark:hover:text-orange-400 transition-all duration-200" href="#">ETF</a>
+<a class="font-manrope tracking-tight text-sm font-semibold text-stone-500 dark:text-stone-400 pb-5 hover:text-orange-600 dark:hover:text-orange-400 transition-all duration-200" href="#">News</a>
+<a class="font-manrope tracking-tight text-sm font-semibold text-orange-600 dark:text-orange-500 border-b-2 border-orange-600 pb-5" href="#">Reports</a>
+<a class="font-manrope tracking-tight text-sm font-semibold text-stone-500 dark:text-stone-400 pb-5 hover:text-orange-600 dark:hover:text-orange-400 transition-all duration-200" href="#">Insider</a>
+<a class="font-manrope tracking-tight text-sm font-semibold text-stone-500 dark:text-stone-400 pb-5 hover:text-orange-600 dark:hover:text-orange-400 transition-all duration-200" href="#">Basics</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="bg-primary text-on-primary px-4 py-2 text-sm font-bold active:scale-95 transition-transform hover:scale-105 rounded-sm">Subscribe</button>
+</div>
+</div>
+</header>
+<!-- SideNavBar -->
+<aside class="hidden lg:flex flex-col gap-2 p-4 h-full pt-24 bg-stone-50 dark:bg-stone-900 border-r border-stone-200 dark:border-stone-800 w-64 fixed left-0 top-0">
+<div class="mb-6 px-2">
+<h3 class="font-manrope text-xs font-bold uppercase tracking-widest text-on-surface-variant">Navigation</h3>
+<p class="text-[10px] text-on-secondary-container">Industrial Insights</p>
+</div>
+<a class="flex items-center gap-3 p-3 text-stone-500 dark:text-stone-400 hover:translate-x-1 transition-transform duration-200 active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-manrope text-xs font-bold uppercase tracking-widest">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 p-3 bg-white dark:bg-stone-800 text-stone-900 dark:text-stone-50 border border-stone-200 dark:border-stone-700 rounded-sm hover:translate-x-1 transition-transform duration-200 active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="analytics" style="font-variation-settings: 'FILL' 1;">analytics</span>
+<span class="font-manrope text-xs font-bold uppercase tracking-widest">Research</span>
+</a>
+<a class="flex items-center gap-3 p-3 text-stone-500 dark:text-stone-400 hover:translate-x-1 transition-transform duration-200 active:scale-95" href="#">
+<span class="material-symbols-outlined" data-icon="query_stats">query_stats</span>
+<span class="font-manrope text-xs font-bold uppercase tracking-widest">Analysis</span>
+</a>
+<a class="flex items-center gap-3 p-3 text-stone-500 dark:text-stone-400 hover:translate-x-1 transition-transform duration-200 active:scale-95 mt-auto" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-manrope text-xs font-bold uppercase tracking-widest">Settings</span>
+</a>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-grow pt-24 pb-12 px-6 lg:pl-72 max-w-screen-2xl mx-auto w-full">
+<!-- Hero Section -->
+<section class="mb-xl">
+<div class="flex flex-col md:flex-row justify-between items-end gap-6 mb-lg">
+<div class="max-w-2xl">
+<span class="font-label-caps text-label-caps text-primary uppercase mb-2 block">Intelligence Feed</span>
+<h1 class="font-display text-display text-on-surface">Today's Market Radar</h1>
+<p class="font-body-lg text-body-lg text-secondary mt-4">Precise financial intelligence curated by our industrial AI agents. Real-time shifts in equity markets, insider movements, and verified macro shifts.</p>
+</div>
+<div class="flex gap-sm">
+<span class="bg-surface-container border border-oat-border px-3 py-1 text-xs font-bold flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span> LIVE UPDATES
+                    </span>
+</div>
+</div>
+<div class="h-[300px] w-full bg-white border border-oat-border overflow-hidden relative group">
+<img class="w-full h-full object-cover grayscale opacity-80 group-hover:grayscale-0 transition-all duration-700" data-alt="A clean, minimalist high-key wide shot of a futuristic financial trading floor with translucent glass displays. The lighting is bright and airy, reflecting a sophisticated modern light-mode aesthetic. The scene is dominated by soft whites and oat-colored textures, with sharp orange data visualizations glowing on the screens. The mood is clinical, professional, and technologically advanced." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAr7Y47n7GZD_pI_xO4WnoI5jwR3U0robEgTbL56KMhX2ZwPYL170UW4pN8OpZ9M2xM3QJxZT2XcQ8uU9Ng1aQUrDP84lVex5djSG-rjxTmWiSiNogf6MdRWP_Wxhn6J4n1O9KWJYL00pAoCTwgMweRELhzkMHVnp3YmNNLiqYCKHEOJdje8IX5jHfFM6ScgeFqWeJuXqevYED5MBogZFa4dRGW8dzpeOuxxT7h5k45MAaBdSGmQatibPKpjSGPbaL5L56fu1t_V4zi"/>
+<div class="absolute inset-0 bg-gradient-to-t from-white/80 to-transparent"></div>
+<div class="absolute bottom-lg left-lg">
+<span class="bg-primary text-on-primary px-2 py-1 text-[10px] font-bold uppercase mb-2 inline-block">Market Leader</span>
+<h2 class="font-h2 text-h2 text-on-surface">NVDA Dynamics: Evaluating the 10-Year Trajectory</h2>
+</div>
+</div>
+</section>
+<!-- Bento Grid of Data Cards -->
+<section class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<!-- Card 1: Confirmed Fact (Large) -->
+<div class="md:col-span-8 bg-white border border-oat-border p-lg flex flex-col justify-between hover:shadow-lg transition-shadow duration-300">
+<div>
+<div class="flex justify-between items-start mb-md">
+<span class="bg-stone-900 text-stone-50 font-label-caps text-[10px] px-2 py-1 uppercase tracking-widest">Confirmed Fact</span>
+<div class="flex gap-2">
+<span class="border border-oat-border px-2 py-0.5 text-[10px] font-bold">AAPL</span>
+<span class="border border-oat-border px-2 py-0.5 text-[10px] font-bold">TSMC</span>
+</div>
+</div>
+<h3 class="font-h2 text-h2 mb-4">Strategic Chip Allocation Secured for Q4 Production Cycles</h3>
+<p class="font-body-md text-body-md text-secondary mb-6">Internal procurement logs verify that supply chain bottlenecks for next-gen silicon have been resolved through an exclusive bilateral agreement. Production yields are trending 14% above initial analyst projections.</p>
+</div>
+<div class="flex items-center justify-between pt-6 border-t border-oat-border">
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined text-sm" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-label-caps text-[10px]">VERIFIED SOURCE</span>
+</div>
+<button class="flex items-center gap-2 bg-white border border-oat-border px-4 py-2 font-bold text-xs hover:scale-110 active:scale-95 transition-transform">
+                        Launch App
+                        <span class="material-symbols-outlined text-sm" data-icon="open_in_new">open_in_new</span>
+</button>
+</div>
+</div>
+<!-- Card 2: Market View -->
+<div class="md:col-span-4 bg-white border border-oat-border p-lg flex flex-col hover:shadow-lg transition-shadow duration-300">
+<div class="flex justify-between items-start mb-md">
+<span class="bg-primary text-on-primary font-label-caps text-[10px] px-2 py-1 uppercase tracking-widest">Market View</span>
+<span class="border border-oat-border px-2 py-0.5 text-[10px] font-bold">SPY</span>
+</div>
+<h3 class="font-h1 text-h2 mb-4 leading-tight">Liquidity Tides Shifting West</h3>
+<p class="font-body-md text-body-md text-secondary flex-grow">A marked increase in institutional capital flow into domestic utility sectors suggests a defensive pivot as macro volatility indices climb. We maintain a neutral-heavy stance on tech-growth for the next 14 days.</p>
+<div class="mt-6 pt-6 border-t border-oat-border">
+<button class="w-full bg-primary text-on-primary py-3 font-bold text-xs hover:scale-105 active:scale-95 transition-transform">Analyze Flows</button>
+</div>
+</div>
+<!-- Card 3: Rumor -->
+<div class="md:col-span-4 bg-white border border-oat-border p-lg flex flex-col hover:shadow-lg transition-shadow duration-300">
+<div class="flex justify-between items-start mb-md">
+<span class="bg-surface-dim text-on-surface-variant font-label-caps text-[10px] px-2 py-1 uppercase tracking-widest">Rumor</span>
+<span class="border border-oat-border px-2 py-0.5 text-[10px] font-bold">MSFT</span>
+</div>
+<div class="flex-grow">
+<h3 class="font-h2 text-h2 mb-2 italic">Unannounced Data Center Expansion?</h3>
+<p class="font-body-md text-body-md text-secondary">Local zoning filings in the Pacific Northwest hint at a massive 500MW cooling facility. While unconfirmed, the scale suggests a significant AI infrastructure ramp-up beyond public guidance.</p>
+</div>
+<div class="mt-6">
+<div class="flex items-center gap-1 text-on-secondary-container mb-4">
+<span class="material-symbols-outlined text-sm" data-icon="priority_high">priority_high</span>
+<span class="text-[10px] font-bold">CONFIDENCE: LOW (28%)</span>
+</div>
+<button class="w-full bg-white border border-oat-border py-3 font-bold text-xs hover:scale-105 active:scale-95 transition-transform">Track Rumor</button>
+</div>
+</div>
+<!-- Card 4: Data Visualization (Wide) -->
+<div class="md:col-span-8 bg-surface-container-lowest border border-oat-border p-lg relative overflow-hidden group">
+<div class="relative z-10 flex flex-col h-full">
+<div class="flex justify-between items-start mb-md">
+<span class="bg-stone-900 text-stone-50 font-label-caps text-[10px] px-2 py-1 uppercase tracking-widest">Live Correlation</span>
+<span class="font-label-caps text-[10px] text-primary">REAL-TIME FEED</span>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
+<div class="p-4 border border-oat-border bg-white">
+<span class="block text-[10px] font-bold text-secondary mb-1">DXY</span>
+<span class="text-h2 font-h2 text-on-surface">104.22</span>
+<span class="block text-[10px] font-bold text-error">-0.45%</span>
+</div>
+<div class="p-4 border border-oat-border bg-white">
+<span class="block text-[10px] font-bold text-secondary mb-1">GOLD</span>
+<span class="text-h2 font-h2 text-on-surface">2,342</span>
+<span class="block text-[10px] font-bold text-primary">+1.22%</span>
+</div>
+<div class="p-4 border border-oat-border bg-white">
+<span class="block text-[10px] font-bold text-secondary mb-1">BTC</span>
+<span class="text-h2 font-h2 text-on-surface">68.4k</span>
+<span class="block text-[10px] font-bold text-primary">+3.8%</span>
+</div>
+<div class="p-4 border border-oat-border bg-white">
+<span class="block text-[10px] font-bold text-secondary mb-1">OIL</span>
+<span class="text-h2 font-h2 text-on-surface">82.11</span>
+<span class="block text-[10px] font-bold text-error">-1.1%</span>
+</div>
+</div>
+<div class="mt-auto pt-lg">
+<p class="font-body-md text-body-md text-on-surface-variant max-w-lg">Asset correlations are diverging from historical norms. AI sentiment analysis suggests a "Volatility Squeeze" potential in the next 72 hours.</p>
+</div>
+</div>
+<div class="absolute -right-20 -bottom-20 opacity-5 group-hover:opacity-10 transition-opacity">
+<span class="material-symbols-outlined text-[300px]" data-icon="query_stats">query_stats</span>
+</div>
+</div>
+</section>
+<!-- Secondary Insights Grid -->
+<section class="mt-xl grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<div class="bg-white border border-oat-border p-md flex gap-4 items-center">
+<div class="w-12 h-12 bg-surface-container flex items-center justify-center border border-oat-border shrink-0">
+<span class="material-symbols-outlined text-primary" data-icon="trending_up">trending_up</span>
+</div>
+<div>
+<h4 class="font-bold text-xs uppercase tracking-wider">Sector Rotation</h4>
+<p class="text-[10px] text-secondary">Energy (XLE) leads performance metrics.</p>
+</div>
+</div>
+<div class="bg-white border border-oat-border p-md flex gap-4 items-center">
+<div class="w-12 h-12 bg-surface-container flex items-center justify-center border border-oat-border shrink-0">
+<span class="material-symbols-outlined text-primary" data-icon="account_balance">account_balance</span>
+</div>
+<div>
+<h4 class="font-bold text-xs uppercase tracking-wider">Policy Watch</h4>
+<p class="text-[10px] text-secondary">Fed minute leaks suggest stable rates.</p>
+</div>
+</div>
+<div class="bg-white border border-oat-border p-md flex gap-4 items-center">
+<div class="w-12 h-12 bg-surface-container flex items-center justify-center border border-oat-border shrink-0">
+<span class="material-symbols-outlined text-primary" data-icon="groups">groups</span>
+</div>
+<div>
+<h4 class="font-bold text-xs uppercase tracking-wider">Social Pulse</h4>
+<p class="text-[10px] text-secondary">Retail sentiment hit extreme fear today.</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full mt-auto bg-stone-50 dark:bg-stone-950 border-t border-stone-200 dark:border-stone-800">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 px-8 py-12 max-w-screen-2xl mx-auto">
+<div class="flex flex-col gap-4">
+<span class="font-bold text-stone-900 dark:text-stone-50 text-xl tracking-tighter">FinHub</span>
+<p class="font-manrope text-xs leading-relaxed text-stone-500 max-w-xs">© 2024 FinHub Industrial Sophistication. Precise Financial Intelligence. Built for high-stakes decision making and precise market navigation.</p>
+</div>
+<div class="flex flex-col gap-2">
+<h5 class="font-label-caps text-[10px] text-on-surface uppercase mb-2">Legal &amp; Governance</h5>
+<a class="font-manrope text-xs text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-50 transition-colors" href="#">Terms of Service</a>
+<a class="font-manrope text-xs text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-50 transition-colors" href="#">Privacy Policy</a>
+<a class="font-manrope text-xs text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-50 transition-colors" href="#">Regulatory Disclosures</a>
+</div>
+<div class="flex flex-col gap-2">
+<h5 class="font-label-caps text-[10px] text-on-surface uppercase mb-2">Technical Resources</h5>
+<a class="font-manrope text-xs text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-50 transition-colors" href="#">API Documentation</a>
+<a class="font-manrope text-xs text-stone-500 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-50 transition-colors underline" href="#">Support</a>
+</div>
+</div>
+</footer>
+</body></html>
