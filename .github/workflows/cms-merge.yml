@@ -1,0 +1,30 @@
+name: Auto-merge Keystatic CMS PRs
+
+on:
+  pull_request:
+    branches:
+      - release/v0.1.0
+    # cms/ 브랜치에서 오는 PR만 처리
+    types: [opened, synchronize, reopened]
+
+jobs:
+  auto-merge:
+    name: Auto-merge CMS PR
+    runs-on: ubuntu-latest
+    # cms/ 브랜치에서 온 PR만
+    if: startsWith(github.head_ref, 'cms/')
+
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Auto-merge CMS PR
+        uses: pascalgn/automerge-action@v0.16.4
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MERGE_METHOD: squash
+          MERGE_COMMIT_MESSAGE: "cms: {pullRequest.title}"
+          MERGE_LABELS: ""
+          MERGE_RETRIES: "6"
+          MERGE_RETRY_SLEEP: "10000"
