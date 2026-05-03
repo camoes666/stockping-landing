@@ -5,8 +5,8 @@ import CTABox from "../components/blog/CTABox.astro";
 import DisclaimerBox from "../components/blog/DisclaimerBox.astro";
 import { CommentSection } from "../components/blog/CommentSection";
 import BlogCard from "../components/blog/BlogCard.astro";
-import { CATEGORY_LABELS } from "../lib/blog-constants";
 import type { CtaType } from "../components/blog/cta-copy";
+import type { CollectionEntry } from "astro:content";
 
 interface Props {
   frontmatter: {
@@ -20,7 +20,7 @@ interface Props {
     ctaType: string;
     disclaimer: boolean;
   };
-  allPosts?: any[];
+  allPosts?: CollectionEntry<"blog">[];
   currentSlug?: string;
 }
 
@@ -37,31 +37,32 @@ const {
   disclaimer,
 } = frontmatter;
 
-// Related posts: same category, excluding current, up to 3
-const related = allPosts
+// Related: same category, excluding current, sorted newest first (no limit yet)
+const sameCategoryPosts = allPosts
   .filter(
-    (p) =>
+    (p: CollectionEntry<"blog">) =>
       p.id.replace(/\.[^.]+$/, "") !== currentSlug &&
       p.data.category === category
   )
   .sort(
-    (a: any, b: any) =>
+    (a: CollectionEntry<"blog">, b: CollectionEntry<"blog">) =>
       new Date(b.data.publishedAt).getTime() - new Date(a.data.publishedAt).getTime()
-  )
-  .slice(0, 3);
+  );
 
-// Fallback: latest posts if not enough same-category
-const fallback = allPosts
-  .filter((p) => p.id.replace(/\.[^.]+$/, "") !== currentSlug)
+// Fallback: different category, excluding current, sorted newest first
+const otherPosts = allPosts
+  .filter(
+    (p: CollectionEntry<"blog">) =>
+      p.id.replace(/\.[^.]+$/, "") !== currentSlug &&
+      p.data.category !== category
+  )
   .sort(
-    (a: any, b: any) =>
+    (a: CollectionEntry<"blog">, b: CollectionEntry<"blog">) =>
       new Date(b.data.publishedAt).getTime() - new Date(a.data.publishedAt).getTime()
-  )
-  .slice(0, 3);
+  );
 
-const relatedPosts = related.length >= 3 ? related : fallback;
-
-const categoryLabel = CATEGORY_LABELS[category] ?? category;
+// Combine: same-category first, fill remaining slots with other posts, max 3
+const relatedPosts = [...sameCategoryPosts, ...otherPosts].slice(0, 3);
 ---
 
 <BaseLayout title={title} description={description} ogImage={thumbnail}>
@@ -150,6 +151,7 @@ const categoryLabel = CATEGORY_LABELS[category] ?? category;
                 href="https://play.google.com/store/apps/details?id=kr.datadnp.app"
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="스톡핑 앱 다운로드 (Google Play에서 새 탭으로 열림)"
                 class="block w-full bg-warm-primary text-white text-center text-sm font-bold py-2.5 rounded transition-all duration-150 hover:scale-[1.02] hover:bg-warm-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-warm-primary focus-visible:ring-offset-2"
               >
                 앱 다운로드
@@ -179,7 +181,7 @@ const categoryLabel = CATEGORY_LABELS[category] ?? category;
         <div class="border-t border-warm-border mt-16 pt-10">
           <p class="text-[11px] font-bold uppercase tracking-widest text-warm-subtle mb-6">관련 글</p>
           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {relatedPosts.map((p: any) => (
+            {relatedPosts.map((p: CollectionEntry<"blog">) => (
               <BlogCard
                 slug={p.id.replace(/\.[^.]+$/, "")}
                 title={p.data.title}
