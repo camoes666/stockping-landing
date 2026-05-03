@@ -29,24 +29,36 @@ const categoryLabel = categoryLabels[category] ?? category;
 
 <a
   href={`/blog/${slug}`}
-  class="bg-white border border-warm-border rounded-lg overflow-hidden hover:shadow-md transition-shadow block"
+  class="group bg-white border border-warm-border rounded-lg overflow-hidden flex flex-col transition-all duration-200 hover:-translate-y-1 hover:shadow-lg"
 >
-  {thumbnail && (
-    <div class="aspect-[16/9] overflow-hidden">
+  {thumbnail ? (
+    <div class="aspect-[16/9] overflow-hidden bg-warm-surface">
       <img
         src={thumbnail}
         alt={title}
-        class="w-full h-full object-cover"
+        class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
         loading="lazy"
       />
     </div>
+  ) : (
+    <div class="aspect-[16/9] bg-warm-surface flex items-center justify-center">
+      <span class="text-warm-border text-4xl font-bold tracking-tighter">
+        {categoryLabel}
+      </span>
+    </div>
   )}
-  <div class="p-5">
-    <span class="bg-warm-surface-high text-warm-primary text-xs font-bold uppercase tracking-wide rounded px-2 py-1">
+  <div class="p-5 flex flex-col flex-1">
+    <span class="inline-block bg-warm-surface-high text-warm-primary text-[11px] font-bold uppercase tracking-widest rounded px-2 py-0.5 self-start">
       {categoryLabel}
     </span>
-    <p class="text-warm-text font-bold text-base leading-snug mt-2">{title}</p>
-    <p class="text-warm-subtle text-sm mt-1 line-clamp-2">{description}</p>
-    <p class="text-warm-subtle text-xs mt-3">{formatKoreanDate(publishedAt)}</p>
+    <p class="text-warm-text font-bold text-base leading-snug tracking-tight mt-2.5 line-clamp-2">
+      {title}
+    </p>
+    <p class="text-warm-subtle text-sm mt-1.5 line-clamp-2 leading-relaxed flex-1">
+      {description}
+    </p>
+    <p class="text-warm-subtle text-xs mt-4 font-medium">
+      {formatKoreanDate(publishedAt)}
+    </p>
   </div>
 </a>
