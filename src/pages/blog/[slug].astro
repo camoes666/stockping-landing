@@ -7,14 +7,14 @@ export async function getStaticPaths() {
   const posts = await getCollection("blog");
   return posts.map((post) => ({
     params: { slug: post.id.replace(/\.[^.]+$/, "") },
-    props: { post },
+    props: { post, allPosts: posts },
   }));
 }
 
-const { post } = Astro.props;
+const { post, allPosts } = Astro.props;
 const { Content } = await render(post);
 ---
 
-<BlogPostLayout frontmatter={post.data}>
+<BlogPostLayout frontmatter={post.data} allPosts={allPosts} currentSlug={post.id.replace(/\.[^.]+$/, "")}>
   <Content />
 </BlogPostLayout>

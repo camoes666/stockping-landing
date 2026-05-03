@@ -4,6 +4,8 @@ import PostMeta from "../components/blog/PostMeta.astro";
 import CTABox from "../components/blog/CTABox.astro";
 import DisclaimerBox from "../components/blog/DisclaimerBox.astro";
 import { CommentSection } from "../components/blog/CommentSection";
+import BlogCard from "../components/blog/BlogCard.astro";
+import { CATEGORY_LABELS } from "../lib/blog-constants";
 import type { CtaType } from "../components/blog/cta-copy";
 
 interface Props {
@@ -18,9 +20,11 @@ interface Props {
     ctaType: string;
     disclaimer: boolean;
   };
+  allPosts?: any[];
+  currentSlug?: string;
 }
 
-const { frontmatter } = Astro.props;
+const { frontmatter, allPosts = [], currentSlug = "" } = Astro.props;
 const {
   title,
   description,
@@ -32,12 +36,40 @@ const {
   ctaType,
   disclaimer,
 } = frontmatter;
+
+// Related posts: same category, excluding current, up to 3
+const related = allPosts
+  .filter(
+    (p) =>
+      p.id.replace(/\.[^.]+$/, "") !== currentSlug &&
+      p.data.category === category
+  )
+  .sort(
+    (a: any, b: any) =>
+      new Date(b.data.publishedAt).getTime() - new Date(a.data.publishedAt).getTime()
+  )
+  .slice(0, 3);
+
+// Fallback: latest posts if not enough same-category
+const fallback = allPosts
+  .filter((p) => p.id.replace(/\.[^.]+$/, "") !== currentSlug)
+  .sort(
+    (a: any, b: any) =>
+      new Date(b.data.publishedAt).getTime() - new Date(a.data.publishedAt).getTime()
+  )
+  .slice(0, 3);
+
+const relatedPosts = related.length >= 3 ? related : fallback;
+
+const categoryLabel = CATEGORY_LABELS[category] ?? category;
 ---
 
 <BaseLayout title={title} description={description} ogImage={thumbnail}>
   <div class="bg-warm-bg min-h-screen">
+
+    <!-- Hero Image -->
     {thumbnail && (
-      <div class="w-full aspect-[2/1] overflow-hidden">
+      <div class="w-full overflow-hidden max-h-[480px]" style="aspect-ratio: 21/9;">
         <img
           src={thumbnail}
           alt={title}
@@ -47,43 +79,120 @@ const {
       </div>
     )}
 
-    <article class="max-w-2xl mx-auto px-4 py-10">
-      <PostMeta
-        category={category}
-        tags={tags}
-        publishedAt={publishedAt}
-        updatedAt={updatedAt}
-      />
+    <!-- Two-column body -->
+    <div class="max-w-6xl mx-auto px-4 py-10">
+      <div class="flex flex-col lg:flex-row gap-12">
 
-      <h1 class="text-warm-text text-3xl font-bold leading-tight mt-4 mb-3">
-        {title}
-      </h1>
+        <!-- Article column -->
+        <article class="flex-1 min-w-0">
+          <!-- Meta: category + tags + date -->
+          <PostMeta
+            category={category}
+            tags={tags}
+            publishedAt={publishedAt}
+            updatedAt={updatedAt}
+          />
 
-      <p class="text-warm-muted text-lg leading-relaxed mb-6">
-        {description}
-      </p>
+          <!-- Title -->
+          <h1 class="text-warm-text text-3xl md:text-4xl font-bold tracking-tight leading-[1.1] mb-4 mt-3">
+            {title}
+          </h1>
 
-      <hr class="border-warm-border mb-8" />
+          <!-- Description lead -->
+          <p class="text-warm-muted text-lg leading-relaxed mb-6">
+            {description}
+          </p>
 
-      <div
-        class="
-          prose max-w-none
-          prose-headings:text-warm-text
-          prose-p:leading-7 prose-p:text-warm-text
-          prose-a:text-warm-primary prose-a:no-underline hover:prose-a:underline
-          prose-strong:text-warm-text
-          prose-li:text-warm-text
-          prose-hr:border-warm-border
-        "
-      >
-        <slot />
+          <hr class="border-warm-border mb-8" />
+
+          <!-- Prose body -->
+          <div
+            class="
+              prose max-w-none
+              prose-headings:text-warm-text prose-headings:font-bold prose-headings:tracking-tight
+              prose-p:leading-7 prose-p:text-warm-text
+              prose-a:text-warm-primary prose-a:no-underline hover:prose-a:underline
+              prose-strong:text-warm-text
+              prose-li:text-warm-text
+              prose-hr:border-warm-border
+              prose-blockquote:border-l-warm-primary prose-blockquote:text-warm-muted
+            "
+          >
+            <slot />
+          </div>
+
+          <CTABox ctaType={ctaType as CtaType} />
+
+          {disclaimer && <DisclaimerBox />}
+
+          <CommentSection
+            client:load
+            postSlug={currentSlug || Astro.url.pathname.replace(/^\/blog\//, "").replace(/\/$/, "")}
+          />
+        </article>
+
+        <!-- Sticky sidebar -->
+        <aside class="w-full lg:w-72 xl:w-80 flex-shrink-0">
+          <div class="sticky top-6 flex flex-col gap-6">
+
+            <!-- App CTA card -->
+            <div class="bg-warm-text rounded-xl p-6 relative overflow-hidden">
+              <span class="inline-block text-warm-primary bg-warm-surface-high text-[10px] font-bold uppercase tracking-widest rounded px-2 py-0.5 mb-4">
+                스톡핑 앱
+              </span>
+              <h3 class="text-white text-xl font-bold tracking-tight leading-tight mb-2">
+                실시간 미국주식 정보를 앱에서 받아보세요
+              </h3>
+              <p class="text-warm-subtle text-sm leading-relaxed mb-5">
+                ETF · 내부자 거래 · 애널리스트 리포트를 한눈에
+              </p>
+              <a
+                href="https://play.google.com/store/apps/details?id=kr.datadnp.app"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="block w-full bg-warm-primary text-white text-center text-sm font-bold py-2.5 rounded transition-all duration-150 hover:scale-[1.02] hover:bg-warm-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-warm-primary focus-visible:ring-offset-2"
+              >
+                앱 다운로드
+              </a>
+            </div>
+
+            <!-- Tags -->
+            {tags.length > 0 && (
+              <div>
+                <p class="text-[11px] font-bold uppercase tracking-widest text-warm-subtle mb-3">태그</p>
+                <div class="flex flex-wrap gap-2">
+                  {tags.map((tag) => (
+                    <span class="bg-warm-surface text-warm-text text-xs rounded px-2.5 py-1 font-medium border border-warm-border">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+
+          </div>
+        </aside>
       </div>
 
-      <CTABox ctaType={ctaType as CtaType} />
-
-      {disclaimer && <DisclaimerBox />}
-
-      <CommentSection client:load postSlug={Astro.url.pathname.replace(/^\/blog\//, "").replace(/\/$/, "")} />
-    </article>
+      <!-- Related posts -->
+      {relatedPosts.length > 0 && (
+        <div class="border-t border-warm-border mt-16 pt-10">
+          <p class="text-[11px] font-bold uppercase tracking-widest text-warm-subtle mb-6">관련 글</p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {relatedPosts.map((p: any) => (
+              <BlogCard
+                slug={p.id.replace(/\.[^.]+$/, "")}
+                title={p.data.title}
+                description={p.data.description}
+                category={p.data.category}
+                tags={p.data.tags}
+                publishedAt={p.data.publishedAt}
+                thumbnail={p.data.thumbnail}
+              />
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
   </div>
 </BaseLayout>
