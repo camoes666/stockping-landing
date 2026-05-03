@@ -10,6 +10,9 @@ const sorted = posts.sort(
   (a, b) => new Date(b.data.publishedAt).getTime() - new Date(a.data.publishedAt).getTime()
 );
 
+const featured = sorted[0];
+const rest = sorted.slice(1);
+
 const categories = [
   { value: "etf", label: "ETF" },
   { value: "news-rumor", label: "뉴스/루머" },
@@ -17,52 +20,131 @@ const categories = [
   { value: "insider-congress", label: "내부자/의원" },
   { value: "stock-data", label: "종목데이터" },
 ];
+
+const categoryLabels: Record<string, string> = {
+  etf: "ETF",
+  "news-rumor": "뉴스/루머",
+  "analyst-report": "애널리스트",
+  "insider-congress": "내부자/의원",
+  "stock-data": "종목데이터",
+};
+
+function formatKoreanDate(dateStr: string): string {
+  const [year, month, day] = dateStr.split("-");
+  return `${year}년 ${month}월 ${day}일`;
+}
 ---
 
 <BaseLayout
   title={`미국주식 투자 정보 블로그 | ${siteConfig.siteName}`}
   description="미국주식 ETF, 뉴스/루머, 애널리스트 리포트, 내부자 거래 정보를 한국어로 정리합니다."
 >
-  <div class="bg-warm-bg min-h-screen py-12">
-    <div class="max-w-5xl mx-auto px-4">
-      <div class="mb-10">
-        <h1 class="text-warm-text text-3xl font-bold mb-2">미국주식 투자 정보</h1>
-        <p class="text-warm-muted text-base">ETF·뉴스·루머·리포트·내부자 거래를 한국어로 정리합니다</p>
-      </div>
+  <div class="bg-warm-bg min-h-screen">
 
-      <nav class="flex flex-wrap gap-2 mb-8">
+    <!-- Page Header -->
+    <div class="max-w-6xl mx-auto px-4 pt-12 pb-6">
+      <h1 class="text-warm-text text-4xl font-bold tracking-tight leading-none mb-2">
+        미국주식 투자 정보
+      </h1>
+      <p class="text-warm-muted text-base">ETF · 뉴스/루머 · 애널리스트 리포트 · 내부자 거래를 한국어로 정리합니다</p>
+    </div>
+
+    <!-- Category Filter Tabs -->
+    <div class="max-w-6xl mx-auto px-4 pb-8">
+      <nav class="flex flex-wrap gap-2">
         <a
           href="/blog"
-          class="text-xs font-bold uppercase tracking-wide px-3 py-1.5 rounded border border-warm-primary bg-warm-primary text-white"
+          class="text-xs font-bold uppercase tracking-widest px-3 py-1.5 rounded border bg-warm-primary border-warm-primary text-white transition-all duration-150"
         >
           전체
         </a>
         {categories.map((cat) => (
           <a
             href={`/blog/category/${cat.value}`}
-            class="text-xs font-bold uppercase tracking-wide px-3 py-1.5 rounded border border-warm-border text-warm-muted hover:border-warm-primary hover:text-warm-primary transition"
+            class="text-xs font-bold uppercase tracking-widest px-3 py-1.5 rounded border border-warm-border text-warm-muted hover:border-warm-primary hover:text-warm-primary transition-all duration-150"
           >
             {cat.label}
           </a>
         ))}
       </nav>
+    </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {sorted.map((post) => (
-          <BlogCard
-            slug={post.id.replace(/\.[^.]+$/, "")}
-            title={post.data.title}
-            description={post.data.description}
-            category={post.data.category}
-            tags={post.data.tags}
-            publishedAt={post.data.publishedAt}
-            thumbnail={post.data.thumbnail}
-          />
-        ))}
+    <!-- Featured Article Hero (first post) -->
+    {featured && (
+      <div class="border-y border-warm-border bg-white mb-10">
+        <div class="max-w-6xl mx-auto px-4 py-10">
+          <a
+            href={`/blog/${featured.id.replace(/\.[^.]+$/, "")}`}
+            class="group grid grid-cols-1 md:grid-cols-2 gap-8 items-center"
+          >
+            <!-- Thumbnail -->
+            <div class="aspect-[16/9] rounded-lg overflow-hidden bg-warm-surface order-1 md:order-2">
+              {featured.data.thumbnail ? (
+                <img
+                  src={featured.data.thumbnail}
+                  alt={featured.data.title}
+                  class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+                  loading="eager"
+                />
+              ) : (
+                <div class="w-full h-full flex items-center justify-center">
+                  <span class="text-warm-muted text-5xl font-bold tracking-tighter">
+                    {categoryLabels[featured.data.category] ?? featured.data.category}
+                  </span>
+                </div>
+              )}
+            </div>
+
+            <!-- Content -->
+            <div class="order-2 md:order-1">
+              <div class="flex items-center gap-3 mb-4">
+                <span class="inline-block bg-warm-surface-high text-warm-primary text-[11px] font-bold uppercase tracking-widest rounded px-2 py-0.5">
+                  {categoryLabels[featured.data.category] ?? featured.data.category}
+                </span>
+                <span class="text-warm-subtle text-xs font-medium">
+                  {formatKoreanDate(featured.data.publishedAt)}
+                </span>
+              </div>
+              <h2 class="text-warm-text text-3xl md:text-4xl font-bold tracking-tight leading-[1.1] mb-4 group-hover:text-warm-primary transition-colors duration-150">
+                {featured.data.title}
+              </h2>
+              <p class="text-warm-muted text-base leading-relaxed line-clamp-3 mb-6">
+                {featured.data.description}
+              </p>
+              <span class="inline-flex items-center gap-1 text-warm-text font-semibold text-sm group-hover:text-warm-primary transition-colors duration-150">
+                읽기 →
+              </span>
+            </div>
+          </a>
+        </div>
       </div>
+    )}
+
+    <!-- Article Grid -->
+    <div class="max-w-6xl mx-auto px-4 pb-16">
+      {rest.length > 0 && (
+        <>
+          <h2 class="text-warm-subtle text-sm font-bold uppercase tracking-widest mb-6">
+            최신 글
+          </h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {rest.map((post) => (
+              <BlogCard
+                slug={post.id.replace(/\.[^.]+$/, "")}
+                title={post.data.title}
+                description={post.data.description}
+                category={post.data.category}
+                tags={post.data.tags}
+                publishedAt={post.data.publishedAt}
+                thumbnail={post.data.thumbnail}
+              />
+            ))}
+          </div>
+        </>
+      )}
 
       {sorted.length === 0 && (
-        <p class="text-warm-subtle text-center py-20">아직 게시물이 없습니다.</p>
+        <p class="text-warm-subtle text-center py-20 text-base">아직 게시물이 없습니다.</p>
       )}
     </div>
   </div>
