@@ -29,20 +29,20 @@ const categoryLabel = categoryLabels[category] ?? category;
 
 <a
   href={`/blog/${slug}`}
-  class="group bg-white border border-warm-border rounded-lg overflow-hidden flex flex-col transition-all duration-200 hover:-translate-y-1 hover:shadow-lg"
+  class="group bg-white border border-warm-border rounded-lg overflow-hidden flex flex-col transition-all duration-200 hover:-translate-y-1 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-warm-primary focus-visible:ring-offset-2"
 >
   {thumbnail ? (
     <div class="aspect-[16/9] overflow-hidden bg-warm-surface">
       <img
         src={thumbnail}
         alt={title}
-        class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+        class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.06]"
         loading="lazy"
       />
     </div>
   ) : (
     <div class="aspect-[16/9] bg-warm-surface flex items-center justify-center">
-      <span class="text-warm-border text-4xl font-bold tracking-tighter">
+      <span class="text-warm-muted text-4xl font-bold tracking-tighter">
         {categoryLabel}
       </span>
     </div>
