@@ -9,22 +9,11 @@ interface Props {
   thumbnail?: string;
 }
 
+import { CATEGORY_LABELS, formatKoreanDate } from "../../lib/blog-constants";
+
 const { slug, title, description, category, tags, publishedAt, thumbnail } = Astro.props;
 
-const categoryLabels: Record<string, string> = {
-  etf: "ETF",
-  "news-rumor": "뉴스/루머",
-  "analyst-report": "애널리스트",
-  "insider-congress": "내부자/의원",
-  "stock-data": "종목데이터",
-};
-
-function formatKoreanDate(dateStr: string): string {
-  const [year, month, day] = dateStr.split("-");
-  return `${year}년 ${month}월 ${day}일`;
-}
-
-const categoryLabel = categoryLabels[category] ?? category;
+const categoryLabel = CATEGORY_LABELS[category] ?? category;
 ---
 
 <a

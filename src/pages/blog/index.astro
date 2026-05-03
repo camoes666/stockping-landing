@@ -4,6 +4,7 @@ import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import BlogCard from "../../components/blog/BlogCard.astro";
 import { siteConfig } from "../../config/site";
+import { CATEGORY_LABELS, CATEGORY_OPTIONS, formatKoreanDate } from "../../lib/blog-constants";
 
 const posts = await getCollection("blog");
 const sorted = posts.sort(
@@ -12,27 +13,6 @@ const sorted = posts.sort(
 
 const featured = sorted[0];
 const rest = sorted.slice(1);
-
-const categories = [
-  { value: "etf", label: "ETF" },
-  { value: "news-rumor", label: "뉴스/루머" },
-  { value: "analyst-report", label: "애널리스트" },
-  { value: "insider-congress", label: "내부자/의원" },
-  { value: "stock-data", label: "종목데이터" },
-];
-
-const categoryLabels: Record<string, string> = {
-  etf: "ETF",
-  "news-rumor": "뉴스/루머",
-  "analyst-report": "애널리스트",
-  "insider-congress": "내부자/의원",
-  "stock-data": "종목데이터",
-};
-
-function formatKoreanDate(dateStr: string): string {
-  const [year, month, day] = dateStr.split("-");
-  return `${year}년 ${month}월 ${day}일`;
-}
 ---
 
 <BaseLayout
@@ -58,7 +38,7 @@ function formatKoreanDate(dateStr: string): string {
         >
           전체
         </a>
-        {categories.map((cat) => (
+        {CATEGORY_OPTIONS.map((cat) => (
           <a
             href={`/blog/category/${cat.value}`}
             class="text-xs font-bold uppercase tracking-widest px-3 py-1.5 rounded border border-warm-border text-warm-muted hover:border-warm-primary hover:text-warm-primary transition-all duration-150"
@@ -75,7 +55,7 @@ function formatKoreanDate(dateStr: string): string {
         <div class="max-w-6xl mx-auto px-4 py-10">
           <a
             href={`/blog/${featured.id.replace(/\.[^.]+$/, "")}`}
-            class="group grid grid-cols-1 md:grid-cols-2 gap-8 items-center"
+            class="group grid grid-cols-1 md:grid-cols-2 gap-8 items-center rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-warm-primary focus-visible:ring-offset-2"
           >
             <!-- Thumbnail -->
             <div class="aspect-[16/9] rounded-lg overflow-hidden bg-warm-surface order-1 md:order-2">
@@ -89,7 +69,7 @@ function formatKoreanDate(dateStr: string): string {
               ) : (
                 <div class="w-full h-full flex items-center justify-center">
                   <span class="text-warm-muted text-5xl font-bold tracking-tighter">
-                    {categoryLabels[featured.data.category] ?? featured.data.category}
+                    {CATEGORY_LABELS[featured.data.category] ?? featured.data.category}
                   </span>
                 </div>
               )}
@@ -99,7 +79,7 @@ function formatKoreanDate(dateStr: string): string {
             <div class="order-2 md:order-1">
               <div class="flex items-center gap-3 mb-4">
                 <span class="inline-block bg-warm-surface-high text-warm-primary text-[11px] font-bold uppercase tracking-widest rounded px-2 py-0.5">
-                  {categoryLabels[featured.data.category] ?? featured.data.category}
+                  {CATEGORY_LABELS[featured.data.category] ?? featured.data.category}
                 </span>
                 <span class="text-warm-subtle text-xs font-medium">
                   {formatKoreanDate(featured.data.publishedAt)}
