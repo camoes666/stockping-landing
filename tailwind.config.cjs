@@ -4,9 +4,9 @@ module.exports = {
   theme: {
     extend: {
       animation: {
-        "float-0": "float 2.8s ease-in-out infinite",
-        "float-1": "float 2.8s ease-in-out infinite 0.55s",
-        "float-2": "float 2.8s ease-in-out infinite 1.1s",
+        "float-left":   "floatLeft   3s ease-in-out infinite 0.5s",
+        "float-center": "floatCenter 3s ease-in-out infinite",
+        "float-right":  "floatRight  3s ease-in-out infinite 1s",
         "fade-up-0": "fadeUp 0.7s ease-out both",
         "fade-up-1": "fadeUp 0.7s ease-out 0.12s both",
         "fade-up-2": "fadeUp 0.7s ease-out 0.26s both",
@@ -14,11 +14,17 @@ module.exports = {
         "fade-up-4": "fadeUp 0.7s ease-out 0.52s both",
       },
       keyframes: {
-        float: {
-          "0%, 100%": { transform: "translateY(0px) rotate(0deg)" },
-          "25%":       { transform: "translateY(-12px) rotate(1deg)" },
-          "50%":       { transform: "translateY(-26px) rotate(0deg)" },
-          "75%":       { transform: "translateY(-12px) rotate(-1deg)" },
+        floatLeft: {
+          "0%, 100%": { transform: "perspective(700px) rotateY(20deg) rotate(-5deg) scale(0.82) translateY(0px)" },
+          "50%":      { transform: "perspective(700px) rotateY(20deg) rotate(-5deg) scale(0.82) translateY(-20px)" },
+        },
+        floatCenter: {
+          "0%, 100%": { transform: "scale(1.08) translateY(0px)" },
+          "50%":      { transform: "scale(1.08) translateY(-28px)" },
+        },
+        floatRight: {
+          "0%, 100%": { transform: "perspective(700px) rotateY(-20deg) rotate(5deg) scale(0.82) translateY(0px)" },
+          "50%":      { transform: "perspective(700px) rotateY(-20deg) rotate(5deg) scale(0.82) translateY(-20px)" },
         },
         fadeUp: {
           "from": { opacity: "0", transform: "translateY(32px)" },

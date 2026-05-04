@@ -61,12 +61,12 @@ import { links } from "../config/links";
           </p>
         </div>
 
-        <!-- Right: Three floating app screenshots -->
-        <div class="flex items-end justify-center gap-4 pb-0 pt-8 lg:pt-0">
+        <!-- Right: Three phones — center large + side tilt (Option C) -->
+        <div class="relative flex items-end justify-center pb-0 pt-10 lg:pt-4">
 
-          <!-- Phone 1 — base height, float delay 0 -->
-          <div class="mt-10 animate-float-0">
-            <div class="overflow-hidden rounded-[2.2rem] border-[3px] border-slate-600 bg-slate-800 shadow-2xl shadow-black/60 w-32 sm:w-36 lg:w-40">
+          <!-- Phone Left — tilted right, smaller, behind center -->
+          <div class="-mr-5 z-10 mb-4 animate-float-left">
+            <div class="overflow-hidden rounded-[2rem] border-[3px] border-slate-700 bg-slate-800 shadow-xl shadow-black/50 w-28 sm:w-32 lg:w-36">
               <img
                 src="/images/app-screen-1.png"
                 alt="스톡핑 앱 화면 1"
@@ -76,9 +76,9 @@ import { links } from "../config/links";
             </div>
           </div>
 
-          <!-- Phone 2 — highest, float delay 0.6s -->
-          <div class="animate-float-1">
-            <div class="overflow-hidden rounded-[2.2rem] border-[3px] border-slate-600 bg-slate-800 shadow-2xl shadow-black/60 w-32 sm:w-36 lg:w-40">
+          <!-- Phone Center — large, upright, front -->
+          <div class="z-20 animate-float-center">
+            <div class="overflow-hidden rounded-[2.3rem] border-[3px] border-amber-400/40 bg-slate-800 shadow-2xl shadow-black/70 w-36 sm:w-40 lg:w-44">
               <img
                 src="/images/app-screen-2.png"
                 alt="스톡핑 앱 화면 2"
@@ -88,9 +88,9 @@ import { links } from "../config/links";
             </div>
           </div>
 
-          <!-- Phone 3 — slightly lower, float delay 1.2s -->
-          <div class="mt-16 animate-float-2">
-            <div class="overflow-hidden rounded-[2.2rem] border-[3px] border-slate-600 bg-slate-800 shadow-2xl shadow-black/60 w-32 sm:w-36 lg:w-40">
+          <!-- Phone Right — tilted left, smaller, behind center -->
+          <div class="-ml-5 z-10 mb-4 animate-float-right">
+            <div class="overflow-hidden rounded-[2rem] border-[3px] border-slate-700 bg-slate-800 shadow-xl shadow-black/50 w-28 sm:w-32 lg:w-36">
               <img
                 src="/images/app-screen-3.png"
                 alt="스톡핑 앱 화면 3"
