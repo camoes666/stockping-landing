@@ -7,6 +7,7 @@ import { CommentSection } from "../components/blog/CommentSection";
 import BlogCard from "../components/blog/BlogCard.astro";
 import type { CtaType } from "../components/blog/cta-copy";
 import type { CollectionEntry } from "astro:content";
+import { CATEGORY_LABELS } from "../lib/blog-constants";
 
 interface Props {
   frontmatter: {
@@ -37,7 +38,6 @@ const {
   disclaimer,
 } = frontmatter;
 
-// Related: same category, excluding current, sorted newest first (no limit yet)
 const sameCategoryPosts = allPosts
   .filter(
     (p: CollectionEntry<"blog">) =>
@@ -49,7 +49,6 @@ const sameCategoryPosts = allPosts
       new Date(b.data.publishedAt).getTime() - new Date(a.data.publishedAt).getTime()
   );
 
-// Fallback: different category, excluding current, sorted newest first
 const otherPosts = allPosts
   .filter(
     (p: CollectionEntry<"blog">) =>
@@ -61,16 +60,40 @@ const otherPosts = allPosts
       new Date(b.data.publishedAt).getTime() - new Date(a.data.publishedAt).getTime()
   );
 
-// Combine: same-category first, fill remaining slots with other posts, max 3
 const relatedPosts = [...sameCategoryPosts, ...otherPosts].slice(0, 3);
+
+const CATEGORY_BADGE: Record<string, string> = {
+  etf: "bg-blue-100 text-blue-700",
+  "news-rumor": "bg-amber-100 text-amber-700",
+  "analyst-report": "bg-emerald-100 text-emerald-700",
+  "insider-congress": "bg-purple-100 text-purple-700",
+  "stock-data": "bg-slate-100 text-slate-700",
+};
+const badgeClass = CATEGORY_BADGE[category] ?? "bg-slate-100 text-slate-700";
+const categoryLabel = CATEGORY_LABELS[category] ?? category;
 ---
 
 <BaseLayout title={title} description={description} ogImage={thumbnail}>
-  <div class="bg-warm-bg min-h-screen">
+  <div class="min-h-screen bg-white">
+
+    <!-- Breadcrumb header -->
+    <div class="bg-slate-50 border-b border-slate-200">
+      <div class="max-w-6xl mx-auto px-4 py-4">
+        <nav class="flex items-center gap-2 text-xs text-slate-500">
+          <a href="/blog" class="hover:text-cyan-600 transition-colors">블로그</a>
+          <span>›</span>
+          <a href={`/blog/category/${category}`} class="hover:text-cyan-600 transition-colors">
+            {categoryLabel}
+          </a>
+          <span>›</span>
+          <span class="text-slate-700 line-clamp-1 max-w-[300px]">{title}</span>
+        </nav>
+      </div>
+    </div>
 
     <!-- Hero Image -->
     {thumbnail && (
-      <div class="w-full overflow-hidden max-h-[480px]" style="aspect-ratio: 21/9;">
+      <div class="w-full overflow-hidden max-h-[400px]" style="aspect-ratio: 21/9;">
         <img
           src={thumbnail}
           alt={title}
@@ -84,9 +107,59 @@ const relatedPosts = [...sameCategoryPosts, ...otherPosts].slice(0, 3);
     <div class="max-w-6xl mx-auto px-4 py-10">
       <div class="flex flex-col lg:flex-row gap-12">
 
+        <!-- Left sticky sidebar (TOC + App CTA) -->
+        <aside class="hidden lg:block w-56 xl:w-64 flex-shrink-0">
+          <div class="sticky top-6 flex flex-col gap-6">
+
+            <!-- TOC -->
+            <div id="toc-container">
+              <p class="text-[11px] font-bold uppercase tracking-widest text-slate-500 mb-3">
+                Table of Contents
+              </p>
+              <nav id="toc-nav">
+                <ol id="toc-list" class="space-y-1 text-sm text-slate-500"></ol>
+              </nav>
+            </div>
+
+            <!-- App CTA card -->
+            <div class="bg-slate-900 rounded-lg p-5 relative overflow-hidden">
+              <span class="inline-block bg-cyan-600/20 text-cyan-400 text-[10px] font-bold uppercase tracking-widest rounded px-2 py-0.5 mb-3">
+                스톡핑 앱
+              </span>
+              <h3 class="text-white text-base font-bold tracking-tight leading-tight mb-2">
+                실시간 미국주식 정보를 앱에서 받아보세요
+              </h3>
+              <p class="text-slate-400 text-xs leading-relaxed mb-4">
+                ETF · 내부자 거래 · 애널리스트 리포트
+              </p>
+              <a
+                href="https://play.google.com/store/apps/details?id=kr.datadnp.app"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="block w-full bg-cyan-600 text-white text-center text-xs font-bold py-2.5 rounded transition-all duration-150 hover:bg-cyan-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-600 focus-visible:ring-offset-2"
+              >
+                앱 다운로드
+              </a>
+            </div>
+
+          </div>
+        </aside>
+
         <!-- Article column -->
-        <article class="flex-1 min-w-0">
-          <!-- Meta: category + tags + date -->
+        <article class="flex-1 min-w-0 max-w-[800px]">
+          <!-- Status badge -->
+          <div class="flex items-center gap-3 mb-3">
+            <span class={`text-[11px] font-bold uppercase tracking-widest rounded px-2 py-0.5 ${badgeClass}`}>
+              {categoryLabel}
+            </span>
+          </div>
+
+          <!-- Title -->
+          <h1 class="text-slate-900 text-3xl md:text-4xl font-bold tracking-tight leading-[1.1] mb-3">
+            {title}
+          </h1>
+
+          <!-- Meta row -->
           <PostMeta
             category={category}
             tags={tags}
@@ -94,29 +167,24 @@ const relatedPosts = [...sameCategoryPosts, ...otherPosts].slice(0, 3);
             updatedAt={updatedAt}
           />
 
-          <!-- Title -->
-          <h1 class="text-warm-text text-3xl md:text-4xl font-bold tracking-tight leading-[1.1] mb-4 mt-3">
-            {title}
-          </h1>
-
           <!-- Description lead -->
-          <p class="text-warm-muted text-lg leading-relaxed mb-6">
+          <p class="text-slate-600 text-lg leading-relaxed mb-6">
             {description}
           </p>
 
-          <hr class="border-warm-border mb-8" />
+          <hr class="border-slate-200 mb-8" />
 
           <!-- Prose body -->
           <div
             class="
               prose max-w-none
-              prose-headings:text-warm-text prose-headings:font-bold prose-headings:tracking-tight
-              prose-p:leading-7 prose-p:text-warm-text
-              prose-a:text-warm-primary prose-a:no-underline hover:prose-a:underline
-              prose-strong:text-warm-text
-              prose-li:text-warm-text
-              prose-hr:border-warm-border
-              prose-blockquote:border-l-warm-primary prose-blockquote:text-warm-muted
+              prose-headings:text-slate-900 prose-headings:font-bold prose-headings:tracking-tight
+              prose-p:leading-7 prose-p:text-slate-700
+              prose-a:text-cyan-600 prose-a:no-underline hover:prose-a:underline
+              prose-strong:text-slate-900
+              prose-li:text-slate-700
+              prose-hr:border-slate-200
+              prose-blockquote:border-l-cyan-600 prose-blockquote:text-slate-500
             "
           >
             <slot />
@@ -132,54 +200,12 @@ const relatedPosts = [...sameCategoryPosts, ...otherPosts].slice(0, 3);
           />
         </article>
 
-        <!-- Sticky sidebar -->
-        <aside class="w-full lg:w-72 xl:w-80 flex-shrink-0">
-          <div class="sticky top-6 flex flex-col gap-6">
-
-            <!-- App CTA card -->
-            <div class="bg-warm-text rounded-xl p-6 relative overflow-hidden">
-              <span class="inline-block text-warm-primary bg-warm-surface-high text-[10px] font-bold uppercase tracking-widest rounded px-2 py-0.5 mb-4">
-                스톡핑 앱
-              </span>
-              <h3 class="text-white text-xl font-bold tracking-tight leading-tight mb-2">
-                실시간 미국주식 정보를 앱에서 받아보세요
-              </h3>
-              <p class="text-warm-subtle text-sm leading-relaxed mb-5">
-                ETF · 내부자 거래 · 애널리스트 리포트를 한눈에
-              </p>
-              <a
-                href="https://play.google.com/store/apps/details?id=kr.datadnp.app"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="스톡핑 앱 다운로드 (Google Play에서 새 탭으로 열림)"
-                class="block w-full bg-warm-primary text-white text-center text-sm font-bold py-2.5 rounded transition-all duration-150 hover:scale-[1.02] hover:bg-warm-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-warm-primary focus-visible:ring-offset-2"
-              >
-                앱 다운로드
-              </a>
-            </div>
-
-            <!-- Tags -->
-            {tags.length > 0 && (
-              <div>
-                <p class="text-[11px] font-bold uppercase tracking-widest text-warm-subtle mb-3">태그</p>
-                <div class="flex flex-wrap gap-2">
-                  {tags.map((tag) => (
-                    <span class="bg-warm-surface text-warm-text text-xs rounded px-2.5 py-1 font-medium border border-warm-border">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            )}
-
-          </div>
-        </aside>
       </div>
 
       <!-- Related posts -->
       {relatedPosts.length > 0 && (
-        <div class="border-t border-warm-border mt-16 pt-10">
-          <p class="text-[11px] font-bold uppercase tracking-widest text-warm-subtle mb-6">관련 글</p>
+        <div class="border-t border-slate-200 mt-16 pt-10 bg-slate-50 -mx-4 px-4 pb-10 rounded-lg">
+          <p class="text-[11px] font-bold uppercase tracking-widest text-slate-500 mb-6">관련 글</p>
           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {relatedPosts.map((p: CollectionEntry<"blog">) => (
               <BlogCard
@@ -195,6 +221,52 @@ const relatedPosts = [...sameCategoryPosts, ...otherPosts].slice(0, 3);
           </div>
         </div>
       )}
+
     </div>
   </div>
+
+  <!-- TOC JS: build from article headings, highlight active -->
+  <script>
+    const tocList = document.getElementById("toc-list");
+    const tocContainer = document.getElementById("toc-container");
+    if (tocList && tocContainer) {
+      const article = document.querySelector("article");
+      const headings = article ? Array.from(article.querySelectorAll("h2, h3")) : [];
+
+      if (headings.length === 0) {
+        tocContainer.style.display = "none";
+      } else {
+        headings.forEach((heading, i) => {
+          if (!heading.id) heading.id = `heading-${i}`;
+          const li = document.createElement("li");
+          const a = document.createElement("a");
+          a.href = `#${heading.id}`;
+          a.textContent = heading.textContent ?? "";
+          a.className =
+            heading.tagName === "H3"
+              ? "block pl-3 py-0.5 text-xs text-slate-400 hover:text-cyan-600 transition-colors border-l border-slate-200"
+              : "block py-0.5 text-slate-500 hover:text-cyan-600 transition-colors font-medium";
+          li.appendChild(a);
+          tocList.appendChild(li);
+        });
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              const id = entry.target.id;
+              const link = tocList.querySelector(`a[href="#${id}"]`) as HTMLAnchorElement | null;
+              if (!link) return;
+              if (entry.isIntersecting) {
+                tocList.querySelectorAll("a").forEach((a) => a.classList.remove("text-cyan-600", "font-bold"));
+                link.classList.add("text-cyan-600", "font-bold");
+              }
+            });
+          },
+          { rootMargin: "0px 0px -60% 0px" }
+        );
+
+        headings.forEach((h) => observer.observe(h));
+      }
+    }
+  </script>
 </BaseLayout>
