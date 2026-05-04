@@ -4,7 +4,7 @@ import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import BlogCard from "../../components/blog/BlogCard.astro";
 import { siteConfig } from "../../config/site";
-import { CATEGORY_LABELS, CATEGORY_OPTIONS, formatKoreanDate } from "../../lib/blog-constants";
+import { CATEGORY_LABELS, CATEGORY_OPTIONS, CATEGORY_BADGE, formatKoreanDate } from "../../lib/blog-constants";
 
 const posts = await getCollection("blog");
 const sorted = posts.sort(
@@ -13,14 +13,6 @@ const sorted = posts.sort(
 
 const featured = sorted[0];
 const rest = sorted.slice(1);
-
-const CATEGORY_BADGE: Record<string, string> = {
-  etf: "bg-blue-100 text-blue-700",
-  "news-rumor": "bg-amber-100 text-amber-700",
-  "analyst-report": "bg-emerald-100 text-emerald-700",
-  "insider-congress": "bg-purple-100 text-purple-700",
-  "stock-data": "bg-slate-100 text-slate-700",
-};
 ---
 
 <BaseLayout

@@ -7,7 +7,7 @@ import { CommentSection } from "../components/blog/CommentSection";
 import BlogCard from "../components/blog/BlogCard.astro";
 import type { CtaType } from "../components/blog/cta-copy";
 import type { CollectionEntry } from "astro:content";
-import { CATEGORY_LABELS } from "../lib/blog-constants";
+import { CATEGORY_LABELS, CATEGORY_BADGE } from "../lib/blog-constants";
 
 interface Props {
   frontmatter: {
@@ -62,13 +62,6 @@ const otherPosts = allPosts
 
 const relatedPosts = [...sameCategoryPosts, ...otherPosts].slice(0, 3);
 
-const CATEGORY_BADGE: Record<string, string> = {
-  etf: "bg-blue-100 text-blue-700",
-  "news-rumor": "bg-amber-100 text-amber-700",
-  "analyst-report": "bg-emerald-100 text-emerald-700",
-  "insider-congress": "bg-purple-100 text-purple-700",
-  "stock-data": "bg-slate-100 text-slate-700",
-};
 const badgeClass = CATEGORY_BADGE[category] ?? "bg-slate-100 text-slate-700";
 const categoryLabel = CATEGORY_LABELS[category] ?? category;
 ---
