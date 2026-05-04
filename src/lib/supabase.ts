@@ -1,5 +1,5 @@
 import { createClient } from "@supabase/supabase-js";
-import type { DailyIssue } from "../data/daily-issues";
+import type { DailyIssue, IssueCategory } from "../data/daily-issues";
 
 const supabaseUrl = import.meta.env.PUBLIC_SUPABASE_URL ?? "";
 const supabaseAnonKey = import.meta.env.PUBLIC_SUPABASE_ANON_KEY ?? "";
@@ -13,7 +13,7 @@ export interface DailyIssueRow {
   id: number;
   created_at: string;
   headline: string;
-  category: "확인된 사실" | "시장 관측" | "루머";
+  category: IssueCategory;
   related_symbols: string[];
   confirmed_facts: string;
   market_observation: string;
