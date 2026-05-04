@@ -2,12 +2,10 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import IssueCard from "../components/radar/IssueCard.astro";
 import { CtaButton } from "../components/ui/CtaButton";
-import { dailyIssues } from "../data/daily-issues";
-import { supabase, rowToIssue } from "../lib/supabase";
-import type { DailyIssueRow } from "../lib/supabase";
+import { dailyIssues, type DailyIssue } from "../data/daily-issues";
+import { supabase, rowToIssue, type DailyIssueRow } from "../lib/supabase";
 import { siteConfig } from "../config/site";
 import { links } from "../config/links";
-import type { DailyIssue } from "../data/daily-issues";
 
 let issues: DailyIssue[] = dailyIssues; // fallback default
 
@@ -20,7 +18,9 @@ if (supabase) {
     .order("created_at", { ascending: false })
     .limit(10);
 
-  if (!error && data && data.length > 0) {
+  if (error) {
+    console.error("[radar] Supabase fetch error:", error.message);
+  } else if (data && data.length > 0) {
     issues = (data as DailyIssueRow[]).map(rowToIssue);
   }
 }
