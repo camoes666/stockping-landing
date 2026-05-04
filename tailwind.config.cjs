@@ -3,6 +3,17 @@ module.exports = {
   content: ["./src/**/*.{astro,html,js,jsx,ts,tsx,mdx}"],
   theme: {
     extend: {
+      animation: {
+        "float-0": "float 3.2s ease-in-out infinite",
+        "float-1": "float 3.2s ease-in-out infinite 0.6s",
+        "float-2": "float 3.2s ease-in-out infinite 1.2s",
+      },
+      keyframes: {
+        float: {
+          "0%, 100%": { transform: "translateY(0px)" },
+          "50%": { transform: "translateY(-12px)" },
+        },
+      },
       colors: {
         // Warm blog palette (from design samples)
         warm: {

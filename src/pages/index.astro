@@ -61,39 +61,45 @@ import { links } from "../config/links";
           </p>
         </div>
 
-        <!-- Right: App preview strip -->
-        <div class="mt-8 overflow-hidden rounded-t-2xl border border-b-0 border-slate-700 bg-slate-800 lg:mt-0">
-          <div class="flex items-center justify-between border-b border-slate-700 px-5 py-3.5">
-            <span class="text-sm font-semibold text-white">스톡핑 · 오늘의 미국장 이슈</span>
-            <span class="rounded-full bg-amber-400/20 px-3 py-1 text-[11px] font-bold text-amber-400">Daily</span>
-          </div>
-          <!-- Issue card mock -->
-          <div class="grid grid-cols-1 gap-3 p-4">
-            <div class="rounded-xl border border-slate-700 bg-slate-900 p-4">
-              <div class="mb-3 flex flex-wrap gap-2">
-                <span class="rounded-full bg-amber-400/15 px-2.5 py-1 text-[10px] font-bold text-amber-400">시장 관측</span>
-                <span class="rounded-full bg-blue-400/15 px-2.5 py-1 text-[10px] font-bold text-blue-400">NVDA · SMH</span>
-              </div>
-              <p class="text-xs font-semibold leading-snug text-white">반도체 대형주 실적 기대가 기술주 전체 심리에 미치는 영향</p>
-              <div class="mt-2.5 space-y-1.5">
-                <div class="rounded-lg bg-slate-800 px-3 py-2">
-                  <p class="mb-0.5 text-[10px] font-bold text-slate-500">확인된 사실</p>
-                  <p class="text-[11px] leading-relaxed text-slate-300">주요 반도체 종목 실적 발표 일정·시장 관심 집중</p>
-                </div>
-                <div class="rounded-lg bg-slate-800 px-3 py-2">
-                  <p class="mb-0.5 text-[10px] font-bold text-slate-500">시장 관측</p>
-                  <p class="text-[11px] leading-relaxed text-slate-300">단기 수급 선반영으로 변동성 확대 가능</p>
-                </div>
-              </div>
-            </div>
-            <div class="rounded-xl border border-slate-700/50 bg-slate-900/50 p-4 opacity-50">
-              <div class="mb-3 flex flex-wrap gap-2">
-                <span class="rounded-full bg-emerald-400/15 px-2.5 py-1 text-[10px] font-bold text-emerald-400">확인된 사실</span>
-                <span class="rounded-full bg-blue-400/15 px-2.5 py-1 text-[10px] font-bold text-blue-400">QQQ · AAPL</span>
-              </div>
-              <p class="text-xs font-semibold leading-snug text-white">정책 발언 이후 금리 민감 성장주 반응 체크</p>
+        <!-- Right: Three floating app screenshots -->
+        <div class="flex items-end justify-center gap-4 pb-0 pt-8 lg:pt-0">
+
+          <!-- Phone 1 — base height, float delay 0 -->
+          <div class="mt-10 animate-float-0">
+            <div class="overflow-hidden rounded-[2.2rem] border-[3px] border-slate-600 bg-slate-800 shadow-2xl shadow-black/60 w-32 sm:w-36 lg:w-40">
+              <img
+                src="/images/app-screen-1.png"
+                alt="스톡핑 앱 화면 1"
+                class="block w-full h-auto"
+                loading="eager"
+              />
             </div>
           </div>
+
+          <!-- Phone 2 — highest, float delay 0.6s -->
+          <div class="animate-float-1">
+            <div class="overflow-hidden rounded-[2.2rem] border-[3px] border-slate-600 bg-slate-800 shadow-2xl shadow-black/60 w-32 sm:w-36 lg:w-40">
+              <img
+                src="/images/app-screen-2.png"
+                alt="스톡핑 앱 화면 2"
+                class="block w-full h-auto"
+                loading="eager"
+              />
+            </div>
+          </div>
+
+          <!-- Phone 3 — slightly lower, float delay 1.2s -->
+          <div class="mt-16 animate-float-2">
+            <div class="overflow-hidden rounded-[2.2rem] border-[3px] border-slate-600 bg-slate-800 shadow-2xl shadow-black/60 w-32 sm:w-36 lg:w-40">
+              <img
+                src="/images/app-screen-3.png"
+                alt="스톡핑 앱 화면 3"
+                class="block w-full h-auto"
+                loading="eager"
+              />
+            </div>
+          </div>
+
         </div>
 
       </div>
