@@ -1,11 +1,29 @@
 ---
-export const prerender = true;
 import BaseLayout from "../layouts/BaseLayout.astro";
 import IssueCard from "../components/radar/IssueCard.astro";
 import { CtaButton } from "../components/ui/CtaButton";
 import { dailyIssues } from "../data/daily-issues";
+import { supabase, rowToIssue } from "../lib/supabase";
+import type { DailyIssueRow } from "../lib/supabase";
 import { siteConfig } from "../config/site";
 import { links } from "../config/links";
+import type { DailyIssue } from "../data/daily-issues";
+
+let issues: DailyIssue[] = dailyIssues; // fallback default
+
+if (supabase) {
+  const { data, error } = await supabase
+    .from("daily_issues")
+    .select("*")
+    .eq("is_published", true)
+    .order("display_order", { ascending: true })
+    .order("created_at", { ascending: false })
+    .limit(10);
+
+  if (!error && data && data.length > 0) {
+    issues = (data as DailyIssueRow[]).map(rowToIssue);
+  }
+}
 ---
 
 <BaseLayout title={siteConfig.radarPageTitle} description={siteConfig.defaultDescription}>
@@ -32,7 +50,7 @@ import { links } from "../config/links";
     <!-- Issue list -->
     <div class="mx-auto max-w-6xl px-4 py-12">
       <div class="grid gap-6">
-        {dailyIssues.map((issue) => <IssueCard issue={issue} />)}
+        {issues.map((issue) => <IssueCard issue={issue} />)}
       </div>
 
       <!-- Disclaimer -->
