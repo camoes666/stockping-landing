@@ -14,39 +14,48 @@ import { CATEGORY_LABELS, formatKoreanDate } from "../../lib/blog-constants";
 const { slug, title, description, category, tags, publishedAt, thumbnail } = Astro.props;
 
 const categoryLabel = CATEGORY_LABELS[category] ?? category;
+
+const CATEGORY_BADGE: Record<string, string> = {
+  etf: "bg-blue-100 text-blue-700",
+  "news-rumor": "bg-amber-100 text-amber-700",
+  "analyst-report": "bg-emerald-100 text-emerald-700",
+  "insider-congress": "bg-purple-100 text-purple-700",
+  "stock-data": "bg-slate-100 text-slate-700",
+};
+const badgeClass = CATEGORY_BADGE[category] ?? "bg-slate-100 text-slate-700";
 ---
 
 <a
   href={`/blog/${slug}`}
-  class="group bg-white border border-warm-border rounded-lg overflow-hidden flex flex-col transition-all duration-200 hover:-translate-y-1 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-warm-primary focus-visible:ring-offset-2"
+  class="group bg-white border border-slate-200 rounded-lg overflow-hidden flex flex-col transition-all duration-200 hover:-translate-y-1 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-600 focus-visible:ring-offset-2"
 >
   {thumbnail ? (
-    <div class="aspect-[16/9] overflow-hidden bg-warm-surface">
+    <div class="aspect-[16/9] overflow-hidden bg-slate-100">
       <img
         src={thumbnail}
         alt={title}
-        class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.06]"
+        class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.04]"
         loading="lazy"
       />
     </div>
   ) : (
-    <div class="aspect-[16/9] bg-warm-surface flex items-center justify-center">
-      <span class="text-warm-muted text-4xl font-bold tracking-tighter">
+    <div class="aspect-[16/9] bg-slate-100 flex items-center justify-center">
+      <span class="text-slate-400 text-4xl font-bold tracking-tighter">
         {categoryLabel}
       </span>
     </div>
   )}
   <div class="p-5 flex flex-col flex-1">
-    <span class="inline-block bg-warm-surface-high text-warm-primary text-[11px] font-bold uppercase tracking-widest rounded px-2 py-0.5 self-start">
+    <span class={`inline-block text-[11px] font-bold uppercase tracking-widest rounded px-2 py-0.5 self-start ${badgeClass}`}>
       {categoryLabel}
     </span>
-    <p class="text-warm-text font-bold text-base leading-snug tracking-tight mt-2.5 line-clamp-2">
+    <p class="text-slate-900 font-bold text-base leading-snug tracking-tight mt-2.5 line-clamp-2 group-hover:text-cyan-600 transition-colors duration-150">
       {title}
     </p>
-    <p class="text-warm-subtle text-sm mt-1.5 line-clamp-2 leading-relaxed flex-1">
+    <p class="text-slate-500 text-sm mt-1.5 line-clamp-2 leading-relaxed flex-1">
       {description}
     </p>
-    <p class="text-warm-subtle text-xs mt-4 font-medium">
+    <p class="text-slate-400 text-xs mt-4 font-medium">
       {formatKoreanDate(publishedAt)}
     </p>
   </div>
