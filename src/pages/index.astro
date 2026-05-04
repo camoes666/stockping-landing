@@ -3,8 +3,6 @@ export const prerender = true;
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { TrackedCtaButton } from "../components/islands/TrackedCtaButton";
 import { FaqAccordion } from "../components/islands/FaqAccordion";
-import IssueCard from "../components/radar/IssueCard.astro";
-import { dailyIssues } from "../data/daily-issues";
 import { siteConfig } from "../config/site";
 import { links } from "../config/links";
 ---
@@ -170,42 +168,7 @@ import { links } from "../config/links";
   </section>
 
   <!-- ════════════════════════════════════════════
-       4. ISSUE RADAR — 오늘의 이슈 레이더 미리보기
-  ════════════════════════════════════════════ -->
-  <section class="bg-slate-50 px-4 py-20 sm:px-6 lg:px-8">
-    <div class="mx-auto max-w-7xl">
-      <div class="mb-4 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-        <div>
-          <p class="text-xs font-bold uppercase tracking-widest text-amber-500">오늘의 이슈</p>
-          <h2 class="mt-2 text-3xl font-bold text-slate-900 sm:text-4xl">
-            {siteConfig.radarPageTitle}
-          </h2>
-          <p class="mt-2 text-sm text-slate-500">
-            확인된 사실과 시장 관측을 구분해 매일 정리합니다.
-          </p>
-        </div>
-        <a
-          href="/radar"
-          class="inline-flex items-center gap-1.5 rounded-xl bg-slate-900 px-5 py-2.5 text-sm font-bold text-white transition hover:bg-slate-700 sm:flex-shrink-0"
-        >
-          전체 이슈 보러 가기 →
-        </a>
-      </div>
-
-      <!-- Issue cards -->
-      <div class="mt-8 grid gap-5">
-        {dailyIssues.map((issue) => <IssueCard issue={issue} />)}
-      </div>
-
-      <!-- Inline disclaimer -->
-      <div class="mt-6 rounded-xl border border-amber-200 bg-amber-50 px-5 py-4 text-xs leading-6 text-amber-800">
-        {siteConfig.radarDisclaimer}
-      </div>
-    </div>
-  </section>
-
-  <!-- ════════════════════════════════════════════
-       5. HOW IT WORKS — 3단계 사용 방법
+       4. HOW IT WORKS — 3단계 사용 방법
   ════════════════════════════════════════════ -->
   <section class="bg-slate-900 px-4 py-20 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-7xl">
@@ -246,7 +209,7 @@ import { links } from "../config/links";
   </section>
 
   <!-- ════════════════════════════════════════════
-       6. FAQ — 자주 묻는 질문 (React island)
+       5. FAQ — 자주 묻는 질문 (React island)
   ════════════════════════════════════════════ -->
   <section class="bg-white px-4 py-20 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-3xl">
@@ -259,7 +222,7 @@ import { links } from "../config/links";
   </section>
 
   <!-- ════════════════════════════════════════════
-       7. FINAL CTA
+       6. FINAL CTA
   ════════════════════════════════════════════ -->
   <section class="bg-slate-900 px-4 py-24 text-center sm:px-6 lg:px-8">
     <div class="mx-auto max-w-2xl">
