@@ -10,7 +10,7 @@ interface Props {
 
 const variantClass: Record<string, string> = {
   primary:
-    "inline-flex items-center justify-center rounded-xl bg-amber-400 px-6 py-3.5 text-sm font-bold text-slate-900 transition hover:bg-amber-300",
+    "inline-flex items-center justify-center rounded-xl bg-amber-400 px-6 py-3.5 text-base font-bold text-slate-900 transition hover:bg-amber-300",
   secondary:
     "inline-flex items-center justify-center rounded-md border border-slate-300 px-5 py-3 text-sm font-semibold text-slate-900 transition hover:bg-slate-50",
   warm:

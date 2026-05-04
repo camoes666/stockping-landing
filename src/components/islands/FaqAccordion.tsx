@@ -61,7 +61,7 @@ export function FaqAccordion() {
             </svg>
           </button>
           {openIndex === i && (
-            <div className="border-t border-slate-100 px-6 pb-5 pt-4 text-sm leading-7 text-slate-600">
+            <div className="border-t border-slate-100 px-6 pb-5 pt-4 text-base leading-8 text-slate-600">
               {faq.a}
             </div>
           )}
