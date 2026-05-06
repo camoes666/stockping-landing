@@ -55,29 +55,41 @@ import { links } from "../config/links";
         <!-- Right: Three phones + floating logo -->
         <div class="relative flex items-end justify-center pb-0 pt-20 lg:pt-16">
 
-          <!-- Floating brand badge -->
+          <!-- Floating brand badge — colorful gradient wordmark -->
           <div class="absolute top-2 left-1/2 -translate-x-1/2 z-30 animate-float-logo">
-            <div class="flex items-center gap-2.5 rounded-2xl border border-[#6a5fc1]/50 bg-[#150f23]/90 px-4 py-2.5 backdrop-blur-sm shadow-[0_4px_28px_rgba(106,95,193,0.4)]">
-              <div class="flex h-5 w-5 items-center justify-center rounded-md bg-[#c2ef4e] shadow-[0_0_8px_rgba(194,239,78,0.6)]">
-                <span class="text-[#1f1633] font-black text-[10px] leading-none select-none">S</span>
+            <div class="flex items-center gap-3 rounded-2xl border border-[#c2ef4e]/25 bg-gradient-to-br from-[#1f1633] to-[#150f23] px-5 py-3 backdrop-blur-sm shadow-[0_6px_40px_rgba(106,95,193,0.5),0_0_0_1px_rgba(194,239,78,0.08)]">
+              <!-- S mark -->
+              <div class="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-xl bg-[#c2ef4e] shadow-[0_0_16px_rgba(194,239,78,0.7)]">
+                <span class="text-[#1f1633] font-black text-base leading-none select-none">S</span>
               </div>
-              <span class="text-white font-black text-sm tracking-[0.06em] uppercase whitespace-nowrap">STOCKPING</span>
-              <span class="text-[#c2ef4e]/70 text-[10px] font-semibold tracking-[0.12em]">스톡핑</span>
+              <!-- Text -->
+              <div class="flex flex-col leading-tight">
+                <span
+                  class="font-black text-xl tracking-[0.08em] uppercase whitespace-nowrap"
+                  style="background: linear-gradient(120deg, #c2ef4e 0%, #a78bfa 60%, #c2ef4e 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;"
+                >
+                  STOCKPING
+                </span>
+                <span class="text-[#c2ef4e]/60 text-[11px] font-semibold tracking-[0.22em] mt-0.5">스 톡 핑</span>
+              </div>
             </div>
           </div>
 
-          <div class="-mr-5 z-10 mb-4 animate-float-left">
-            <div class="overflow-hidden rounded-[2rem] border-[3px] border-[#362d59] bg-[#150f23] shadow-xl shadow-black/60 w-28 sm:w-32 lg:w-36">
+          <!-- Phone Left — smaller -->
+          <div class="-mr-4 z-10 mb-4 animate-float-left">
+            <div class="overflow-hidden rounded-[1.8rem] border-[3px] border-[#362d59] bg-[#150f23] shadow-xl shadow-black/60 w-20 sm:w-24 lg:w-28">
               <img src="/images/app-screen-1.png" alt="스톡핑 앱 화면 1" class="block w-full h-auto" loading="eager" />
             </div>
           </div>
+          <!-- Phone Center — smaller -->
           <div class="z-20 animate-float-center">
-            <div class="overflow-hidden rounded-[2.3rem] border-[3px] border-[#6a5fc1]/50 bg-[#150f23] w-36 sm:w-40 lg:w-44" style="box-shadow: 0 25px 60px rgba(0,0,0,0.7), rgba(106,95,193,0.3) 0px 0px 40px 0px;">
+            <div class="overflow-hidden rounded-[2rem] border-[3px] border-[#6a5fc1]/50 bg-[#150f23] w-28 sm:w-32 lg:w-36" style="box-shadow: 0 20px 50px rgba(0,0,0,0.7), rgba(106,95,193,0.3) 0px 0px 32px 0px;">
               <img src="/images/app-screen-2.png" alt="스톡핑 앱 화면 2" class="block w-full h-auto" loading="eager" />
             </div>
           </div>
-          <div class="-ml-5 z-10 mb-4 animate-float-right">
-            <div class="overflow-hidden rounded-[2rem] border-[3px] border-[#362d59] bg-[#150f23] shadow-xl shadow-black/60 w-28 sm:w-32 lg:w-36">
+          <!-- Phone Right — smaller -->
+          <div class="-ml-4 z-10 mb-4 animate-float-right">
+            <div class="overflow-hidden rounded-[1.8rem] border-[3px] border-[#362d59] bg-[#150f23] shadow-xl shadow-black/60 w-20 sm:w-24 lg:w-28">
               <img src="/images/app-screen-3.png" alt="스톡핑 앱 화면 3" class="block w-full h-auto" loading="eager" />
             </div>
           </div>
