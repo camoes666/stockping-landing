@@ -67,19 +67,19 @@ const categoryLabel = CATEGORY_LABELS[category] ?? category;
 ---
 
 <BaseLayout title={title} description={description} ogImage={thumbnail}>
-  <div class="min-h-screen bg-white">
+  <div class="min-h-screen bg-[#150f23]">
 
     <!-- Breadcrumb header -->
-    <div class="bg-slate-50 border-b border-slate-200">
+    <div class="bg-[#1f1633] border-b border-[#362d59]">
       <div class="max-w-6xl mx-auto px-4 py-4">
-        <nav class="flex items-center gap-2 text-xs text-slate-500">
-          <a href="/blog" class="hover:text-cyan-600 transition-colors">블로그</a>
+        <nav class="flex items-center gap-2 text-xs text-[#e5e7eb]/40">
+          <a href="/blog" class="hover:text-[#6a5fc1] transition-colors">블로그</a>
           <span>›</span>
-          <a href={`/blog/category/${category}`} class="hover:text-cyan-600 transition-colors">
+          <a href={`/blog/category/${category}`} class="hover:text-[#6a5fc1] transition-colors">
             {categoryLabel}
           </a>
           <span>›</span>
-          <span class="text-slate-700 line-clamp-1 max-w-[300px]">{title}</span>
+          <span class="text-[#e5e7eb]/70 line-clamp-1 max-w-[300px]">{title}</span>
         </nav>
       </div>
     </div>
@@ -106,30 +106,30 @@ const categoryLabel = CATEGORY_LABELS[category] ?? category;
 
             <!-- TOC -->
             <div id="toc-container">
-              <p class="text-[11px] font-bold uppercase tracking-widest text-slate-500 mb-3">
+              <p class="text-[11px] font-bold uppercase tracking-[0.2px] text-[#e5e7eb]/30 mb-3">
                 Table of Contents
               </p>
               <nav id="toc-nav">
-                <ol id="toc-list" class="space-y-1 text-sm text-slate-500"></ol>
+                <ol id="toc-list" class="space-y-1 text-sm text-[#e5e7eb]/50"></ol>
               </nav>
             </div>
 
             <!-- App CTA card -->
-            <div class="bg-slate-900 rounded-lg p-5 relative overflow-hidden">
-              <span class="inline-block bg-cyan-600/20 text-cyan-400 text-[10px] font-bold uppercase tracking-widest rounded px-2 py-0.5 mb-3">
+            <div class="bg-[#1f1633] rounded-xl border border-[#362d59] p-5 relative overflow-hidden">
+              <span class="inline-block bg-[#6a5fc1]/20 text-[#c2ef4e] text-[10px] font-bold uppercase tracking-[0.2px] rounded border border-[#6a5fc1]/30 px-2 py-0.5 mb-3">
                 스톡핑 앱
               </span>
               <h3 class="text-white text-base font-bold tracking-tight leading-tight mb-2">
                 실시간 미국주식 정보를 앱에서 받아보세요
               </h3>
-              <p class="text-slate-400 text-xs leading-relaxed mb-4">
+              <p class="text-[#e5e7eb]/50 text-xs leading-relaxed mb-4">
                 ETF · 내부자 거래 · 애널리스트 리포트
               </p>
               <a
                 href="https://play.google.com/store/apps/details?id=kr.datadnp.app"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="block w-full bg-cyan-600 text-white text-center text-xs font-bold py-2.5 rounded transition-all duration-150 hover:bg-cyan-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-600 focus-visible:ring-offset-2"
+                class="block w-full bg-[#c2ef4e] text-[#1f1633] text-center text-xs font-bold uppercase tracking-[0.2px] py-2.5 rounded-[10px] transition-all duration-150 hover:brightness-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#c2ef4e] focus-visible:ring-offset-2"
               >
                 앱 다운로드
               </a>
@@ -142,13 +142,13 @@ const categoryLabel = CATEGORY_LABELS[category] ?? category;
         <article class="flex-1 min-w-0 max-w-[800px]">
           <!-- Status badge -->
           <div class="flex items-center gap-3 mb-3">
-            <span class={`text-[11px] font-bold uppercase tracking-widest rounded px-2 py-0.5 ${badgeClass}`}>
+            <span class={`text-[11px] font-bold uppercase tracking-[0.2px] rounded px-2 py-0.5 ${badgeClass}`}>
               {categoryLabel}
             </span>
           </div>
 
           <!-- Title -->
-          <h1 class="text-slate-900 text-3xl md:text-4xl font-bold tracking-tight leading-[1.1] mb-3">
+          <h1 class="text-white text-3xl md:text-4xl font-bold tracking-tight leading-[1.1] mb-3">
             {title}
           </h1>
 
@@ -161,23 +161,24 @@ const categoryLabel = CATEGORY_LABELS[category] ?? category;
           />
 
           <!-- Description lead -->
-          <p class="text-slate-600 text-lg leading-relaxed mb-6">
+          <p class="text-[#e5e7eb]/70 text-lg leading-relaxed mb-6">
             {description}
           </p>
 
-          <hr class="border-slate-200 mb-8" />
+          <hr class="border-[#362d59] mb-8" />
 
           <!-- Prose body -->
           <div
             class="
               prose max-w-none
-              prose-headings:text-slate-900 prose-headings:font-bold prose-headings:tracking-tight
-              prose-p:leading-7 prose-p:text-slate-700
-              prose-a:text-cyan-600 prose-a:no-underline hover:prose-a:underline
-              prose-strong:text-slate-900
-              prose-li:text-slate-700
-              prose-hr:border-slate-200
-              prose-blockquote:border-l-cyan-600 prose-blockquote:text-slate-500
+              prose-headings:text-white prose-headings:font-bold prose-headings:tracking-tight
+              prose-p:leading-7 prose-p:text-[#e5e7eb]/70
+              prose-a:text-[#6a5fc1] prose-a:no-underline hover:prose-a:underline
+              prose-strong:text-white
+              prose-li:text-[#e5e7eb]/70
+              prose-hr:border-[#362d59]
+              prose-blockquote:border-l-[#6a5fc1] prose-blockquote:text-[#e5e7eb]/50
+              prose-code:text-[#c2ef4e] prose-code:bg-[#1f1633]
             "
           >
             <slot />
@@ -197,8 +198,8 @@ const categoryLabel = CATEGORY_LABELS[category] ?? category;
 
       <!-- Related posts -->
       {relatedPosts.length > 0 && (
-        <div class="border-t border-slate-200 mt-16 pt-10 bg-slate-50 -mx-4 px-4 pb-10 rounded-lg">
-          <p class="text-[11px] font-bold uppercase tracking-widest text-slate-500 mb-6">관련 글</p>
+        <div class="border-t border-[#362d59] mt-16 pt-10 bg-[#1f1633] -mx-4 px-4 pb-10 rounded-lg">
+          <p class="text-[11px] font-bold uppercase tracking-[0.2px] text-[#e5e7eb]/30 mb-6">관련 글</p>
           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {relatedPosts.map((p: CollectionEntry<"blog">) => (
               <BlogCard
@@ -237,8 +238,8 @@ const categoryLabel = CATEGORY_LABELS[category] ?? category;
           a.textContent = heading.textContent ?? "";
           a.className =
             heading.tagName === "H3"
-              ? "block pl-3 py-0.5 text-xs text-slate-400 hover:text-cyan-600 transition-colors border-l border-slate-200"
-              : "block py-0.5 text-slate-500 hover:text-cyan-600 transition-colors font-medium";
+              ? "block pl-3 py-0.5 text-xs text-[#e5e7eb]/40 hover:text-[#6a5fc1] transition-colors border-l border-[#362d59]"
+              : "block py-0.5 text-[#e5e7eb]/50 hover:text-[#6a5fc1] transition-colors font-medium";
           li.appendChild(a);
           tocList.appendChild(li);
         });
@@ -251,7 +252,7 @@ const categoryLabel = CATEGORY_LABELS[category] ?? category;
               if (!link) return;
               if (entry.isIntersecting) {
                 tocList.querySelectorAll("a").forEach((a) => a.classList.remove("text-cyan-600", "font-bold"));
-                link.classList.add("text-cyan-600", "font-bold");
+                link.classList.add("text-[#6a5fc1]", "font-bold");
               }
             });
           },

@@ -39,15 +39,15 @@ export function FaqAccordion() {
       {faqs.map((faq, i) => (
         <div
           key={i}
-          className="overflow-hidden rounded-xl border border-slate-200 bg-white"
+          className="overflow-hidden rounded-xl border border-[#362d59] bg-[#150f23] transition-colors duration-150 hover:border-[#584674]"
         >
           <button
-            className="flex w-full items-center justify-between px-6 py-4 text-left transition-colors hover:bg-slate-50"
+            className="flex w-full items-center justify-between px-6 py-4 text-left transition-colors hover:bg-[#1f1633]"
             onClick={() => setOpenIndex(openIndex === i ? null : i)}
           >
-            <span className="pr-4 font-semibold text-slate-900">{faq.q}</span>
+            <span className="pr-4 font-semibold text-white">{faq.q}</span>
             <svg
-              className={`h-5 w-5 flex-shrink-0 text-slate-400 transition-transform duration-200 ${openIndex === i ? "rotate-180" : ""}`}
+              className={`h-5 w-5 flex-shrink-0 text-[#6a5fc1] transition-transform duration-200 ${openIndex === i ? "rotate-180" : ""}`}
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -61,7 +61,7 @@ export function FaqAccordion() {
             </svg>
           </button>
           {openIndex === i && (
-            <div className="border-t border-slate-100 px-6 pb-5 pt-4 text-base leading-8 text-slate-600">
+            <div className="border-t border-[#362d59] px-6 pb-5 pt-4 text-base leading-8 text-[#e5e7eb]/60">
               {faq.a}
             </div>
           )}

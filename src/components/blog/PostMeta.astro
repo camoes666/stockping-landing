@@ -20,11 +20,11 @@ const showUpdated = updatedAt && updatedAt !== publishedAt;
     {categoryLabel}
   </span>
   {tags.map((tag) => (
-    <span class="text-slate-600 text-xs border border-slate-200 rounded px-2 py-0.5">
+    <span class="text-[#e5e7eb]/50 text-xs border border-[#362d59] rounded px-2 py-0.5">
       {tag}
     </span>
   ))}
-  <span class="text-slate-500 text-xs ml-auto">
+  <span class="text-[#e5e7eb]/40 text-xs ml-auto">
     {formatKoreanDate(publishedAt)}
     {showUpdated && (
       <span class="ml-2">수정: {formatKoreanDate(updatedAt!)}</span>

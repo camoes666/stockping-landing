@@ -20,10 +20,10 @@ const badgeClass = CATEGORY_BADGE[category] ?? "bg-slate-100 text-slate-700";
 
 <a
   href={`/blog/${slug}`}
-  class="group bg-white border border-slate-200 rounded-lg overflow-hidden flex flex-col transition-all duration-200 hover:-translate-y-1 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-600 focus-visible:ring-offset-2"
+  class="group bg-[#1f1633] border border-[#362d59] rounded-xl overflow-hidden flex flex-col transition-all duration-200 hover:-translate-y-1 hover:border-[#6a5fc1]/50 hover:shadow-[rgba(106,95,193,0.12)_0px_8px_32px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6a5fc1] focus-visible:ring-offset-2"
 >
   {thumbnail ? (
-    <div class="aspect-[16/9] overflow-hidden bg-slate-100">
+    <div class="aspect-[16/9] overflow-hidden bg-[#150f23]">
       <img
         src={thumbnail}
         alt={title}
@@ -32,23 +32,23 @@ const badgeClass = CATEGORY_BADGE[category] ?? "bg-slate-100 text-slate-700";
       />
     </div>
   ) : (
-    <div class="aspect-[16/9] bg-slate-100 flex items-center justify-center">
-      <span class="text-slate-400 text-4xl font-bold tracking-tighter">
+    <div class="aspect-[16/9] bg-[#150f23] flex items-center justify-center border-b border-[#362d59]">
+      <span class="text-[#e5e7eb]/15 text-4xl font-bold tracking-tighter">
         {categoryLabel}
       </span>
     </div>
   )}
   <div class="p-5 flex flex-col flex-1">
-    <span class={`inline-block text-[11px] font-bold uppercase tracking-widest rounded px-2 py-0.5 self-start ${badgeClass}`}>
+    <span class={`inline-block text-[11px] font-bold uppercase tracking-[0.2px] rounded px-2 py-0.5 self-start ${badgeClass}`}>
       {categoryLabel}
     </span>
-    <p class="text-slate-900 font-bold text-base leading-snug tracking-tight mt-2.5 line-clamp-2 group-hover:text-cyan-600 transition-colors duration-150">
+    <p class="text-white font-bold text-base leading-snug tracking-tight mt-2.5 line-clamp-2 group-hover:text-[#6a5fc1] transition-colors duration-150">
       {title}
     </p>
-    <p class="text-slate-500 text-sm mt-1.5 line-clamp-2 leading-relaxed flex-1">
+    <p class="text-[#e5e7eb]/50 text-sm mt-1.5 line-clamp-2 leading-relaxed flex-1">
       {description}
     </p>
-    <p class="text-slate-400 text-xs mt-4 font-medium">
+    <p class="text-[#e5e7eb]/30 text-xs mt-4 font-medium">
       {formatKoreanDate(publishedAt)}
     </p>
   </div>
