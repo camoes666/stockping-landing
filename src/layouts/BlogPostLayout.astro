@@ -67,7 +67,7 @@ const categoryLabel = CATEGORY_LABELS[category] ?? category;
 ---
 
 <BaseLayout title={title} description={description} ogImage={thumbnail}>
-  <div class="min-h-screen bg-[#150f23]">
+  <div class="min-h-screen bg-[#f0eeff]">
 
     <!-- Breadcrumb header -->
     <div class="bg-[#1f1633] border-b border-[#362d59]">
@@ -106,16 +106,16 @@ const categoryLabel = CATEGORY_LABELS[category] ?? category;
 
             <!-- TOC -->
             <div id="toc-container">
-              <p class="text-[11px] font-bold uppercase tracking-[0.2px] text-[#e5e7eb]/30 mb-3">
+              <p class="text-[11px] font-bold uppercase tracking-[0.2px] text-[#79628c] mb-3">
                 Table of Contents
               </p>
               <nav id="toc-nav">
-                <ol id="toc-list" class="space-y-1 text-sm text-[#e5e7eb]/50"></ol>
+                <ol id="toc-list" class="space-y-1 text-sm text-[#4a3f6b]"></ol>
               </nav>
             </div>
 
             <!-- App CTA card -->
-            <div class="bg-[#1f1633] rounded-xl border border-[#362d59] p-5 relative overflow-hidden">
+            <div class="bg-[#1f1633] rounded-xl border border-[#362d59] p-5 relative overflow-hidden" style="background: radial-gradient(ellipse 120% 80% at 50% 120%, rgba(106,95,193,0.25) 0%, transparent 70%), #1f1633;">
               <span class="inline-block bg-[#6a5fc1]/20 text-[#c2ef4e] text-[10px] font-bold uppercase tracking-[0.2px] rounded border border-[#6a5fc1]/30 px-2 py-0.5 mb-3">
                 스톡핑 앱
               </span>
@@ -148,7 +148,7 @@ const categoryLabel = CATEGORY_LABELS[category] ?? category;
           </div>
 
           <!-- Title -->
-          <h1 class="text-white text-3xl md:text-4xl font-bold tracking-tight leading-[1.1] mb-3">
+          <h1 class="text-[#1f1633] text-3xl md:text-4xl font-bold tracking-tight leading-[1.1] mb-3">
             {title}
           </h1>
 
@@ -161,24 +161,24 @@ const categoryLabel = CATEGORY_LABELS[category] ?? category;
           />
 
           <!-- Description lead -->
-          <p class="text-[#e5e7eb]/70 text-lg leading-relaxed mb-6">
+          <p class="text-[#4a3f6b] text-lg leading-relaxed mb-6">
             {description}
           </p>
 
-          <hr class="border-[#362d59] mb-8" />
+          <hr class="border-[#e4dcff] mb-8" />
 
           <!-- Prose body -->
           <div
             class="
               prose max-w-none
-              prose-headings:text-white prose-headings:font-bold prose-headings:tracking-tight
-              prose-p:leading-7 prose-p:text-[#e5e7eb]/70
+              prose-headings:text-[#1f1633] prose-headings:font-bold prose-headings:tracking-tight
+              prose-p:leading-7 prose-p:text-[#4a3f6b]
               prose-a:text-[#6a5fc1] prose-a:no-underline hover:prose-a:underline
-              prose-strong:text-white
-              prose-li:text-[#e5e7eb]/70
-              prose-hr:border-[#362d59]
-              prose-blockquote:border-l-[#6a5fc1] prose-blockquote:text-[#e5e7eb]/50
-              prose-code:text-[#c2ef4e] prose-code:bg-[#1f1633]
+              prose-strong:text-[#1f1633]
+              prose-li:text-[#4a3f6b]
+              prose-hr:border-[#e4dcff]
+              prose-blockquote:border-l-[#6a5fc1] prose-blockquote:text-[#79628c]
+              prose-code:text-[#6a5fc1] prose-code:bg-[#f0eeff]
             "
           >
             <slot />
@@ -198,8 +198,8 @@ const categoryLabel = CATEGORY_LABELS[category] ?? category;
 
       <!-- Related posts -->
       {relatedPosts.length > 0 && (
-        <div class="border-t border-[#362d59] mt-16 pt-10 bg-[#1f1633] -mx-4 px-4 pb-10 rounded-lg">
-          <p class="text-[11px] font-bold uppercase tracking-[0.2px] text-[#e5e7eb]/30 mb-6">관련 글</p>
+        <div class="border-t border-[#e4dcff] mt-16 pt-10 bg-white -mx-4 px-4 pb-10 rounded-xl">
+          <p class="text-[11px] font-bold uppercase tracking-[0.2px] text-[#79628c] mb-6">관련 글</p>
           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {relatedPosts.map((p: CollectionEntry<"blog">) => (
               <BlogCard
@@ -238,8 +238,8 @@ const categoryLabel = CATEGORY_LABELS[category] ?? category;
           a.textContent = heading.textContent ?? "";
           a.className =
             heading.tagName === "H3"
-              ? "block pl-3 py-0.5 text-xs text-[#e5e7eb]/40 hover:text-[#6a5fc1] transition-colors border-l border-[#362d59]"
-              : "block py-0.5 text-[#e5e7eb]/50 hover:text-[#6a5fc1] transition-colors font-medium";
+              ? "block pl-3 py-0.5 text-xs text-[#79628c] hover:text-[#6a5fc1] transition-colors border-l border-[#e4dcff]"
+              : "block py-0.5 text-[#4a3f6b] hover:text-[#6a5fc1] transition-colors font-medium";
           li.appendChild(a);
           tocList.appendChild(li);
         });

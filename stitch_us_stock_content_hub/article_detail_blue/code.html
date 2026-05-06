@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>EquityInsight | Market Intelligence Detail</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-highest": "#e1e3e2",
+                        "tertiary": "#000000",
+                        "surface-container-high": "#e7e8e7",
+                        "on-secondary-container": "#57657b",
+                        "on-secondary-fixed-variant": "#3a485c",
+                        "secondary-fixed-dim": "#b9c7e0",
+                        "surface-tint": "#565e74",
+                        "surface-container": "#edeeed",
+                        "inverse-on-surface": "#f0f1f0",
+                        "secondary-fixed": "#d5e3fd",
+                        "on-tertiary-fixed-variant": "#005049",
+                        "on-error": "#ffffff",
+                        "on-tertiary-fixed": "#00201d",
+                        "on-surface": "#191c1c",
+                        "on-error-container": "#93000a",
+                        "on-primary-container": "#7c839b",
+                        "on-secondary": "#ffffff",
+                        "primary-fixed": "#dae2fd",
+                        "primary-container": "#131b2e",
+                        "on-surface-variant": "#45464d",
+                        "on-primary": "#ffffff",
+                        "on-primary-fixed-variant": "#3f465c",
+                        "primary-fixed-dim": "#bec6e0",
+                        "on-tertiary-container": "#0c9488",
+                        "outline": "#76777d",
+                        "tertiary-fixed-dim": "#6bd8cb",
+                        "on-background": "#191c1c",
+                        "secondary": "#515f74",
+                        "tertiary-container": "#00201d",
+                        "surface": "#f9f9f8",
+                        "outline-variant": "#c6c6cd",
+                        "surface-dim": "#d9dad9",
+                        "inverse-surface": "#2e3131",
+                        "on-primary-fixed": "#131b2e",
+                        "on-tertiary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "secondary-container": "#d5e3fd",
+                        "background": "#f9f9f8",
+                        "surface-container-lowest": "#ffffff",
+                        "primary": "#000000",
+                        "surface-variant": "#e1e3e2",
+                        "inverse-primary": "#bec6e0",
+                        "surface-container-low": "#f3f4f3",
+                        "on-secondary-fixed": "#0d1c2f",
+                        "error-container": "#ffdad6",
+                        "surface-bright": "#f9f9f8",
+                        "tertiary-fixed": "#89f5e7"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "unit": "4px",
+                        "stack-sm": "8px",
+                        "stack-lg": "32px",
+                        "gutter": "24px",
+                        "margin": "32px",
+                        "stack-md": "16px",
+                        "container-max": "1440px"
+                    },
+                    "fontFamily": {
+                        "h2": ["Manrope"],
+                        "h1": ["Manrope"],
+                        "body-md": ["Manrope"],
+                        "body-lg": ["Manrope"],
+                        "label-caps": ["Manrope"],
+                        "h3": ["Manrope"],
+                        "display": ["Manrope"],
+                        "tabular-nums": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "h2": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "h1": ["32px", {"lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "body-md": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                        "body-lg": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "label-caps": ["12px", {"lineHeight": "1", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                        "h3": ["18px", {"lineHeight": "1.4", "fontWeight": "600"}],
+                        "display": ["48px", {"lineHeight": "1.1", "letterSpacing": "-0.02em", "fontWeight": "800"}],
+                        "tabular-nums": ["14px", {"lineHeight": "1", "fontWeight": "500"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Manrope', sans-serif; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- TopAppBar -->
+<header class="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 docked full-width top-0 z-50 sticky">
+<div class="flex justify-between items-center px-8 h-16 max-w-[1440px] mx-auto">
+<div class="text-xl font-bold tracking-tighter text-slate-900 dark:text-white">EquityInsight</div>
+<nav class="hidden md:flex items-center gap-8 h-full">
+<a class="font-manrope text-sm tracking-tight font-medium text-slate-500 dark:text-slate-400 hover:text-slate-900" href="#">Market Data</a>
+<a class="font-manrope text-sm tracking-tight font-medium text-cyan-600 dark:text-cyan-400 border-b-2 border-cyan-600 pb-4 h-16 flex items-center mt-4" href="#">Insights</a>
+<a class="font-manrope text-sm tracking-tight font-medium text-slate-500 dark:text-slate-400 hover:text-slate-900" href="#">Issue Radar</a>
+<a class="font-manrope text-sm tracking-tight font-medium text-slate-500 dark:text-slate-400 hover:text-slate-900" href="#">Editor</a>
+</nav>
+<div class="flex items-center gap-4">
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm">search</span>
+<input class="bg-slate-50 border border-slate-200 text-sm rounded-lg pl-10 pr-4 py-1.5 focus:outline-none focus:ring-1 focus:ring-cyan-600 w-64" placeholder="Search terminal..." type="text"/>
+</div>
+<button class="material-symbols-outlined text-slate-500 hover:bg-slate-50 p-2 rounded-full transition-colors" data-icon="notifications">notifications</button>
+<button class="material-symbols-outlined text-slate-500 hover:bg-slate-50 p-2 rounded-full transition-colors" data-icon="account_circle">account_circle</button>
+</div>
+</div>
+</header>
+<div class="flex max-w-[1440px] mx-auto">
+<!-- SideNavBar (Hidden on small screens) -->
+<aside class="hidden lg:flex flex-col h-[calc(100vh-64px)] w-64 sticky top-16 bg-slate-50 border-r border-slate-200">
+<div class="p-6">
+<div class="text-lg font-black text-slate-900 mb-1">Terminal</div>
+<div class="font-manrope uppercase tracking-widest text-[11px] font-bold text-slate-400">Institutional Access</div>
+</div>
+<nav class="flex-1 px-4 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 font-manrope uppercase tracking-widest text-[11px] font-bold text-slate-500 hover:bg-slate-100 transition-all duration-150" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="dashboard">dashboard</span> Overview
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 font-manrope uppercase tracking-widest text-[11px] font-bold bg-white text-cyan-600 border-r-4 border-cyan-600 transition-all duration-150" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="analytics">analytics</span> Live Radar
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 font-manrope uppercase tracking-widest text-[11px] font-bold text-slate-500 hover:bg-slate-100 transition-all duration-150" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="edit_document">edit_document</span> Editorial Hub
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 font-manrope uppercase tracking-widest text-[11px] font-bold text-slate-500 hover:bg-slate-100 transition-all duration-150" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="pending_actions">pending_actions</span> Drafts
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 font-manrope uppercase tracking-widest text-[11px] font-bold text-slate-500 hover:bg-slate-100 transition-all duration-150" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="inventory_2">inventory_2</span> Archive
+                </a>
+</nav>
+<div class="px-4 py-6 border-t border-slate-200 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 font-manrope uppercase tracking-widest text-[11px] font-bold text-slate-500 hover:bg-slate-100 transition-all duration-150" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="settings">settings</span> Settings
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 font-manrope uppercase tracking-widest text-[11px] font-bold text-slate-500 hover:bg-slate-100 transition-all duration-150" href="#">
+<span class="material-symbols-outlined text-lg" data-icon="gavel">gavel</span> Compliance
+                </a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 bg-white min-h-screen">
+<!-- Article Header -->
+<div class="bg-slate-50 border-b border-slate-200">
+<div class="max-w-4xl mx-auto px-8 py-16">
+<nav class="flex items-center gap-2 text-label-caps text-on-secondary-container mb-6">
+<span>INSIGHTS</span>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<span>MACRO ANALYSIS</span>
+</nav>
+<h1 class="font-h1 text-h1 text-primary mb-8 max-w-2xl">The Shift in Global Equity Liquidity: Implications for Q4 Institutional Strategy</h1>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-3">
+<img class="w-10 h-10 rounded-full object-cover" data-alt="A professional headshot of a financial analyst in a modern office. He wears a tailored navy suit and has a neutral, authoritative expression. The background is slightly blurred with soft bokeh of glass partitions and warm light-mode office interior." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDk6nRe2utSF2A0nWAgw8dRiZKH6a21876bRRIe_HOXJASmr8ZUsDSg0IDBwI8ZvLNsgtxwQOpDfINhTzZNqW2VLqdgqcNERLjBp0WN5zdOYEJbhv7OdSv10kB3qaWv2UwMtJT9xhaXuGtriXya0UYwbq83JBqo3QOicCnmLZC6C7mnDCdGh5d55c2Gpq3Nlf9nZrRRgbz7CzqxH-Ct3Y8GYf2jRUU3RmzKZGz0zhK1eh3lONaOYzqSrdUok8JWbMS9OreG4bSPPPJ9"/>
+<div>
+<div class="font-body-md font-bold text-primary">Marcus Vane</div>
+<div class="font-body-md text-slate-500 text-xs">Senior Macro Strategist</div>
+</div>
+</div>
+<div class="h-8 w-px bg-slate-200"></div>
+<div class="text-xs text-slate-500 font-tabular-nums">
+                            OCTOBER 24, 2024 • 12 MIN READ
+                        </div>
+</div>
+</div>
+</div>
+<div class="max-w-6xl mx-auto px-8 py-12 flex flex-col lg:flex-row gap-12">
+<!-- Sidebar TOC -->
+<aside class="w-full lg:w-64 order-2 lg:order-1">
+<div class="sticky top-24">
+<h4 class="font-label-caps text-primary border-b border-slate-200 pb-2 mb-4">IN THIS ARTICLE</h4>
+<nav class="space-y-3">
+<a class="block font-body-md text-cyan-600 font-bold border-l-2 border-cyan-600 pl-3" href="#summary">Executive Summary</a>
+<a class="block font-body-md text-slate-500 hover:text-primary pl-3 border-l-2 border-transparent" href="#liquidity">Liquidity Dynamics</a>
+<a class="block font-body-md text-slate-500 hover:text-primary pl-3 border-l-2 border-transparent" href="#volatility">Volatility Clusters</a>
+<a class="block font-body-md text-slate-500 hover:text-primary pl-3 border-l-2 border-transparent" href="#outcomes">Strategic Outcomes</a>
+</nav>
+<!-- App CTA -->
+<div class="mt-12 p-6 bg-primary-container rounded-xl text-white relative overflow-hidden group">
+<div class="relative z-10">
+<h5 class="font-h3 text-h3 mb-2">EquityInsight Mobile</h5>
+<p class="text-xs text-slate-400 mb-4 font-manrope">Real-time alerts and institutional data on the go.</p>
+<button class="w-full py-2 bg-cyan-600 text-white font-bold rounded-lg text-xs hover:bg-cyan-500 transition-colors">DOWNLOAD APP</button>
+</div>
+<div class="absolute -bottom-4 -right-4 opacity-10 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-8xl" style="font-variation-settings: 'FILL' 1;">smartphone</span>
+</div>
+</div>
+</div>
+</aside>
+<!-- Article Body -->
+<article class="flex-1 max-w-2xl order-1 lg:order-2">
+<div class="prose prose-slate max-w-none">
+<p class="font-body-lg text-slate-700 mb-8 leading-relaxed">
+                            As we approach the final fiscal quarter of the year, global equity markets are witnessing a non-linear shift in liquidity distribution. Institutional participants are navigating a landscape defined by heightened sensitivity to central bank signaling and a structural rotation toward defensive yield. 
+                        </p>
+<figure class="my-10">
+<div class="bg-slate-50 border border-slate-200 rounded-lg p-1 h-[320px] overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A clean, minimalist data visualization showing financial candle-stick charts and liquidity heatmaps. The palette is dominated by deep blues and whites with subtle cyan highlights on key trends. The design is crisp, modern, and conveys high-stakes analytical precision within a light-mode interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAfg6fh-NZpKchEFCkEuAd2uDwjwyk5KoSCwuu6oum6oc32DCFC8nCDo4z7ePQS2-dWw9QsKYI5i6ZD383GFNqiUISqnOYH5YS9O-B17YkU8vM7wolUGD0vD7iRpv3v2TmGL6CzN7m-RGYnFiXVSBGf8R9DQri3VOW9pbFw1F_o__7yU05y7HWjdoXiEA-bpE-dBNtBnXEY5reLt3YjxJ6Z0ubNd76V5In7KrLTfaaTok73CxFD4i9D592U3y75mtWt0ceaOaK7rC-z"/>
+</div>
+<figcaption class="text-xs text-slate-400 mt-3 italic text-center font-manrope">Fig 1.1: Aggregated Liquidity Depth across Major Exchanges (2023-2024)</figcaption>
+</figure>
+<h2 class="font-h2 text-h2 text-primary mt-12 mb-6" id="liquidity">Structural Liquidity Dynamics</h2>
+<p class="font-body-lg text-slate-700 mb-6 leading-relaxed">
+                            The current environment is characterized by what we term "Fragmented Concentration." While overall volume remains steady, the depth of the book at the best bid and offer has thinned by approximately 18% since January. This creates a paradox where large-scale execution risks higher slippage despite robust top-level market numbers.
+                        </p>
+<div class="bg-cyan-50 border-l-4 border-cyan-600 p-6 my-10">
+<h4 class="font-label-caps text-cyan-800 mb-2">KEY TAKEAWAY</h4>
+<p class="font-body-md text-cyan-900 font-medium italic">"Execution strategies must pivot from traditional TWAP models to liquidity-seeking algorithms that can tap into dark pools without signaling intent to the wider market."</p>
+</div>
+<h3 class="font-h3 text-h3 text-primary mt-12 mb-4" id="volatility">Volatility Clusters and Tail Risks</h3>
+<p class="font-body-lg text-slate-700 mb-6 leading-relaxed">
+                            Historically, volatility has been mean-reverting. However, the 2024 cluster exhibits persistent high-gamma traits that suggest a fundamental change in how news is priced. We advise clients to maintain a "convexity-focused" posture, utilizing long-dated puts on broader indices to hedge against sudden liquidity evaporations.
+                        </p>
+<p class="font-body-lg text-slate-700 mb-6 leading-relaxed">
+                            Market participants should also monitor the cross-asset correlation between equities and regional bonds, which has reached a five-year peak, signaling a synchronized response to inflationary cooling.
+                        </p>
+</div>
+<!-- Article Tags & Share -->
+<div class="pt-12 mt-12 border-t border-slate-200 flex flex-wrap gap-4 items-center justify-between">
+<div class="flex gap-2">
+<span class="px-3 py-1 bg-slate-100 text-slate-600 text-xs font-bold rounded-full">#MACRO</span>
+<span class="px-3 py-1 bg-slate-100 text-slate-600 text-xs font-bold rounded-full">#LIQUIDITY</span>
+<span class="px-3 py-1 bg-slate-100 text-slate-600 text-xs font-bold rounded-full">#EQUITIES</span>
+</div>
+<div class="flex items-center gap-4">
+<button class="flex items-center gap-2 text-slate-400 hover:text-cyan-600 transition-colors">
+<span class="material-symbols-outlined text-lg" data-icon="share">share</span>
+<span class="text-xs font-bold">SHARE</span>
+</button>
+<button class="flex items-center gap-2 text-slate-400 hover:text-cyan-600 transition-colors">
+<span class="material-symbols-outlined text-lg" data-icon="bookmark">bookmark</span>
+<span class="text-xs font-bold">SAVE</span>
+</button>
+</div>
+</div>
+</article>
+</div>
+<!-- Related Insights Section -->
+<section class="bg-slate-50 py-20 px-8">
+<div class="max-w-6xl mx-auto">
+<div class="flex justify-between items-end mb-10">
+<div>
+<h2 class="font-h2 text-h2 text-primary">Related Market Insights</h2>
+<p class="text-slate-500 font-body-md mt-2">Deeper analysis of global market trends and institutional sentiment.</p>
+</div>
+<a class="text-cyan-600 font-bold text-sm hover:underline" href="#">VIEW ALL INSIGHTS</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Related Card 1 -->
+<div class="bg-white p-1 rounded-xl border border-slate-200 hover:border-cyan-600 transition-colors group cursor-pointer">
+<div class="h-48 overflow-hidden rounded-lg mb-6">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A sophisticated digital interface displaying algorithmic trading patterns. The visual features glowing interconnected nodes and vibrant teal data lines against a clean, white background. The aesthetic is futuristic and analytical, embodying the precision of high-frequency financial engineering." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3B6LSi_To_oTwkzceGMjxpltcPNmdrLSeDmiRSqQld1r2v3jjwRiKLbEjtyEYsU5_W9Ctk0QXClBcIh0uLI_E9u6kUEeSSa5lKMEy5V-SHNaaA4csszo4Hojhtxqid8Z_itUkVBfzpmj93nX65G7zUd3Q90mFkOemYY_pmJ3Cd-N8FoDsxBk6dadQKJOL5XZ01D_CfgcGT4QD7Xwb3T3635COzS9X7r3PpEbBhUR_97oMUV-4v2ZuBGRCgA9P7GlDxePfaq_UwLe_"/>
+</div>
+<div class="px-5 pb-6">
+<div class="text-label-caps text-cyan-600 mb-3">TECHNOLOGY</div>
+<h3 class="font-h3 text-h3 mb-3 leading-tight group-hover:text-cyan-600 transition-colors">The Impact of AI-Driven Alpha Generation in H2</h3>
+<p class="text-slate-500 text-sm line-clamp-2 mb-4">How quantitative funds are leveraging Large Language Models to interpret central bank sentiment ahead of traditional tickers.</p>
+<div class="text-xs text-slate-400 font-tabular-nums uppercase tracking-wide">6 Min Read • Oct 22</div>
+</div>
+</div>
+<!-- Related Card 2 -->
+<div class="bg-white p-1 rounded-xl border border-slate-200 hover:border-cyan-600 transition-colors group cursor-pointer">
+<div class="h-48 overflow-hidden rounded-lg mb-6">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="An expansive workspace featuring multiple high-resolution financial terminals displaying complex market data. The lighting is crisp and cool-toned, with bright natural light filtering through large windows. The overall atmosphere is one of professional high-stakes financial analysis in a luxury corporate setting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBp8f44wsTGFVjTdfP30b_jLpDA715l053NPvOWMCDtjKqoyrEvq5dMF3v5eLZ73IWFD81GJp_g06wbal_wL43NRK8UhON8YmHPTGd4VHwY4bf9P5-CTzw3jcM56GjHhs-bxuKYIO_TQ1ePozt58O2qKvyx0Yl4gSyDZMHkeIJLU73T_rRkjxfljvEXIJTaJh8ruVmNKga2NXjTKTVJVHbFTVpO9Yk1okOTI9690xjz1OSSay5BGHKItx-YVN6jt-TGd887nYnkaFlH"/>
+</div>
+<div class="px-5 pb-6">
+<div class="text-label-caps text-cyan-600 mb-3">GLOBAL MARKETS</div>
+<h3 class="font-h3 text-h3 mb-3 leading-tight group-hover:text-cyan-600 transition-colors">Emerging Market Resilience: A Structural Shift</h3>
+<p class="text-slate-500 text-sm line-clamp-2 mb-4">Despite a strong dollar, select EM economies are showing unprecedented fiscal discipline and growth potential.</p>
+<div class="text-xs text-slate-400 font-tabular-nums uppercase tracking-wide">9 Min Read • Oct 19</div>
+</div>
+</div>
+<!-- Related Card 3 -->
+<div class="bg-white p-1 rounded-xl border border-slate-200 hover:border-cyan-600 transition-colors group cursor-pointer">
+<div class="h-48 overflow-hidden rounded-lg mb-6">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A modern glass and steel skyscraper reaching into a bright, clear blue sky. The building's facade reflects the morning sun, creating sharp, geometric light patterns. The image represents institutional strength, corporate transparency, and the towering scale of global financial markets." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_Mv4xQDQebX-Cz7o_mYLwm2aJRCxo7gmvrnwD3mZJYvu4mekf1I9WtOZ8vLSD5i-fLLNFqk01zHaMtUaFcDSlnO21QVgju_Sm_7d6CfVo0XSJ2-TAW8ZIF4sMB5XWFri14tejfv2Kuo0lPwTqilIjav3QhJ7W2fQbuE_CfSMucYeBZEv8nufy2hdKUvJ357hPtKKdIgBbKL3fy5laCu4okxXB-PXYHWq77QaA-X1z_InY8I86_rK50LJRAinHfY9Yyo6mYs5NK-3O"/>
+</div>
+<div class="px-5 pb-6">
+<div class="text-label-caps text-cyan-600 mb-3">FIXED INCOME</div>
+<h3 class="font-h3 text-h3 mb-3 leading-tight group-hover:text-cyan-600 transition-colors">Reassessing the Real Rate Equilibrium</h3>
+<p class="text-slate-500 text-sm line-clamp-2 mb-4">Exploring why the 'Neutral Rate' may be significantly higher than consensus estimates for the next decade.</p>
+<div class="text-xs text-slate-400 font-tabular-nums uppercase tracking-wide">15 Min Read • Oct 15</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+</div>
+<!-- Footer -->
+<footer class="bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800 w-full py-8 mt-auto">
+<div class="flex flex-col md:flex-row justify-between items-center px-8 max-w-[1440px] mx-auto gap-6">
+<div class="flex flex-col items-center md:items-start gap-2">
+<div class="font-bold text-slate-900 font-manrope">EquityInsight</div>
+<p class="font-manrope text-xs text-slate-500">© 2024 EquityInsight Professional Terminal. Proprietary Data.</p>
+</div>
+<nav class="flex flex-wrap justify-center gap-8">
+<a class="font-manrope text-xs text-slate-400 hover:text-cyan-600 underline transition-colors" href="#">Privacy Policy</a>
+<a class="font-manrope text-xs text-slate-400 hover:text-cyan-600 underline transition-colors" href="#">Terms of Service</a>
+<a class="font-manrope text-xs text-slate-400 hover:text-cyan-600 underline transition-colors" href="#">Regulatory Disclosure</a>
+<a class="font-manrope text-xs text-slate-400 hover:text-cyan-600 underline transition-colors" href="#">Contact Support</a>
+</nav>
+<div class="flex gap-4">
+<button class="material-symbols-outlined text-slate-400 hover:text-cyan-600 transition-colors">language</button>
+<button class="material-symbols-outlined text-slate-400 hover:text-cyan-600 transition-colors">help_outline</button>
+</div>
+</div>
+</footer>
+</body></html>

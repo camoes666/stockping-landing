@@ -31,49 +31,46 @@ const label = CATEGORY_LABELS[category as ValidCategory] ?? category;
   title={`${label} | 미국주식 블로그 | ${siteConfig.siteName}`}
   description={`미국주식 ${label} 관련 정보를 한국어로 정리합니다.`}
 >
-  <div class="min-h-screen bg-[#150f23]">
 
-    <!-- Dark Hero -->
-    <div class="bg-[#1f1633]" style="background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(106,95,193,0.2) 0%, transparent 70%), #1f1633;">
-      <div class="max-w-6xl mx-auto px-4 py-14">
-        <nav class="flex items-center gap-2 text-xs text-[#e5e7eb]/40 mb-4">
-          <a href="/blog" class="hover:text-[#6a5fc1] transition-colors">블로그</a>
-          <span>›</span>
-          <span class="text-[#e5e7eb]/70">{label}</span>
-        </nav>
-        <h1 class="text-white text-4xl font-bold tracking-tight leading-none mb-2">{label}</h1>
-        <p class="text-[#e5e7eb]/40 text-sm">{posts.length}개의 글</p>
-      </div>
+  <!-- Hero — DARK -->
+  <div class="bg-[#1f1633]" style="background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(106,95,193,0.2) 0%, transparent 70%), #1f1633;">
+    <div class="max-w-6xl mx-auto px-4 py-14">
+      <nav class="flex items-center gap-2 text-xs text-[#e5e7eb]/40 mb-4">
+        <a href="/blog" class="hover:text-[#6a5fc1] transition-colors">블로그</a>
+        <span>›</span>
+        <span class="text-[#e5e7eb]/70">{label}</span>
+      </nav>
+      <h1 class="text-white text-4xl font-bold tracking-tight leading-none mb-2">{label}</h1>
+      <p class="text-[#e5e7eb]/40 text-sm">{posts.length}개의 글</p>
     </div>
+  </div>
 
-    <!-- Category Filter Tabs -->
-    <div class="bg-[#1f1633] border-b border-[#362d59]">
-      <div class="max-w-6xl mx-auto px-4">
-        <nav class="flex flex-wrap gap-1 py-3">
+  <!-- Category Tabs -->
+  <div class="bg-[#1f1633] border-b border-[#362d59]">
+    <div class="max-w-6xl mx-auto px-4">
+      <nav class="flex flex-wrap gap-1 py-3">
+        <a href="/blog" class="text-xs font-bold uppercase tracking-[0.2px] px-3 py-1.5 rounded text-[#e5e7eb]/50 hover:text-white hover:bg-[#362d59] transition-all duration-150">
+          전체
+        </a>
+        {CATEGORY_OPTIONS.map((cat) => (
           <a
-            href="/blog"
-            class="text-xs font-bold uppercase tracking-[0.2px] px-3 py-1.5 rounded text-[#e5e7eb]/50 hover:text-white hover:bg-[#362d59] transition-all duration-150"
+            href={`/blog/category/${cat.value}`}
+            class:list={[
+              "text-xs font-bold uppercase tracking-[0.2px] px-3 py-1.5 rounded transition-all duration-150",
+              cat.value === category
+                ? "bg-[#6a5fc1] text-white"
+                : "text-[#e5e7eb]/50 hover:text-white hover:bg-[#362d59]",
+            ]}
           >
-            전체
+            {cat.label}
           </a>
-          {CATEGORY_OPTIONS.map((cat) => (
-            <a
-              href={`/blog/category/${cat.value}`}
-              class:list={[
-                "text-xs font-bold uppercase tracking-[0.2px] px-3 py-1.5 rounded transition-all duration-150",
-                cat.value === category
-                  ? "bg-[#6a5fc1] text-white"
-                  : "text-[#e5e7eb]/50 hover:text-white hover:bg-[#362d59]",
-              ]}
-            >
-              {cat.label}
-            </a>
-          ))}
-        </nav>
-      </div>
+        ))}
+      </nav>
     </div>
+  </div>
 
-    <!-- Card grid -->
+  <!-- Grid — LIGHT -->
+  <div class="min-h-screen bg-[#f0eeff]">
     <div class="max-w-6xl mx-auto px-4 py-12">
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {posts.map((post) => (
@@ -88,11 +85,10 @@ const label = CATEGORY_LABELS[category as ValidCategory] ?? category;
           />
         ))}
       </div>
-
       {posts.length === 0 && (
-        <p class="text-[#e5e7eb]/40 text-center py-20">이 카테고리에 아직 게시물이 없습니다.</p>
+        <p class="text-[#79628c] text-center py-20">이 카테고리에 아직 게시물이 없습니다.</p>
       )}
     </div>
-
   </div>
+
 </BaseLayout>

@@ -31,37 +31,45 @@ const faqs = [
   },
 ];
 
-export function FaqAccordion() {
+interface Props {
+  isDark?: boolean;
+}
+
+export function FaqAccordion({ isDark = true }: Props) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  const containerClass = isDark
+    ? "overflow-hidden rounded-xl border border-[#362d59] bg-[#150f23] transition-colors duration-150 hover:border-[#584674]"
+    : "overflow-hidden rounded-xl border border-[#e4dcff] bg-white shadow-sm transition-colors duration-150 hover:border-[#c4b5fd]";
+
+  const buttonHoverClass = isDark ? "hover:bg-[#1f1633]" : "hover:bg-[#f0eeff]";
+  const questionClass = isDark ? "font-semibold text-white" : "font-semibold text-[#1f1633]";
+  const chevronClass = isDark ? "text-[#6a5fc1]" : "text-[#6a5fc1]";
+  const dividerClass = isDark ? "border-t border-[#362d59]" : "border-t border-[#e4dcff]";
+  const answerClass = isDark
+    ? "text-base leading-8 text-[#e5e7eb]/60"
+    : "text-base leading-8 text-[#4a3f6b]";
 
   return (
     <div className="space-y-2">
       {faqs.map((faq, i) => (
-        <div
-          key={i}
-          className="overflow-hidden rounded-xl border border-[#362d59] bg-[#150f23] transition-colors duration-150 hover:border-[#584674]"
-        >
+        <div key={i} className={containerClass}>
           <button
-            className="flex w-full items-center justify-between px-6 py-4 text-left transition-colors hover:bg-[#1f1633]"
+            className={`flex w-full items-center justify-between px-6 py-4 text-left transition-colors ${buttonHoverClass}`}
             onClick={() => setOpenIndex(openIndex === i ? null : i)}
           >
-            <span className="pr-4 font-semibold text-white">{faq.q}</span>
+            <span className={`pr-4 ${questionClass}`}>{faq.q}</span>
             <svg
-              className={`h-5 w-5 flex-shrink-0 text-[#6a5fc1] transition-transform duration-200 ${openIndex === i ? "rotate-180" : ""}`}
+              className={`h-5 w-5 flex-shrink-0 ${chevronClass} transition-transform duration-200 ${openIndex === i ? "rotate-180" : ""}`}
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M19 9l-7 7-7-7"
-              />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
             </svg>
           </button>
           {openIndex === i && (
-            <div className="border-t border-[#362d59] px-6 pb-5 pt-4 text-base leading-8 text-[#e5e7eb]/60">
+            <div className={`${dividerClass} px-6 pb-5 pt-4 ${answerClass}`}>
               {faq.a}
             </div>
           )}
