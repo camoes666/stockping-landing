@@ -52,8 +52,20 @@ import { links } from "../config/links";
           </p>
         </div>
 
-        <!-- Right: Three phones -->
-        <div class="relative flex items-end justify-center pb-0 pt-10 lg:pt-4">
+        <!-- Right: Three phones + floating logo -->
+        <div class="relative flex items-end justify-center pb-0 pt-20 lg:pt-16">
+
+          <!-- Floating brand badge -->
+          <div class="absolute top-2 left-1/2 -translate-x-1/2 z-30 animate-float-logo">
+            <div class="flex items-center gap-2.5 rounded-2xl border border-[#6a5fc1]/50 bg-[#150f23]/90 px-4 py-2.5 backdrop-blur-sm shadow-[0_4px_28px_rgba(106,95,193,0.4)]">
+              <div class="flex h-5 w-5 items-center justify-center rounded-md bg-[#c2ef4e] shadow-[0_0_8px_rgba(194,239,78,0.6)]">
+                <span class="text-[#1f1633] font-black text-[10px] leading-none select-none">S</span>
+              </div>
+              <span class="text-white font-black text-sm tracking-[0.06em] uppercase whitespace-nowrap">STOCKPING</span>
+              <span class="text-[#c2ef4e]/70 text-[10px] font-semibold tracking-[0.12em]">스톡핑</span>
+            </div>
+          </div>
+
           <div class="-mr-5 z-10 mb-4 animate-float-left">
             <div class="overflow-hidden rounded-[2rem] border-[3px] border-[#362d59] bg-[#150f23] shadow-xl shadow-black/60 w-28 sm:w-32 lg:w-36">
               <img src="/images/app-screen-1.png" alt="스톡핑 앱 화면 1" class="block w-full h-auto" loading="eager" />

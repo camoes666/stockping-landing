@@ -7,6 +7,7 @@ module.exports = {
         "float-left":   "floatLeft   3s ease-in-out infinite 0.5s",
         "float-center": "floatCenter 3s ease-in-out infinite",
         "float-right":  "floatRight  3s ease-in-out infinite 1s",
+        "float-logo":   "floatLogo   3.8s ease-in-out infinite 1.4s",
         "fade-up-0": "fadeUp 0.7s ease-out both",
         "fade-up-1": "fadeUp 0.7s ease-out 0.12s both",
         "fade-up-2": "fadeUp 0.7s ease-out 0.26s both",
@@ -25,6 +26,10 @@ module.exports = {
         floatRight: {
           "0%, 100%": { transform: "perspective(700px) rotateY(-20deg) rotate(5deg) scale(0.82) translateY(0px)" },
           "50%":      { transform: "perspective(700px) rotateY(-20deg) rotate(5deg) scale(0.82) translateY(-20px)" },
+        },
+        floatLogo: {
+          "0%, 100%": { transform: "translateY(0px) rotate(-1.5deg)" },
+          "50%":      { transform: "translateY(-16px) rotate(-1.5deg)" },
         },
         fadeUp: {
           "from": { opacity: "0", transform: "translateY(32px)" },
