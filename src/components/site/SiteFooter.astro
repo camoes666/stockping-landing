@@ -3,8 +3,15 @@ import { siteConfig } from "../../config/site";
 ---
 
 <footer class="border-t border-[#362d59] bg-[#150f23]">
-  <div class="mx-auto max-w-6xl px-4 py-8 text-sm text-[#e5e7eb]/60">
-    <p class="font-semibold text-[#e5e7eb]/80">{siteConfig.siteName}</p>
-    <p class="mt-2">본 사이트의 정보는 투자 판단을 돕기 위한 정보 제공 목적입니다.</p>
+  <div class="mx-auto max-w-6xl px-4 py-8">
+    <!-- Logo -->
+    <div class="flex items-center gap-2 mb-3">
+      <div class="flex h-6 w-6 items-center justify-center rounded bg-[#c2ef4e]">
+        <span class="text-[#1f1633] font-black text-xs leading-none select-none">S</span>
+      </div>
+      <span class="text-white font-black text-sm tracking-[0.06em] uppercase">Stockping</span>
+      <span class="text-[#c2ef4e]/60 text-[10px] font-semibold tracking-[0.15em]">스톡핑</span>
+    </div>
+    <p class="text-sm text-[#e5e7eb]/40">본 사이트의 정보는 투자 판단을 돕기 위한 정보 제공 목적입니다.</p>
   </div>
 </footer>

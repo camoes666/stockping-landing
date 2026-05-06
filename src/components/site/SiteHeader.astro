@@ -1,22 +1,29 @@
 ---
 import { siteConfig } from "../../config/site";
-
-const pathname = Astro.url.pathname;
-const isHome = pathname === "/" || pathname === "";
 ---
 
 <header class="border-b border-[#362d59] bg-[#150f23]">
   <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
-    <a
-      href="/"
-      class="text-sm font-bold tracking-tight text-white hover:text-[#c2ef4e] transition-colors duration-150"
-    >
-      {siteConfig.siteName}
+
+    <!-- Logo -->
+    <a href="/" class="flex items-center gap-2.5 group">
+      <!-- S mark -->
+      <div class="flex h-7 w-7 items-center justify-center rounded-lg bg-[#c2ef4e] shadow-[0_0_14px_rgba(194,239,78,0.35)] transition-shadow group-hover:shadow-[0_0_20px_rgba(194,239,78,0.55)]">
+        <span class="text-[#1f1633] font-black text-sm leading-none select-none">S</span>
+      </div>
+      <!-- Wordmark -->
+      <div class="flex flex-col leading-[1.1]">
+        <span class="text-white font-black text-sm tracking-[0.06em] uppercase">Stockping</span>
+        <span class="text-[#c2ef4e]/70 text-[10px] font-semibold tracking-[0.15em]">스톡핑</span>
+      </div>
     </a>
-    <nav class="flex items-center gap-5 text-sm text-[#e5e7eb]">
-      <a href="/radar" class="transition-colors duration-150 hover:text-[#6a5fc1]">이슈 레이더</a>
-      <a href="/blog" class="transition-colors duration-150 hover:text-[#6a5fc1]">블로그</a>
-      <a href="/privacy" class="transition-colors duration-150 hover:text-[#6a5fc1]">개인정보처리방침</a>
+
+    <!-- Nav -->
+    <nav class="flex items-center gap-5 text-sm text-[#e5e7eb]/60">
+      <a href="/radar" class="transition-colors duration-150 hover:text-white">이슈 레이더</a>
+      <a href="/blog" class="transition-colors duration-150 hover:text-white">블로그</a>
+      <a href="/privacy" class="transition-colors duration-150 hover:text-white">개인정보처리방침</a>
     </nav>
+
   </div>
 </header>
