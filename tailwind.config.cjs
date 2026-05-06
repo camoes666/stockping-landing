@@ -32,7 +32,20 @@ module.exports = {
         },
       },
       colors: {
-        // Warm blog palette (from design samples)
+        // Sentry-inspired dark purple palette
+        sentry: {
+          bg: "#1f1633",
+          "bg-deep": "#150f23",
+          border: "#362d59",
+          "border-strong": "#584674",
+          purple: "#6a5fc1",
+          "muted-purple": "#79628c",
+          violet: "#422082",
+          lime: "#c2ef4e",
+          coral: "#ffb287",
+          pink: "#fa7faa",
+        },
+        // Warm blog palette (kept for legacy)
         warm: {
           bg: "#fff8f6",
           surface: "#fff1ec",
@@ -52,10 +65,12 @@ module.exports = {
         sans: [
           "Pretendard Variable",
           "Pretendard",
+          "Rubik",
           "Manrope",
           "-apple-system",
           "sans-serif",
         ],
+        rubik: ["Rubik", "sans-serif"],
       },
     },
   },

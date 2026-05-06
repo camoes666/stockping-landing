@@ -12,15 +12,15 @@ const copy = ctaCopy[ctaType];
 const playStoreUrl = "https://play.google.com/store/apps/details?id=kr.datadnp.app";
 ---
 
-<div class="bg-slate-50 border border-slate-200 rounded-xl p-6 my-8">
-  <p class="text-cyan-600 text-xs font-bold uppercase tracking-wider mb-2">앱에서 더 보기</p>
-  <p class="text-slate-900 font-bold text-lg mb-4">{copy.headline}</p>
+<div class="bg-[#1f1633] border border-[#362d59] rounded-xl p-6 my-8">
+  <p class="text-[#c2ef4e] text-xs font-bold uppercase tracking-[0.2px] mb-2">앱에서 더 보기</p>
+  <p class="text-white font-bold text-lg mb-4">{copy.headline}</p>
   <TrackedCtaButton
     client:load
     href={playStoreUrl}
     label={copy.button}
     page={page}
     section={`cta-box:${ctaType}`}
-    variant="cyan"
+    variant="lime"
   />
 </div>

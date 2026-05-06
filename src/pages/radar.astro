@@ -1,7 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import IssueCard from "../components/radar/IssueCard.astro";
-import { CtaButton } from "../components/ui/CtaButton";
+import { TrackedCtaButton } from "../components/islands/TrackedCtaButton";
 import { dailyIssues, type DailyIssue } from "../data/daily-issues";
 import { supabase, rowToIssue, type DailyIssueRow } from "../lib/supabase";
 import { siteConfig } from "../config/site";
@@ -27,23 +27,23 @@ if (supabase) {
 ---
 
 <BaseLayout title={siteConfig.radarPageTitle} description={siteConfig.defaultDescription}>
-  <div class="min-h-screen bg-slate-50">
+  <div class="min-h-screen bg-[#150f23]">
 
     <!-- Dark Hero -->
-    <div class="bg-slate-900">
+    <div class="bg-[#1f1633]" style="background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(106,95,193,0.2) 0%, transparent 70%), #1f1633;">
       <div class="mx-auto max-w-6xl px-4 py-14">
-        <span class="inline-block bg-cyan-600/20 text-cyan-400 text-[11px] font-bold uppercase tracking-widest rounded px-3 py-1 mb-4">
+        <span class="inline-block bg-[#6a5fc1]/20 text-[#c2ef4e] text-[11px] font-bold uppercase tracking-[0.2px] rounded px-3 py-1 mb-4 border border-[#6a5fc1]/30">
           Market Intelligence Radar
         </span>
-        <p class="text-slate-400 text-sm font-medium mb-2">오늘 시장에서 많이 이야기되는 이슈 정리</p>
+        <p class="text-[#e5e7eb]/50 text-sm font-medium mb-2">오늘 시장에서 많이 이야기되는 이슈 정리</p>
         <h1 class="text-white text-4xl font-bold sm:text-5xl tracking-tight leading-none mb-4">
           {siteConfig.radarPageTitle}
         </h1>
-        <p class="max-w-3xl text-slate-400 text-base leading-7 mb-8">
+        <p class="max-w-3xl text-[#e5e7eb]/60 text-base leading-7 mb-8">
           오늘 미국장에서 많이 이야기되는 이슈를 확인된 사실과 시장 관측으로 나눠 한눈에 확인하세요.
         </p>
-        <CtaButton client:load href={links.playStore} label="구글플레이에서 앱 내려받기" variant="cyan" />
-        <p class="mt-3 text-xs text-slate-500">현재 Android(구글 플레이) 서비스 중입니다. iOS 버전도 준비 중입니다.</p>
+        <TrackedCtaButton client:load href={links.playStore} label="구글플레이에서 앱 내려받기" page="radar" section="hero" variant="lime" />
+        <p class="mt-3 text-xs text-[#e5e7eb]/30">현재 Android(구글 플레이) 서비스 중입니다. iOS 버전도 준비 중입니다.</p>
       </div>
     </div>
 
@@ -54,7 +54,7 @@ if (supabase) {
       </div>
 
       <!-- Disclaimer -->
-      <div class="mt-8 rounded-lg border border-amber-200 bg-amber-50 px-5 py-4 text-xs leading-6 text-amber-800">
+      <div class="mt-8 rounded-xl border border-[#362d59] bg-[#1f1633] px-5 py-4 text-xs leading-6 text-[#e5e7eb]/50">
         {siteConfig.radarDisclaimer}
       </div>
     </div>
