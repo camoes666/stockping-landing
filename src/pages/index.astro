@@ -60,30 +60,32 @@ import { links } from "../config/links";
           </p>
         </div>
 
-        <!-- Right: Three phones — center large + side tilt (Option C) -->
-        <div class="relative flex items-end justify-center pb-0 pt-10 lg:pt-4">
-
-          <!-- Phone Left -->
-          <div class="-mr-5 z-10 mb-4 animate-float-left">
-            <div class="overflow-hidden rounded-[2rem] border-[3px] border-[#362d59] bg-[#150f23] shadow-xl shadow-black/60 w-28 sm:w-32 lg:w-36">
-              <img src="/images/app-screen-1.png" alt="스톡핑 앱 화면 1" class="block w-full h-auto" loading="eager" />
-            </div>
+        <!-- Right: App demo video -->
+        <div class="relative flex items-center justify-center pt-10 pb-4 lg:pt-4">
+          <!-- Ambient glow -->
+          <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+            <div class="h-72 w-72 rounded-full bg-[#6a5fc1]/20 blur-3xl"></div>
           </div>
 
-          <!-- Phone Center -->
-          <div class="z-20 animate-float-center">
-            <div class="overflow-hidden rounded-[2.3rem] border-[3px] border-[#6a5fc1]/50 bg-[#150f23] shadow-2xl shadow-black/70 w-36 sm:w-40 lg:w-44" style="box-shadow: 0 25px 60px rgba(0,0,0,0.7), rgba(106,95,193,0.3) 0px 0px 40px 0px;">
-              <img src="/images/app-screen-2.png" alt="스톡핑 앱 화면 2" class="block w-full h-auto" loading="eager" />
+          <!-- Video container -->
+          <div class="relative z-10 w-full max-w-lg animate-float-center">
+            <div
+              class="overflow-hidden rounded-2xl"
+              style="
+                border: 1px solid rgba(106,95,193,0.4);
+                box-shadow: 0 24px 60px rgba(0,0,0,0.7), 0 0 40px rgba(106,95,193,0.2), inset 0 0 0 1px rgba(255,255,255,0.04);
+              "
+            >
+              <video
+                src="/stock-ping.mp4"
+                autoplay
+                muted
+                loop
+                playsinline
+                class="block w-full h-auto"
+              ></video>
             </div>
           </div>
-
-          <!-- Phone Right -->
-          <div class="-ml-5 z-10 mb-4 animate-float-right">
-            <div class="overflow-hidden rounded-[2rem] border-[3px] border-[#362d59] bg-[#150f23] shadow-xl shadow-black/60 w-28 sm:w-32 lg:w-36">
-              <img src="/images/app-screen-3.png" alt="스톡핑 앱 화면 3" class="block w-full h-auto" loading="eager" />
-            </div>
-          </div>
-
         </div>
 
       </div>
