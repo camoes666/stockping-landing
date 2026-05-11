@@ -8,6 +8,7 @@ module.exports = {
         "float-center": "floatCenter 3s ease-in-out infinite",
         "float-right":  "floatRight  3s ease-in-out infinite 1s",
         "float-logo":   "floatLogo   3.8s ease-in-out infinite 1.4s",
+        "float-video":  "floatVideo  4s ease-in-out infinite",
         "fade-up-0": "fadeUp 0.7s ease-out both",
         "fade-up-1": "fadeUp 0.7s ease-out 0.12s both",
         "fade-up-2": "fadeUp 0.7s ease-out 0.26s both",
@@ -41,6 +42,10 @@ module.exports = {
         floatLogo: {
           "0%, 100%": { transform: "translateY(0px)" },
           "50%":      { transform: "translateY(-18px)" },
+        },
+        floatVideo: {
+          "0%, 100%": { transform: "translateY(12px)" },
+          "50%":      { transform: "translateY(-12px)" },
         },
         fadeUp: {
           "from": { opacity: "0", transform: "translateY(32px)" },
