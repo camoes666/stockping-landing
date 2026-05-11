@@ -68,7 +68,7 @@ import { links } from "../config/links";
           </div>
 
           <!-- Video container -->
-          <div class="relative z-10 w-full max-w-2xl animate-float-center">
+          <div class="relative z-10 w-full max-w-xs sm:max-w-sm animate-float-center">
             <div
               class="overflow-hidden rounded-2xl"
               style="
@@ -77,12 +77,13 @@ import { links } from "../config/links";
               "
             >
               <video
-                src="/stock-ping.mp4"
+                src="/stock-ping-v01.mp4"
                 autoplay
                 muted
                 loop
                 playsinline
-                class="block w-full h-auto"
+                class="block w-full h-full object-cover"
+                style="aspect-ratio: 3/4;"
               ></video>
             </div>
           </div>
