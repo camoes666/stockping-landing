@@ -1,6 +1,11 @@
 name = "stockping-landing"
 compatibility_date = "2026-05-01"
 
+# Supabase — public keys (safe to commit, anon key has row-level security)
+[vars]
+PUBLIC_SUPABASE_URL = "https://jczdryhzgbyvxmughuth.supabase.co"
+PUBLIC_SUPABASE_ANON_KEY = "sb_publishable__fXC9RT_UShJKw_wnD8iig_f-Sr3bcH"
+
 # Cloudflare Workers Bindings (used by @astrojs/cloudflare adapter)
 # KV Namespace for Keystatic CMS sessions - create with: wrangler kv namespace create SESSION
 # [[kv_namespaces]]

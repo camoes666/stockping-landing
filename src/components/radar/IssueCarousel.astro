@@ -1,0 +1,162 @@
+---
+import IssueCard from "./IssueCard.astro";
+import type { DailyIssue } from "../../data/daily-issues";
+
+interface Props {
+  issues: DailyIssue[];
+}
+const { issues } = Astro.props;
+---
+
+<div class="relative" data-carousel>
+
+  <!-- 스크롤 트랙 — items-stretch 로 카드 높이 통일 -->
+  <div
+    class="flex items-stretch gap-5 overflow-x-auto scroll-smooth pb-4 cursor-grab select-none"
+    data-carousel-track
+    style="scrollbar-width: none; -ms-overflow-style: none;"
+  >
+    {issues.map((issue, i) => (
+      <div
+        class="flex flex-col flex-shrink-0 w-[82vw] sm:w-[380px] lg:w-[360px]"
+        data-slide={i}
+      >
+        <IssueCard issue={issue} />
+      </div>
+    ))}
+  </div>
+
+  <!-- 하단 컨트롤 -->
+  <div class="mt-6 flex items-center justify-between">
+
+    <!-- 닷 인디케이터 -->
+    <div class="flex gap-2" data-carousel-dots>
+      {issues.map((_, i) => (
+        <button
+          data-dot={i}
+          aria-label={`이슈 ${i + 1}번`}
+          class={[
+            "h-2 rounded-full transition-all duration-300",
+            i === 0
+              ? "w-6 bg-[#6a5fc1]"
+              : "w-2 bg-[#6a5fc1]/25 hover:bg-[#6a5fc1]/50",
+          ].join(" ")}
+        />
+      ))}
+    </div>
+
+    <!-- 이전 / 다음 버튼 -->
+    <div class="flex gap-2">
+      <button
+        data-carousel-prev
+        aria-label="이전"
+        class="flex h-9 w-9 items-center justify-center rounded-full border border-[#e4dcff] bg-white text-[#6a5fc1] transition-all duration-150 hover:bg-[#6a5fc1] hover:text-white hover:border-[#6a5fc1] disabled:cursor-not-allowed disabled:opacity-30"
+      >←</button>
+      <button
+        data-carousel-next
+        aria-label="다음"
+        class="flex h-9 w-9 items-center justify-center rounded-full border border-[#e4dcff] bg-white text-[#6a5fc1] transition-all duration-150 hover:bg-[#6a5fc1] hover:text-white hover:border-[#6a5fc1] disabled:cursor-not-allowed disabled:opacity-30"
+      >→</button>
+    </div>
+
+  </div>
+</div>
+
+<style>
+  [data-carousel-track]::-webkit-scrollbar { display: none; }
+  [data-carousel-track].is-dragging { cursor: grabbing; scroll-behavior: auto; }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLElement>("[data-carousel]").forEach((carousel) => {
+    const track   = carousel.querySelector<HTMLElement>("[data-carousel-track]")!;
+    const prevBtn = carousel.querySelector<HTMLButtonElement>("[data-carousel-prev]")!;
+    const nextBtn = carousel.querySelector<HTMLButtonElement>("[data-carousel-next]")!;
+    const dots    = carousel.querySelectorAll<HTMLButtonElement>("[data-dot]");
+    const slides  = carousel.querySelectorAll<HTMLElement>("[data-slide]");
+    const total   = slides.length;
+    let current   = 0;
+
+    /* ── 닷 + 버튼 상태 업데이트 ── */
+    function updateUI(idx: number) {
+      current = Math.max(0, Math.min(idx, total - 1));
+      dots.forEach((dot, i) => {
+        dot.classList.toggle("w-6",             i === current);
+        dot.classList.toggle("bg-[#6a5fc1]",    i === current);
+        dot.classList.toggle("w-2",             i !== current);
+        dot.classList.toggle("bg-[#6a5fc1]/25", i !== current);
+      });
+      prevBtn.disabled = current === 0;
+      nextBtn.disabled = current === total - 1;
+    }
+
+    /* ── 슬라이드 이동 ── */
+    function goTo(index: number) {
+      updateUI(index);
+      track.scrollTo({ left: (slides[current] as HTMLElement).offsetLeft, behavior: "smooth" });
+    }
+
+    /* ── 버튼 / 닷 클릭 ── */
+    prevBtn.addEventListener("click", () => goTo(current - 1));
+    nextBtn.addEventListener("click", () => goTo(current + 1));
+    dots.forEach((dot, i) => dot.addEventListener("click", () => goTo(i)));
+
+    /* ── 마우스 드래그 ── */
+    let isDragging  = false;
+    let dragStartX  = 0;
+    let dragScrollL = 0;
+    let hasMoved    = false;
+
+    track.addEventListener("mousedown", (e) => {
+      isDragging  = true;
+      hasMoved    = false;
+      dragStartX  = e.pageX - track.getBoundingClientRect().left;
+      dragScrollL = track.scrollLeft;
+      track.classList.add("is-dragging");
+    });
+
+    window.addEventListener("mousemove", (e) => {
+      if (!isDragging) return;
+      const x    = e.pageX - track.getBoundingClientRect().left;
+      const walk = (x - dragStartX) * 1.4;
+      if (Math.abs(walk) > 4) hasMoved = true;
+      track.scrollLeft = dragScrollL - walk;
+    });
+
+    window.addEventListener("mouseup", () => {
+      if (!isDragging) return;
+      isDragging = false;
+      track.classList.remove("is-dragging");
+
+      /* 드래그 끝나면 가장 가까운 슬라이드로 snap */
+      let closest = 0, minDist = Infinity;
+      slides.forEach((slide, i) => {
+        const dist = Math.abs((slide as HTMLElement).offsetLeft - track.scrollLeft);
+        if (dist < minDist) { minDist = dist; closest = i; }
+      });
+      goTo(closest);
+    });
+
+    /* 클릭으로 오인되지 않도록 카드 내부 링크 drag 중 차단 */
+    track.addEventListener("click", (e) => {
+      if (hasMoved) e.preventDefault();
+    }, true);
+
+    /* ── 터치/자연 스크롤 후 닷 동기화 ── */
+    let scrollTimer: ReturnType<typeof setTimeout>;
+    track.addEventListener("scroll", () => {
+      if (isDragging) return;
+      clearTimeout(scrollTimer);
+      scrollTimer = setTimeout(() => {
+        let closest = 0, minDist = Infinity;
+        slides.forEach((slide, i) => {
+          const dist = Math.abs((slide as HTMLElement).offsetLeft - track.scrollLeft);
+          if (dist < minDist) { minDist = dist; closest = i; }
+        });
+        updateUI(closest);
+      }, 80);
+    });
+
+    goTo(0);
+  });
+</script>
