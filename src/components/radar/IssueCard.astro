@@ -9,58 +9,84 @@ interface Props {
 
 const { issue } = Astro.props;
 
-const ISSUE_BADGE: Record<string, string> = {
-  "확인된 사실": "bg-emerald-500/20 text-emerald-400 border border-emerald-500/30",
-  "시장 관측": "bg-blue-500/20 text-blue-400 border border-blue-500/30",
-  "루머": "bg-amber-500/20 text-amber-400 border border-amber-500/30",
-};
-const badgeClass = ISSUE_BADGE[issue.category] ?? "bg-[#362d59] text-[#e5e7eb]/60 border border-[#362d59]";
+// Full class strings required for Tailwind static analysis
+const CATEGORY_CONFIG = {
+  "확인된 사실": {
+    bar: "bg-emerald-500",
+    badge: "bg-emerald-500/20 text-emerald-400 border border-emerald-500/30",
+  },
+  "시장 관측": {
+    bar: "bg-blue-500",
+    badge: "bg-blue-500/20 text-blue-400 border border-blue-500/30",
+  },
+  "루머": {
+    bar: "bg-amber-500",
+    badge: "bg-amber-500/20 text-amber-400 border border-amber-500/30",
+  },
+} as const;
+
+const cfg = CATEGORY_CONFIG[issue.category] ?? CATEGORY_CONFIG["시장 관측"];
 ---
 
-<article class="bg-[#1f1633] rounded-xl border border-[#362d59] p-6 transition-all duration-200 hover:border-[#6a5fc1]/40 hover:shadow-[rgba(106,95,193,0.08)_0px_8px_32px]">
-  <div class="mb-4 flex flex-wrap items-center gap-3">
-    <span class={`rounded px-3 py-1 text-xs font-bold uppercase tracking-[0.2px] ${badgeClass}`}>
-      {issue.category}
-    </span>
-    <div class="flex flex-wrap gap-1.5">
-      {issue.relatedSymbols.map((sym) => (
-        <span class="bg-[#150f23] text-[#c2ef4e]/80 text-xs font-mono font-semibold rounded border border-[#362d59] px-2 py-0.5">
-          {sym}
-        </span>
-      ))}
-    </div>
-  </div>
+<article class="group relative overflow-hidden bg-[#1f1633] rounded-xl border border-[#362d59] transition-all duration-200 hover:border-[#6a5fc1]/40 hover:shadow-[rgba(106,95,193,0.08)_0px_8px_32px] hover:-translate-y-0.5">
+  <!-- Category accent bar -->
+  <div class={`absolute inset-y-0 left-0 w-[3px] ${cfg.bar}`}></div>
 
-  <h2 class="text-white text-xl font-bold leading-snug mb-5">{issue.headline}</h2>
-
-  <dl class="space-y-4 text-sm leading-6">
-    <div>
-      <dt class="text-[#e5e7eb]/80 font-semibold mb-1">확인된 사실</dt>
-      <dd class="text-[#e5e7eb]/60">{issue.confirmedFacts}</dd>
-    </div>
-    <div>
-      <dt class="text-[#e5e7eb]/80 font-semibold mb-1">시장 관측</dt>
-      <dd class="text-[#e5e7eb]/60">{issue.marketObservation}</dd>
-    </div>
-    <div>
-      <dt class="text-[#e5e7eb]/80 font-semibold mb-1">투자자가 볼 포인트</dt>
-      <dd>
-        <ul class="mt-1 list-disc list-inside space-y-1 text-[#e5e7eb]/60">
-          {issue.watchPoints.map((point) => <li>{point}</li>)}
-        </ul>
-      </dd>
-    </div>
-    <div>
-      <dt class="text-[#e5e7eb]/80 font-semibold mb-1">앱에서 확인 가능한 데이터</dt>
-      <dd class="flex flex-wrap gap-2 mt-1">
-        {issue.appDataPoints.map((point) => (
-          <span class="bg-[#150f23] text-[#e5e7eb]/50 rounded border border-[#362d59] px-2 py-0.5 text-xs">{point}</span>
+  <div class="pl-7 pr-6 pt-6 pb-6">
+    <!-- Header: badge + symbols -->
+    <div class="mb-4 flex flex-wrap items-center gap-2">
+      <span class={`rounded px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest ${cfg.badge}`}>
+        {issue.category}
+      </span>
+      <div class="flex flex-wrap gap-1.5">
+        {issue.relatedSymbols.map((sym) => (
+          <span class="bg-[#150f23] text-[#c2ef4e]/80 text-xs font-mono font-semibold rounded border border-[#362d59] px-2 py-0.5">
+            {sym}
+          </span>
         ))}
-      </dd>
+      </div>
     </div>
-  </dl>
 
-  <div class="mt-6">
-    <CtaButton href={links.playStore} label="앱에서 자세히 보기" />
+    <h2 class="text-white text-[15px] font-bold leading-snug tracking-tight">{issue.headline}</h2>
+
+    <!-- Fact / Observation blocks -->
+    <div class="mt-5 space-y-2.5">
+      <div class="rounded-lg bg-[#150f23] border border-[#362d59]/60 px-4 py-3">
+        <p class="mb-1 text-[10px] font-bold uppercase tracking-widest text-[#e5e7eb]/30">확인된 사실</p>
+        <p class="text-sm leading-6 text-[#e5e7eb]/70">{issue.confirmedFacts}</p>
+      </div>
+      <div class="rounded-lg bg-[#150f23] border border-[#362d59]/60 px-4 py-3">
+        <p class="mb-1 text-[10px] font-bold uppercase tracking-widest text-[#e5e7eb]/30">시장 관측</p>
+        <p class="text-sm leading-6 text-[#e5e7eb]/70">{issue.marketObservation}</p>
+      </div>
+    </div>
+
+    <!-- Watch points -->
+    <div class="mt-4">
+      <p class="mb-2 text-[10px] font-bold uppercase tracking-widest text-[#e5e7eb]/30">투자자 체크포인트</p>
+      <ul class="space-y-1.5">
+        {issue.watchPoints.map((point) => (
+          <li class="flex items-start gap-2 text-sm leading-6 text-[#e5e7eb]/60">
+            <span class="mt-[10px] h-1 w-1 flex-shrink-0 rounded-full bg-[#6a5fc1]"></span>
+            {point}
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <!-- App data badges -->
+    <div class="mt-4">
+      <p class="mb-2 text-[10px] font-bold uppercase tracking-widest text-[#e5e7eb]/30">앱 연동 데이터</p>
+      <div class="flex flex-wrap gap-1.5">
+        {issue.appDataPoints.map((point) => (
+          <span class="bg-[#150f23] text-[#e5e7eb]/50 rounded border border-[#362d59] px-2.5 py-1 text-[11px] font-medium">{point}</span>
+        ))}
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="mt-6 border-t border-[#362d59] pt-5">
+      <CtaButton href={links.playStore} label="앱에서 자세히 보기" />
+    </div>
   </div>
 </article>
