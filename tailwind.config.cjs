@@ -44,8 +44,8 @@ module.exports = {
           "50%":      { transform: "translateY(-18px)" },
         },
         floatVideo: {
-          "0%, 100%": { transform: "translateY(12px)" },
-          "50%":      { transform: "translateY(-12px)" },
+          "0%, 100%": { transform: "translateY(6px)" },
+          "50%":      { transform: "translateY(-22px)" },
         },
         fadeUp: {
           "from": { opacity: "0", transform: "translateY(32px)" },
