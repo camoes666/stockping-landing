@@ -36,10 +36,11 @@ export default config({
           ],
           defaultValue: "etf",
         }),
-        tags: fields.array(
-          fields.text({ label: "태그" }),
-          { label: "태그 목록", itemLabel: (props) => props.value }
-        ),
+        tags: fields.text({
+          label: "태그 (쉼표로 구분)",
+          description: "예: 미국주식, ETF, 애널리스트리포트",
+          validation: { isRequired: true },
+        }),
         publishedAt: fields.date({
           label: "발행일",
           validation: { isRequired: true },

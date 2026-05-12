@@ -4,7 +4,10 @@ export const blogFrontmatterSchema = z.object({
   title: z.string().min(1),
   description: z.string().min(1).max(180),
   category: z.enum(["etf", "news-rumor", "analyst-report", "insider-congress", "stock-data"]),
-  tags: z.array(z.string()).min(1),
+  tags: z.union([
+    z.array(z.string()),
+    z.string().transform((s) => s.split(",").map((t) => t.trim()).filter(Boolean)),
+  ]).pipe(z.array(z.string()).min(1)),
   publishedAt: z.string(),
   updatedAt: z.string(),
   thumbnail: z.string().url().optional(),
