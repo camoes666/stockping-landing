@@ -6,7 +6,7 @@ export const blogFrontmatterSchema = z.object({
   category: z.enum(["etf", "news-rumor", "analyst-report", "insider-congress", "stock-data"]),
   tags: z.union([
     z.array(z.string()),
-    z.string().transform((s) => s.split(",").map((t) => t.trim()).filter(Boolean)),
+    z.string().transform((s) => s.split(",").map((t) => t.trim().replace(/^#/, "")).filter(Boolean)),
   ]).pipe(z.array(z.string()).min(1)),
   publishedAt: z.union([z.string(), z.date().transform((d) => d.toISOString().split("T")[0])]),
   updatedAt: z.union([z.string(), z.date().transform((d) => d.toISOString().split("T")[0])]),
