@@ -2,10 +2,9 @@ import { config, collection, fields } from "@keystatic/core";
 
 export default config({
   storage: {
-    kind: "cloud",
-  },
-  cloud: {
-    project: "camoes/stockping-landing",
+    kind: "github",
+    repo: "camoes666/stockping-landing",
+    branchPrefix: "cms/",
   },
   ui: {
     brand: { name: "Stockping CMS" },
