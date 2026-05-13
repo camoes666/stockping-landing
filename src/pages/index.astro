@@ -122,51 +122,130 @@ if (supabase) {
   </section>
 
   <!-- ════════════════════════════════════════════
-       2. PROBLEM — LIGHT
+       2. PROBLEM — REDESIGNED
   ════════════════════════════════════════════ -->
-  <section class="bg-[#f0eeff] px-4 py-20 sm:px-6 lg:px-8">
+  <section class="bg-[#f7f5ff] px-4 py-20 sm:px-6 lg:px-8">
     <div class="mx-auto max-w-7xl">
-      <div class="mx-auto max-w-3xl text-center">
-        <p class="text-xs font-bold uppercase tracking-[0.2px] text-[#6a5fc1]">혹시 이런 경험 있으신가요?</p>
-        <h2 class="mt-3 text-3xl font-bold text-[#1f1633] sm:text-4xl">
+      <div class="mx-auto max-w-3xl text-center mb-12">
+        <p class="text-xs font-bold uppercase tracking-widest text-[#6a5fc1] mb-3">혹시 이런 경험 있으신가요?</p>
+        <h2 class="text-3xl font-bold text-[#1f1633] sm:text-4xl">
           미국주식 정보, 찾는 것만 해도<br />
           <span class="text-[#79628c]">지칩니다</span>
         </h2>
       </div>
-      <div class="mx-auto mt-12 max-w-4xl grid grid-cols-1 gap-4 sm:grid-cols-2">
-        <div class="rounded-2xl border border-[#e4dcff] bg-white p-7 shadow-sm">
-          <div class="mb-3 text-3xl">🌐</div>
-          <h3 class="text-lg font-bold text-[#1f1633]">영어 뉴스는 빠른데, 이해는 늦어진다</h3>
-          <p class="mt-3 text-base leading-8 text-[#4a3f6b]">
-            미국 현지 뉴스는 빠르게 올라오지만, 한국어로 이해할 때는 이미 시장이 움직인 뒤일 때가 많습니다.
-          </p>
+
+      <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+
+        <!-- Card 1: 영어 뉴스 -->
+        <div class="rounded-2xl bg-white border border-gray-100 shadow-sm overflow-hidden flex flex-col">
+          <div class="p-6 flex-1">
+            <h3 class="text-base font-bold text-[#1f1633] leading-snug">영어 뉴스는 빠른데,<br/>이해는 늦어진다</h3>
+            <p class="mt-2 text-sm text-[#79628c] leading-relaxed">한국어로 이해할 때는 이미 시장이 움직인 뒤일 때가 많습니다.</p>
+          </div>
+          <!-- Mockup: English news feed -->
+          <div class="mx-4 mb-4 rounded-xl overflow-hidden border border-emerald-100 bg-emerald-50/60">
+            <div class="px-3 py-2 border-b border-emerald-100 flex items-center gap-1.5">
+              <div class="h-2 w-2 rounded-full bg-emerald-400"></div>
+              <span class="text-[10px] font-semibold text-emerald-700">Live News</span>
+            </div>
+            <div class="px-3 py-2 space-y-2">
+              <div class="flex items-start gap-2">
+                <span class="mt-0.5 shrink-0 rounded text-[9px] font-bold bg-emerald-100 text-emerald-700 px-1.5 py-0.5">EN</span>
+                <p class="text-[10px] text-gray-500 leading-tight">NVIDIA reports record Q2 earnings, beats estimates by 18%…</p>
+              </div>
+              <div class="flex items-start gap-2">
+                <span class="mt-0.5 shrink-0 rounded text-[9px] font-bold bg-emerald-100 text-emerald-700 px-1.5 py-0.5">EN</span>
+                <p class="text-[10px] text-gray-400 leading-tight">Fed signals potential rate cut in September meeting…</p>
+              </div>
+              <div class="flex items-center gap-2 pt-1">
+                <div class="h-2 w-2 rounded-full bg-gray-200 animate-pulse"></div>
+                <p class="text-[10px] text-gray-300 leading-tight">번역 중…</p>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="rounded-2xl border border-[#e4dcff] bg-white p-7 shadow-sm">
-          <div class="mb-3 text-3xl">🔀</div>
-          <h3 class="text-lg font-bold text-[#1f1633]">루머와 사실이 뒤섞여 판단이 흔들린다</h3>
-          <p class="mt-3 text-base leading-8 text-[#4a3f6b]">
-            SNS에는 매일 새로운 이슈가 쏟아집니다. 하지만 무엇이 확인된 사실이고, 무엇이 시장 관측인지 구분하기 어렵습니다.
-          </p>
+
+        <!-- Card 2: 루머/사실 혼재 -->
+        <div class="rounded-2xl bg-white border border-gray-100 shadow-sm overflow-hidden flex flex-col">
+          <div class="p-6 flex-1">
+            <h3 class="text-base font-bold text-[#1f1633] leading-snug">루머와 사실이 뒤섞여<br/>판단이 흔들린다</h3>
+            <p class="mt-2 text-sm text-[#79628c] leading-relaxed">확인된 사실인지, 시장 관측인지, 루머인지 구분하기 어렵습니다.</p>
+          </div>
+          <!-- Mockup: Mixed labels feed -->
+          <div class="mx-4 mb-4 rounded-xl overflow-hidden border border-rose-100 bg-rose-50/60">
+            <div class="px-3 py-2 border-b border-rose-100 flex items-center gap-1.5">
+              <div class="h-2 w-2 rounded-full bg-rose-400"></div>
+              <span class="text-[10px] font-semibold text-rose-700">SNS 타임라인</span>
+            </div>
+            <div class="px-3 py-2 space-y-2">
+              <div class="flex items-center gap-1.5">
+                <span class="rounded-full text-[9px] font-bold bg-rose-100 text-rose-600 px-1.5 py-0.5">루머</span>
+                <p class="text-[10px] text-gray-500 truncate">애플, 삼성과 파트너십 체결 예정…</p>
+              </div>
+              <div class="flex items-center gap-1.5">
+                <span class="rounded-full text-[9px] font-bold bg-amber-100 text-amber-600 px-1.5 py-0.5">관측</span>
+                <p class="text-[10px] text-gray-500 truncate">NVDA 다음 분기 가이던스 하향 가능성</p>
+              </div>
+              <div class="flex items-center gap-1.5">
+                <span class="rounded-full text-[9px] font-bold bg-rose-100 text-rose-600 px-1.5 py-0.5">루머</span>
+                <p class="text-[10px] text-gray-400 truncate">테슬라 CEO 사임설 재부상…</p>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="rounded-2xl border border-[#e4dcff] bg-white p-7 shadow-sm">
-          <div class="mb-3 text-3xl">📂</div>
-          <h3 class="text-lg font-bold text-[#1f1633]">ETF·리포트·내부자 거래를 따로 찾아야 한다</h3>
-          <p class="mt-3 text-base leading-8 text-[#4a3f6b]">
-            뉴스는 뉴스 사이트에서, ETF는 ETF 사이트에서, 내부자 거래와 리포트는 또 다른 곳에서 확인해야 합니다. 미국장 정보는 너무 흩어져 있습니다.
-          </p>
+
+        <!-- Card 3: 분산된 정보 -->
+        <div class="rounded-2xl bg-white border border-gray-100 shadow-sm overflow-hidden flex flex-col">
+          <div class="p-6 flex-1">
+            <h3 class="text-base font-bold text-[#1f1633] leading-snug">ETF·리포트·내부자 거래를<br/>따로 찾아야 한다</h3>
+            <p class="mt-2 text-sm text-[#79628c] leading-relaxed">미국장 정보는 사이트마다 흩어져 있습니다.</p>
+          </div>
+          <!-- Mockup: Multiple tabs -->
+          <div class="mx-4 mb-4 rounded-xl overflow-hidden border border-blue-100 bg-blue-50/60">
+            <div class="px-3 py-2 border-b border-blue-100 flex items-center gap-1.5">
+              <div class="h-2 w-2 rounded-full bg-blue-400"></div>
+              <span class="text-[10px] font-semibold text-blue-700">브라우저 탭</span>
+            </div>
+            <div class="px-3 py-2 space-y-1.5">
+              {["📰 뉴스 사이트", "📊 ETF 정보", "🕵️ 내부자 거래", "📋 애널리스트 리포트"].map((tab) => (
+                <div class="flex items-center gap-2 bg-white/70 rounded-lg px-2.5 py-1.5">
+                  <span class="text-[11px] text-gray-500 truncate">{tab}</span>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
-        <div class="rounded-2xl border border-[#e4dcff] bg-white p-7 shadow-sm">
-          <div class="mb-3 text-3xl">⏰</div>
-          <h3 class="text-lg font-bold text-[#1f1633]">정보를 찾는 동안 중요한 흐름을 놓친다</h3>
-          <p class="mt-3 text-base leading-8 text-[#4a3f6b]">
-            여러 사이트를 오가다 보면 시간이 지나고, 정작 오늘 미국장에서 봐야 할 큰 흐름을 놓치기 쉽습니다.
-          </p>
+
+        <!-- Card 4: 시간 낭비 -->
+        <div class="rounded-2xl bg-white border border-gray-100 shadow-sm overflow-hidden flex flex-col">
+          <div class="p-6 flex-1">
+            <h3 class="text-base font-bold text-[#1f1633] leading-snug">정보를 찾는 동안<br/>중요한 흐름을 놓친다</h3>
+            <p class="mt-2 text-sm text-[#79628c] leading-relaxed">여러 사이트를 오가다 보면 정작 큰 흐름을 놓치기 쉽습니다.</p>
+          </div>
+          <!-- Mockup: Missed price move -->
+          <div class="mx-4 mb-4 rounded-xl overflow-hidden border border-amber-100 bg-amber-50/60">
+            <div class="px-3 py-2 border-b border-amber-100 flex items-center gap-1.5">
+              <div class="h-2 w-2 rounded-full bg-amber-400"></div>
+              <span class="text-[10px] font-semibold text-amber-700">시장 흐름</span>
+            </div>
+            <div class="px-3 py-2 space-y-2">
+              <div class="flex justify-between items-center bg-white/70 rounded-lg px-2.5 py-1.5">
+                <span class="text-[10px] font-bold text-gray-600">NVDA</span>
+                <span class="text-[10px] font-bold text-emerald-500">+8.4% ↑</span>
+              </div>
+              <div class="flex justify-between items-center bg-white/70 rounded-lg px-2.5 py-1.5">
+                <span class="text-[10px] font-bold text-gray-600">TSLA</span>
+                <span class="text-[10px] font-bold text-emerald-500">+5.1% ↑</span>
+              </div>
+              <p class="text-[9px] text-center text-amber-500 font-semibold pt-0.5">정보 찾는 동안 이미 움직였습니다</p>
+            </div>
+          </div>
         </div>
+
       </div>
+
       <div class="mx-auto mt-10 max-w-xl text-center">
-        <p class="text-lg font-semibold text-[#362d59]">
-          이제 스톡핑에서 한 번에 확인하세요.
-        </p>
+        <p class="text-lg font-semibold text-[#362d59]">이제 스톡핑에서 한 번에 확인하세요.</p>
       </div>
     </div>
   </section>
