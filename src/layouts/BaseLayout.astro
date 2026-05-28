@@ -9,7 +9,9 @@ interface Props {
 }
 
 const { title, description, ogImage } = Astro.props;
-const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? "https://stockping-landing.camoes666.workers.dev");
+const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? "https://stockping.co.kr");
+const siteBase = Astro.site?.toString().replace(/\/$/, "") ?? "https://stockping.co.kr";
+const resolvedOgImage = ogImage ?? `${siteBase}/og.png`;
 ---
 
 <!doctype html>
@@ -19,16 +21,17 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? "https://stockpin
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <meta name="naver-site-verification" content="ef7110253b0bcdcabe36a486e4d996272298380d" />
     <link rel="canonical" href={canonicalURL} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalURL} />
-    {ogImage && <meta property="og:image" content={ogImage} />}
+    <meta property="og:image" content={resolvedOgImage} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    {ogImage && <meta name="twitter:image" content={ogImage} />}
+    <meta name="twitter:image" content={resolvedOgImage} />
     <!-- Pretendard Variable — Korean web standard font -->
     <link
       rel="stylesheet"
@@ -46,6 +49,14 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? "https://stockpin
           BlinkMacSystemFont, system-ui, sans-serif;
       }
     </style>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-T7L287MT80"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-T7L287MT80');
+    </script>
   </head>
   <body class="bg-[#150f23] text-white antialiased">
     <SiteHeader />

@@ -73,6 +73,10 @@ export default config({
         }),
         content: fields.mdx({
           label: "본문",
+          images: {
+            directory: "public/blog-images/content",
+            publicPath: "/blog-images/content/",
+          },
         }),
       },
     }),

@@ -1,5 +1,9 @@
 name = "stockping-landing"
 compatibility_date = "2026-05-01"
+routes = [
+  { pattern = "stockping.co.kr", custom_domain = true },
+  { pattern = "www.stockping.co.kr", custom_domain = true }
+]
 
 # Supabase — public keys (anon key has row-level security, safe to commit)
 [vars]

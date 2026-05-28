@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://stockping-landing.camoes666.workers.dev/sitemap-index.xml
+Sitemap: https://stockping.co.kr/sitemap-index.xml
