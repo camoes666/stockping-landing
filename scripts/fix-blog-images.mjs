@@ -20,7 +20,7 @@ const BLOG_DIR = "src/content/blog";
 const PUBLIC_DIR = "public/blog-images";
 
 // Match ![alt](filename.ext) where the path is a bare filename (no / prefix)
-const IMG_REGEX = /!\[([^\]]*)\]\((?!https?:\/\/)(?!\/)(([^/)]+)\.(png|jpg|jpeg|gif|webp|svg))\)/gi;
+const IMG_REGEX = /!\[([^\]]*)\]\((?!https?:\/\/)(?!\/)([^/)]+\.(png|jpg|jpeg|gif|webp|svg))\)/gi;
 
 let fixedCount = 0;
 
@@ -37,26 +37,37 @@ for (const mdxFile of mdxFiles) {
 
   for (const match of matches) {
     const [fullMatch, alt, filename] = match;
+    // Decode URL-encoded filename (e.g. ChatGPT%20Image... → ChatGPT Image...)
+    const decodedFilename = decodeURIComponent(filename);
+
     // Look for the image in the Keystatic content directory
-    const srcPath = join(BLOG_DIR, slug, "content", filename);
+    const srcPath = join(BLOG_DIR, slug, "content", decodedFilename);
 
     if (!existsSync(srcPath)) {
-      console.warn(`  ⚠️  ${slug}: source not found for "${filename}" — skipping`);
+      console.warn(`  ⚠️  ${slug}: source not found for "${decodedFilename}" — skipping`);
       continue;
     }
+
+    // Sanitize filename for URL-safe public path (replace spaces, Korean chars, etc.)
+    const safeFilename = decodedFilename
+      .replace(/[^\x00-\x7F]/g, "") // remove non-ASCII
+      .replace(/\s+/g, "-")          // spaces → hyphens
+      .replace(/-+/g, "-")           // collapse multiple hyphens
+      .replace(/^-|-$/g, "")         // trim leading/trailing hyphens
+      || basename(srcPath);          // fallback to original if sanitization empties it
 
     // Copy to public
     const destDir = join(PUBLIC_DIR, slug);
     mkdirSync(destDir, { recursive: true });
-    const destPath = join(destDir, filename);
+    const destPath = join(destDir, safeFilename);
     copyFileSync(srcPath, destPath);
 
     // Rewrite path in MDX
-    const newRef = `![${alt}](/blog-images/${slug}/${filename})`;
+    const newRef = `![${alt}](/blog-images/${slug}/${safeFilename})`;
     content = content.replace(fullMatch, newRef);
     changed = true;
     fixedCount++;
-    console.log(`  ✅ ${slug}: ${filename} → /blog-images/${slug}/${filename}`);
+    console.log(`  ✅ ${slug}: ${decodedFilename} → /blog-images/${slug}/${safeFilename}`);
   }
 
   if (changed) {
