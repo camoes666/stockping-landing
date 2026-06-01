@@ -38,6 +38,16 @@ if (supabase) {
     previewIssues = (data as DailyIssueRow[]).map(rowToIssue);
   }
 }
+
+const radarLastUpdated = previewIssues[0]?.updatedAt
+  ? new Date(previewIssues[0].updatedAt).toLocaleString("ko-KR", {
+      timeZone: "Asia/Seoul",
+      month: "long",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+    })
+  : null;
 ---
 
 <BaseLayout title={siteConfig.defaultTitle} description={siteConfig.defaultDescription}>
@@ -375,6 +385,12 @@ if (supabase) {
             루머를 믿기 전에,<br class="sm:hidden" /> 먼저 구분하세요
           </h2>
           <p class="mt-2 text-base text-[#4a3f6b]">스톡핑은 오늘의 미국장 이슈를 확인된 사실과 시장 관측으로 나눠 정리합니다</p>
+          {radarLastUpdated && (
+            <p class="mt-1.5 flex items-center gap-1.5 text-xs text-[#79628c]">
+              <span class="h-1.5 w-1.5 rounded-full bg-[#6a5fc1] animate-pulse inline-block"></span>
+              {radarLastUpdated} 업데이트
+            </p>
+          )}
         </div>
         <a
           href="/radar"
