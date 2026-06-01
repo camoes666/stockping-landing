@@ -1,7 +1,7 @@
 # Stockping Landing — 프로젝트 컨텍스트 문서
 
 > **새 세션 시작 시 이 파일을 먼저 읽어 현재 상태를 파악하세요.**
-> 마지막 업데이트: 2026-05-02 (Keystatic 500 fix, GitHub Actions 추가)
+> 마지막 업데이트: 2026-06-01 (SEO 개선, 블로그 내부 링크, 이슈 레이더 날짜별 히스토리)
 
 ---
 
@@ -328,6 +328,21 @@ CP949로 깨짐. **반드시 Edit/Write 툴로만 파일 편집.**
 
 ## 15. 완료된 작업 목록
 
+- [x] **2026-06-01: SEO 개선**
+  - `siteName: "회사명"` → `"스톡핑"` 교체 (`src/config/site.ts`) — 블로그 타이틀, 헤더, 푸터 전체 반영
+  - `defaultTitle`에 `| 스톡핑` 브랜드 추가
+  - `defaultDescription` 키워드 최적화 (미국주식·뉴스·ETF·내부자 거래·한국어)
+- [x] **2026-06-01: 블로그 내부 링크 추가** (이탈률 개선)
+  - 마이크론 HBM 랠리 → SK vs 마이크론 HBM 비교 (양방향)
+  - JEPI vs JEPQ → ETF 입문 가이드, SCHD 분석
+  - ETF 입문 가이드 → JEPI vs JEPQ, SCHD 분석
+- [x] **2026-06-01: 이슈 레이더 개편** (`src/pages/radar.astro`)
+  - 날짜별 그룹핑 히스토리 뷰로 전환
+  - 오늘 섹션에 "오늘" 뱃지 표시
+  - 마지막 업데이트 시간 KST 표시
+  - 이슈 표시 limit 10 → 100으로 확대
+  - 3열 그리드 레이아웃
+- [x] **2026-06-01: DailyIssue 타입에 `updatedAt` 필드 추가** (`src/data/daily-issues.ts`, `src/lib/supabase.ts`)
 - [x] Astro 6 프로젝트 초기 세팅 (React, Tailwind, MDX, Sitemap)
 - [x] 메인 랜딩 페이지 (Hero, Social Proof, Benefits, Issue Radar, How It Works, FAQ, CTA)
 - [x] 이슈 레이더 페이지 (`/radar`)
@@ -354,11 +369,11 @@ CP949로 깨짐. **반드시 Edit/Write 툴로만 파일 편집.**
 - [ ] **GitHub Secrets 7개 등록** (섹션 14 표 참고) — Actions 자동 배포 활성화
 - [ ] **GitHub OAuth Callback URL 추가** — `https://stockping-landing.camoes666.workers.dev/keystatic/github/oauth/callback`
 - [x] **Supabase `comments` 테이블 생성** ✅ (확인 완료)
-- [ ] `src/config/site.ts`에서 `siteName: "회사명"` → 실제 서비스명으로 교체
+- [x] `src/config/site.ts`에서 `siteName: "회사명"` → `"스톡핑"` 교체 완료
 - [ ] `src/config/links.ts`에서 iOS App Store 링크 추가 (출시 후)
 - [ ] Cloudflare R2 활성화 → `stockping-images` 버킷 생성 → Keystatic 이미지 업로드 R2 연동
 - [ ] 커스텀 도메인 연결 (Cloudflare Workers → Settings → Domains & Routes)
-- [ ] `src/data/daily-issues.ts` 매일 수동 업데이트 (또는 자동화 고려)
+- [x] `src/data/daily-issues.ts` 이슈 레이더 자동 업데이트 파이썬 스크립트로 자동화 완료
 - [ ] `master` 브랜치에 `release/v0.1.0` 머지
 
 ---
