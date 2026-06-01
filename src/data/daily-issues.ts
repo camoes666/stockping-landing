@@ -8,6 +8,7 @@ export interface DailyIssue {
   marketObservation: string;
   watchPoints: string[];
   appDataPoints: string[];
+  updatedAt?: string;
 }
 
 export const dailyIssues: DailyIssue[] = [

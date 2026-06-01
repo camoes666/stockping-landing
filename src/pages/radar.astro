@@ -14,9 +14,9 @@ if (supabase) {
     .from("daily_issues")
     .select("*")
     .eq("is_published", true)
-    .order("display_order", { ascending: true })
     .order("created_at", { ascending: false })
-    .limit(10);
+    .order("display_order", { ascending: true })
+    .limit(100);
 
   if (error) {
     console.error("[radar] Supabase fetch error:", error.message);
@@ -24,6 +24,52 @@ if (supabase) {
     issues = (data as DailyIssueRow[]).map(rowToIssue);
   }
 }
+
+// 날짜별 그룹핑
+function toKSTDateLabel(iso: string): string {
+  const d = new Date(iso);
+  return d.toLocaleDateString("ko-KR", {
+    timeZone: "Asia/Seoul",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    weekday: "short",
+  });
+}
+
+function toKSTDateKey(iso: string): string {
+  const d = new Date(iso);
+  // YYYY-MM-DD in KST
+  return d.toLocaleDateString("ko-KR", {
+    timeZone: "Asia/Seoul",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  });
+}
+
+// 날짜 키 순서 유지하면서 그룹핑
+const groupMap = new Map<string, { label: string; issues: DailyIssue[] }>();
+for (const issue of issues) {
+  const key = issue.updatedAt ? toKSTDateKey(issue.updatedAt) : "기타";
+  const label = issue.updatedAt ? toKSTDateLabel(issue.updatedAt) : "기타";
+  if (!groupMap.has(key)) groupMap.set(key, { label, issues: [] });
+  groupMap.get(key)!.issues.push(issue);
+}
+const groups = Array.from(groupMap.values());
+
+const lastUpdated = issues[0]?.updatedAt
+  ? new Date(issues[0].updatedAt).toLocaleString("ko-KR", {
+      timeZone: "Asia/Seoul",
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+    })
+  : null;
+
+const todayLabel = groups[0]?.label ?? null;
 ---
 
 <BaseLayout title={siteConfig.radarPageTitle} description={siteConfig.defaultDescription}>
@@ -34,27 +80,60 @@ if (supabase) {
       <span class="inline-block bg-[#6a5fc1]/20 text-[#c2ef4e] text-[11px] font-bold uppercase tracking-[0.2px] rounded px-3 py-1 mb-4 border border-[#6a5fc1]/30">
         Market Intelligence Radar
       </span>
-      <p class="text-[#e5e7eb]/50 text-sm font-medium mb-2">오늘 시장에서 많이 이야기되는 이슈 정리</p>
+      <p class="text-[#e5e7eb]/50 text-sm font-medium mb-2">미국장 이슈를 날짜별로 아카이브합니다</p>
       <h1 class="text-white text-4xl font-bold sm:text-5xl tracking-tight leading-none mb-4">
         {siteConfig.radarPageTitle}
       </h1>
       <p class="max-w-3xl text-[#e5e7eb]/60 text-base leading-7 mb-8">
-        오늘 미국장에서 많이 이야기되는 이슈를 확인된 사실과 시장 관측으로 나눠 한눈에 확인하세요.<br />
+        확인된 사실·시장 관측·루머를 구분해 매일 정리합니다.<br />
         <span class="text-[#c2ef4e] font-semibold">스톡핑</span> 앱에서 더 많은 데이터를 확인할 수 있습니다.
       </p>
       <TrackedCtaButton client:load href={links.playStore} label="구글플레이에서 앱 내려받기" page="radar" section="hero" variant="lime" />
-      <p class="mt-3 text-xs text-[#e5e7eb]/30">현재 Android(구글 플레이) 서비스 중입니다. iOS 버전도 준비 중입니다.</p>
+      {lastUpdated && (
+        <p class="mt-4 flex items-center gap-1.5 text-xs text-[#e5e7eb]/40">
+          <span class="h-1.5 w-1.5 rounded-full bg-[#c2ef4e] animate-pulse inline-block"></span>
+          마지막 업데이트: {lastUpdated} KST
+        </p>
+      )}
+      <p class="mt-2 text-xs text-[#e5e7eb]/30">현재 Android(구글 플레이) 서비스 중입니다. iOS 버전도 준비 중입니다.</p>
     </div>
   </div>
 
-  <!-- Issue list — LIGHT -->
+  <!-- Issue history — LIGHT -->
   <div class="min-h-screen bg-[#f0eeff]">
     <div class="mx-auto max-w-6xl px-4 py-12">
-      <div class="grid gap-6">
-        {issues.map((issue) => <IssueCard issue={issue} />)}
-      </div>
 
-      <div class="mt-8 rounded-xl border border-[#e4dcff] bg-white px-5 py-4 text-xs leading-6 text-[#79628c]">
+      {groups.map((group, gi) => (
+        <section class="mb-14">
+
+          <!-- 날짜 헤더 -->
+          <div class="mb-6 flex items-center gap-4">
+            <div class="flex items-center gap-2.5">
+              {gi === 0 && (
+                <span class="inline-flex items-center gap-1.5 rounded-full bg-[#c2ef4e] px-3 py-1 text-[11px] font-bold text-[#1f1633]">
+                  <span class="h-1.5 w-1.5 rounded-full bg-[#1f1633] animate-pulse"></span>
+                  오늘
+                </span>
+              )}
+              <h2 class="text-lg font-bold text-[#1f1633]">{group.label}</h2>
+            </div>
+            <div class="h-px flex-1 bg-[#e4dcff]"></div>
+            <span class="text-xs font-medium text-[#79628c]">{group.issues.length}개 이슈</span>
+          </div>
+
+          <!-- 이슈 카드 그리드 -->
+          <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {group.issues.map((issue) => <IssueCard issue={issue} />)}
+          </div>
+
+        </section>
+      ))}
+
+      {groups.length === 0 && (
+        <p class="py-20 text-center text-[#79628c]">등록된 이슈가 없습니다.</p>
+      )}
+
+      <div class="mt-4 rounded-xl border border-[#e4dcff] bg-white px-5 py-4 text-xs leading-6 text-[#79628c]">
         {siteConfig.radarDisclaimer}
       </div>
     </div>

@@ -32,5 +32,6 @@ export function rowToIssue(row: DailyIssueRow): DailyIssue {
     marketObservation: row.market_observation,
     watchPoints: row.watch_points,
     appDataPoints: row.app_data_points,
+    updatedAt: row.created_at,
   };
 }
