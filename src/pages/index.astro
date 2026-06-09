@@ -4,6 +4,7 @@ import { TrackedCtaButton } from "../components/islands/TrackedCtaButton";
 import { WaitlistForm } from "../components/islands/WaitlistForm";
 import { FaqAccordion } from "../components/islands/FaqAccordion";
 import IssueCarousel from "../components/radar/IssueCarousel.astro";
+import IssueCard from "../components/radar/IssueCard.astro";
 import { siteConfig } from "../config/site";
 import { links } from "../config/links";
 import { dailyIssues, type DailyIssue } from "../data/daily-issues";
@@ -408,8 +409,10 @@ const radarLastUpdated = previewIssues[0]?.updatedAt
         </a>
       </div>
 
-      <!-- Issue cards carousel -->
-      <IssueCarousel issues={previewIssues} />
+      <!-- Issue cards grid (2행 3열) -->
+      <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {previewIssues.map((issue) => <IssueCard issue={issue} />)}
+      </div>
 
       <!-- Bottom CTA -->
       <div class="mt-10 rounded-2xl border border-[#e4dcff] bg-white px-6 py-5 flex flex-col items-center gap-3 text-center sm:flex-row sm:text-left sm:justify-between">
