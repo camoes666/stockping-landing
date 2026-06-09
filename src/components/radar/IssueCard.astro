@@ -1,6 +1,5 @@
 ---
 import type { DailyIssue } from "../../data/daily-issues";
-import { links } from "../../config/links";
 
 interface Props {
   issue: DailyIssue;
@@ -35,15 +34,24 @@ const cfg = CATEGORY_CONFIG[issue.category] ?? {
   icon:  "·",
   factColor: "text-[#6a5fc1]",
 };
+
+const cardId = `issue-${Math.random().toString(36).slice(2, 8)}`;
 ---
 
-<article class="group flex h-full flex-col overflow-hidden rounded-2xl border border-[#e4dcff] bg-white shadow-sm transition-all duration-200 hover:-translate-y-1 hover:shadow-[0_8px_32px_rgba(106,95,193,0.15)] hover:border-[#c4b5fd]">
+<article class="group flex flex-col overflow-hidden rounded-2xl border border-[#e4dcff] bg-white shadow-sm transition-all duration-200 hover:shadow-[0_8px_32px_rgba(106,95,193,0.15)] hover:border-[#c4b5fd]">
 
   <!-- 카테고리 컬러 바 -->
   <div class={`h-1 w-full flex-shrink-0 ${cfg.bar}`}></div>
 
-  <!-- 헤더: 배지 + 티커 -->
-  <div class="px-5 pt-5 pb-3">
+  <!-- 항상 보이는 헤더 영역 (클릭으로 펼치기) -->
+  <button
+    type="button"
+    class="w-full text-left px-5 pt-5 pb-4 cursor-pointer"
+    aria-expanded="false"
+    aria-controls={cardId}
+    onclick="toggleIssueCard(this)"
+  >
+    <!-- 배지 + 티커 -->
     <div class="flex flex-wrap items-center gap-2 mb-3">
       <span class={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-bold ${cfg.badge}`}>
         <span class={`font-black ${cfg.factColor}`}>{cfg.icon}</span>
@@ -59,51 +67,80 @@ const cfg = CATEGORY_CONFIG[issue.category] ?? {
     </div>
 
     <!-- 헤드라인 -->
-    <h2 class="text-[#1f1633] text-lg font-bold leading-snug group-hover:text-[#6a5fc1] transition-colors duration-150">
+    <h2 class="text-[#1f1633] text-lg font-bold leading-snug group-hover:text-[#6a5fc1] transition-colors duration-150 pr-6">
       {issue.headline}
     </h2>
-  </div>
 
-  <!-- 구분선 -->
-  <div class="mx-5 border-t border-[#f0eeff]"></div>
-
-  <!-- 콘텐츠 -->
-  <div class="flex flex-1 flex-col gap-4 px-5 py-4 text-sm">
-
-    <!-- 확인된 사실 -->
-    <div class="flex gap-3">
-      <div class={`mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full text-[10px] font-black text-white ${cfg.bar}`}>
-        {cfg.icon}
-      </div>
-      <div>
-        <p class="text-[10px] font-bold uppercase tracking-[0.15em] text-[#79628c] mb-1">확인된 사실</p>
-        <p class="leading-relaxed text-[#4a3f6b]">{issue.confirmedFacts}</p>
-      </div>
+    <!-- 한줄 요약 + 더보기 화살표 -->
+    <div class="mt-2 flex items-start justify-between gap-3">
+      <p class="text-sm text-[#79628c] leading-relaxed line-clamp-2">{issue.confirmedFacts}</p>
+      <span class="shrink-0 mt-0.5 text-[#6a5fc1] transition-transform duration-200 expand-arrow">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M4 6l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
     </div>
+  </button>
 
-    <!-- 시장 관측 -->
-    <div class="flex gap-3">
-      <div class="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-[#6a5fc1]/15 text-[10px] font-black text-[#6a5fc1]">
-        ◎
+  <!-- 펼쳐지는 상세 영역 -->
+  <div id={cardId} class="hidden px-5 pb-5 text-sm border-t border-[#f0eeff]">
+
+    <div class="flex flex-col gap-4 pt-4">
+
+      <!-- 확인된 사실 -->
+      <div class="flex gap-3">
+        <div class={`mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full text-[10px] font-black text-white ${cfg.bar}`}>
+          {cfg.icon}
+        </div>
+        <div>
+          <p class="text-[10px] font-bold uppercase tracking-[0.15em] text-[#79628c] mb-1">확인된 사실</p>
+          <p class="leading-relaxed text-[#4a3f6b]">{issue.confirmedFacts}</p>
+        </div>
       </div>
-      <div>
-        <p class="text-[10px] font-bold uppercase tracking-[0.15em] text-[#79628c] mb-1">시장 관측</p>
-        <p class="leading-relaxed text-[#4a3f6b]">{issue.marketObservation}</p>
+
+      <!-- 시장 관측 -->
+      <div class="flex gap-3">
+        <div class="mt-0.5 flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full bg-[#6a5fc1]/15 text-[10px] font-black text-[#6a5fc1]">
+          ◎
+        </div>
+        <div>
+          <p class="text-[10px] font-bold uppercase tracking-[0.15em] text-[#79628c] mb-1">시장 관측</p>
+          <p class="leading-relaxed text-[#4a3f6b]">{issue.marketObservation}</p>
+        </div>
       </div>
+
+      <!-- 투자자 체크포인트 -->
+      <div class="pt-3 border-t border-[#f0eeff]">
+        <p class="text-[10px] font-bold uppercase tracking-[0.15em] text-[#79628c] mb-2">투자자 체크포인트</p>
+        <div class="flex flex-wrap gap-2">
+          {issue.watchPoints.map((point) => (
+            <span class="rounded-full bg-[#f0eeff] px-3 py-1 text-xs font-medium text-[#4a3f6b]">
+              {point}
+            </span>
+          ))}
+        </div>
+      </div>
+
     </div>
-
-    <!-- 투자자 체크포인트 -->
-    <div class="mt-auto pt-3 border-t border-[#f0eeff]">
-      <p class="text-[10px] font-bold uppercase tracking-[0.15em] text-[#79628c] mb-2">투자자 체크포인트</p>
-      <div class="flex flex-wrap gap-2">
-        {issue.watchPoints.map((point) => (
-          <span class="rounded-full bg-[#f0eeff] px-3 py-1 text-xs font-medium text-[#4a3f6b]">
-            {point}
-          </span>
-        ))}
-      </div>
-    </div>
-
   </div>
 
 </article>
+
+<script is:inline>
+  function toggleIssueCard(btn) {
+    const detailId = btn.getAttribute("aria-controls");
+    const detail = document.getElementById(detailId);
+    const arrow = btn.querySelector(".expand-arrow");
+    const isOpen = btn.getAttribute("aria-expanded") === "true";
+
+    if (isOpen) {
+      detail.classList.add("hidden");
+      btn.setAttribute("aria-expanded", "false");
+      arrow.style.transform = "rotate(0deg)";
+    } else {
+      detail.classList.remove("hidden");
+      btn.setAttribute("aria-expanded", "true");
+      arrow.style.transform = "rotate(180deg)";
+    }
+  }
+</script>
