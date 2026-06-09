@@ -352,16 +352,24 @@ const radarLastUpdated = previewIssues[0]?.updatedAt
       <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {[
           { icon: "📰", title: "영어 뉴스, 기다리지 말고 바로 이해하세요", desc: "미국 현지 뉴스를 한국어로 정리해 중요한 이슈를 더 빠르게 확인할 수 있습니다." },
-          { icon: "🎯", title: "루머를 믿기 전에, 먼저 구분하세요", desc: "오늘의 미국장 이슈를 확인된 사실·시장 관측·루머로 나눠 보여줘 잘못된 정보에 흔들리는 일을 줄입니다." },
+          { icon: "🎯", title: "루머를 믿기 전에, 먼저 구분하세요", desc: "오늘의 미국장 이슈를 확인된 사실·시장 관측·루머로 나눠 보여줘 잘못된 정보에 흔들리는 일을 줄입니다.", blogSlug: "us-stock-rumor-check" },
           { icon: "📊", title: "월가 리포트 흐름을 쉽게 확인하세요", desc: "주요 증권사의 목표가·투자등급 변화와 어닝콜 핵심 내용을 한국 투자자 눈높이에 맞게 정리합니다." },
-          { icon: "🗂️", title: "ETF 이름만 보지 말고, 안에 든 종목까지 보세요", desc: "QQQ·SCHD·SPY 등 주요 ETF의 보유 종목·비중·배당·수수료를 한곳에서 확인할 수 있습니다." },
-          { icon: "🕵️", title: "내부자 거래는 따라 사는 신호가 아닙니다", desc: "CEO·임원진의 매수·매도 공시를 투자 참고 데이터로 확인합니다. 내부자 거래는 시장을 이해하기 위한 보조 정보입니다." },
+          { icon: "🗂️", title: "ETF 이름만 보지 말고, 안에 든 종목까지 보세요", desc: "QQQ·SCHD·SPY 등 주요 ETF의 보유 종목·비중·배당·수수료를 한곳에서 확인할 수 있습니다.", blogSlug: "us-etf-beginners-guide" },
+          { icon: "🕵️", title: "내부자 거래는 따라 사는 신호가 아닙니다", desc: "CEO·임원진의 매수·매도 공시를 투자 참고 데이터로 확인합니다. 내부자 거래는 시장을 이해하기 위한 보조 정보입니다.", blogSlug: "us-stock-insider-trading" },
           { icon: "🏛️", title: "미국 정치인의 매매 흐름도 참고 데이터로 확인하세요", desc: "미국 상하원 의원의 주식 거래 내역을 추적해 정치·정책 이슈와 시장 흐름을 함께 살펴볼 수 있습니다." },
         ].map((f) => (
-          <div class="rounded-2xl border border-[#362d59] bg-[#150f23] p-7 transition-all duration-200 hover:border-[#6a5fc1]/50 hover:shadow-[rgba(106,95,193,0.1)_0px_8px_32px]">
+          <div class="rounded-2xl border border-[#362d59] bg-[#150f23] p-7 transition-all duration-200 hover:border-[#6a5fc1]/50 hover:shadow-[rgba(106,95,193,0.1)_0px_8px_32px] flex flex-col">
             <div class="mb-4 text-4xl">{f.icon}</div>
             <h3 class="text-xl font-bold text-white">{f.title}</h3>
-            <p class="mt-3 text-base leading-8 text-[#e5e7eb]/60">{f.desc}</p>
+            <p class="mt-3 text-base leading-8 text-[#e5e7eb]/60 flex-1">{f.desc}</p>
+            {f.blogSlug && (
+              <a
+                href={`/blog/${f.blogSlug}`}
+                class="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-[#c2ef4e]/80 hover:text-[#c2ef4e] transition-colors duration-150"
+              >
+                관련 글 읽기 →
+              </a>
+            )}
           </div>
         ))}
       </div>
