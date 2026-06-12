@@ -20,7 +20,7 @@ const BLOG_DIR = "src/content/blog";
 const PUBLIC_DIR = "public/blog-images";
 
 // Match ![alt](filename.ext) where the path is a bare filename (no / prefix)
-const IMG_REGEX = /!\[([^\]]*)\]\((?!https?:\/\/)(?!\/)([^/)]+\.(png|jpg|jpeg|gif|webp|svg))\)/gi;
+const IMG_REGEX = /!\[([^\]]*)\]\((?!https?:\/\/)(?!\/)([^/)]+\.(png|jpg|jpeg|gif|webp|svg|avif|webm))\)/gi;
 
 let fixedCount = 0;
 
