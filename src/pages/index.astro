@@ -95,9 +95,17 @@ const radarLastUpdated = previewIssues[0]?.updatedAt
             뉴스·루머·리포트·ETF 분석·내부자 거래까지.<br />
             <span class="text-[#c2ef4e] font-semibold">스톡핑</span>이 오늘 봐야 할 미국장 정보를 한곳에 정리합니다.
           </p>
-          <div class="animate-fade-up-5 mt-8 max-w-xl">
-            <p class="mb-3 text-sm font-semibold text-[#c2ef4e]">🚀 출시 알림 신청 — 무료로 가장 먼저 받아보세요</p>
-            <WaitlistForm client:load section="hero" />
+          <div class="animate-fade-up-5 mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+            <a
+              href={links.playStore}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center justify-center gap-2 rounded-xl bg-[#c2ef4e] px-6 py-3.5 text-base font-bold text-[#1f1633] transition hover:bg-[#d4f76a] shadow-[0_0_20px_rgba(194,239,78,0.3)]"
+            >
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M3.18 23.76a2 2 0 0 0 2.15-.22l12.09-6.98-3.5-3.5-10.74 10.7zM.5 1.4A2 2 0 0 0 0 2.75v18.5a2 2 0 0 0 .5 1.35L.6 22.7l10.37-10.37v-.24L.6 1.72l-.1-.32zM20.65 10.4l-2.72-1.57-3.84 3.84 3.84 3.84 2.75-1.59a2.02 2.02 0 0 0 0-4.52zm-17.47 12.6L17.93 14.6l-3.5-3.5L3.18 21.76l-.01.01z"/></svg>
+              Google Play 무료 다운로드
+            </a>
+            <p class="text-sm text-[#e5e7eb]/50">Android · 무료</p>
           </div>
         </div>
 
@@ -504,9 +512,16 @@ const radarLastUpdated = previewIssues[0]?.updatedAt
           <div class="px-4 py-3.5 text-sm text-[#c2ef4e]/80 sm:px-6 sm:text-base">✅ AI 포트폴리오</div>
         </div>
       </div>
-      <div class="mt-8 max-w-lg mx-auto">
-        <p class="mb-3 text-center text-sm font-semibold text-[#c2ef4e]">🚀 출시 알림 신청하고 가장 먼저 사용해보세요</p>
-        <WaitlistForm client:load section="pricing" />
+      <div class="mt-8 flex justify-center">
+        <a
+          href={links.playStore}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 rounded-xl bg-[#c2ef4e] px-6 py-3.5 text-base font-bold text-[#1f1633] transition hover:bg-[#d4f76a]"
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M3.18 23.76a2 2 0 0 0 2.15-.22l12.09-6.98-3.5-3.5-10.74 10.7zM.5 1.4A2 2 0 0 0 0 2.75v18.5a2 2 0 0 0 .5 1.35L.6 22.7l10.37-10.37v-.24L.6 1.72l-.1-.32zM20.65 10.4l-2.72-1.57-3.84 3.84 3.84 3.84 2.75-1.59a2.02 2.02 0 0 0 0-4.52zm-17.47 12.6L17.93 14.6l-3.5-3.5L3.18 21.76l-.01.01z"/></svg>
+          Google Play 무료 다운로드
+        </a>
       </div>
     </div>
   </section>
@@ -537,9 +552,17 @@ const radarLastUpdated = previewIssues[0]?.updatedAt
       <p class="mt-4 text-base text-[#e5e7eb]/60">
         뉴스·루머·리포트·ETF 분석·내부자 거래까지. 흩어진 미국장 정보를 한곳에서 확인하고, 추천주 없이 데이터를 보고 스스로 판단하세요.
       </p>
-      <div class="mt-8 max-w-lg mx-auto">
-        <p class="mb-3 text-sm font-semibold text-[#c2ef4e]">🚀 출시 알림 신청 — 무료로 가장 먼저 받아보세요</p>
-        <WaitlistForm client:load section="final-cta" />
+      <div class="mt-8 flex flex-col items-center gap-3">
+        <a
+          href={links.playStore}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 rounded-xl bg-[#c2ef4e] px-8 py-4 text-base font-bold text-[#1f1633] transition hover:bg-[#d4f76a] shadow-[0_0_24px_rgba(194,239,78,0.35)]"
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M3.18 23.76a2 2 0 0 0 2.15-.22l12.09-6.98-3.5-3.5-10.74 10.7zM.5 1.4A2 2 0 0 0 0 2.75v18.5a2 2 0 0 0 .5 1.35L.6 22.7l10.37-10.37v-.24L.6 1.72l-.1-.32zM20.65 10.4l-2.72-1.57-3.84 3.84 3.84 3.84 2.75-1.59a2.02 2.02 0 0 0 0-4.52zm-17.47 12.6L17.93 14.6l-3.5-3.5L3.18 21.76l-.01.01z"/></svg>
+          Google Play 무료 다운로드
+        </a>
+        <p class="text-sm text-[#e5e7eb]/40">Android · 무료</p>
       </div>
       <div class="mt-4 flex justify-center">
         <a href="/radar" class="inline-flex items-center justify-center rounded-xl border border-[#362d59] bg-white/5 px-6 py-3 text-sm font-semibold text-[#e5e7eb] transition hover:bg-[rgba(54,22,107,0.3)] hover:border-[#584674]">
