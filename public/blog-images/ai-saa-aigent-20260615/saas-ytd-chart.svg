@@ -1,0 +1,70 @@
+<svg viewBox="0 0 760 470" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif">
+  <rect x="0" y="0" width="760" height="470" fill="#ffffff"/>
+
+  <!-- Title -->
+  <text x="40" y="44" font-size="22" font-weight="700" fill="#1A1A1A">2026년 YTD 주가 등락 — AI 에이전트 충격</text>
+  <text x="40" y="68" font-size="13" fill="#6B7280">엔터프라이즈 SaaS vs 소프트웨어 벤치마크(IGV) vs AI 인프라 수혜주(Oracle) · 2026년 중반 근사치</text>
+
+  <!-- Gridlines (domain -40 .. +15, x: 150..700, 10px/%) -->
+  <g stroke="#E5E7EB" stroke-width="1">
+    <line x1="250" y1="92" x2="250" y2="408"/>
+    <line x1="350" y1="92" x2="350" y2="408"/>
+    <line x1="450" y1="92" x2="450" y2="408"/>
+    <line x1="650" y1="92" x2="650" y2="408"/>
+  </g>
+  <!-- Zero line -->
+  <line x1="550" y1="92" x2="550" y2="408" stroke="#9CA3AF" stroke-width="1.5"/>
+
+  <!-- Gridline labels -->
+  <g font-size="11" fill="#9CA3AF" text-anchor="middle">
+    <text x="250" y="424">-30%</text>
+    <text x="350" y="424">-20%</text>
+    <text x="450" y="424">-10%</text>
+    <text x="550" y="424">0</text>
+    <text x="650" y="424">+10%</text>
+  </g>
+
+  <!-- Bars: bar height 28 -->
+  <!-- Workday -32  (peer, muted) -->
+  <rect x="230" y="103" width="320" height="28" rx="3" fill="#F1A7A9"/>
+  <text x="140" y="121" font-size="13" font-weight="600" fill="#374151" text-anchor="end">Workday (WDAY)</text>
+  <text x="222" y="121" font-size="13" font-weight="700" fill="#B4232A" text-anchor="end">-32%</text>
+
+  <!-- Salesforce -31 (named, emphasized) -->
+  <rect x="240" y="151" width="310" height="28" rx="3" fill="#E5484D"/>
+  <text x="140" y="169" font-size="13" font-weight="600" fill="#111827" text-anchor="end">Salesforce (CRM)</text>
+  <text x="232" y="169" font-size="13" font-weight="700" fill="#B4232A" text-anchor="end">-31%</text>
+
+  <!-- Adobe -28 (named) -->
+  <rect x="270" y="199" width="280" height="28" rx="3" fill="#E5484D"/>
+  <text x="140" y="217" font-size="13" font-weight="600" fill="#111827" text-anchor="end">Adobe (ADBE)</text>
+  <text x="262" y="217" font-size="13" font-weight="700" fill="#B4232A" text-anchor="end">-28%</text>
+
+  <!-- ServiceNow -26 (named) -->
+  <rect x="290" y="247" width="260" height="28" rx="3" fill="#E5484D"/>
+  <text x="140" y="265" font-size="13" font-weight="600" fill="#111827" text-anchor="end">ServiceNow (NOW)</text>
+  <text x="282" y="265" font-size="13" font-weight="700" fill="#B4232A" text-anchor="end">-26%</text>
+
+  <!-- IGV -9 (benchmark, gray) -->
+  <rect x="460" y="295" width="90" height="28" rx="3" fill="#9CA3AF"/>
+  <text x="140" y="313" font-size="13" font-weight="600" fill="#374151" text-anchor="end">IGV (소프트웨어 ETF)</text>
+  <text x="452" y="313" font-size="13" font-weight="700" fill="#6B7280" text-anchor="end">-9%</text>
+
+  <!-- Oracle +8 (winner, green) -->
+  <rect x="550" y="343" width="80" height="28" rx="3" fill="#30A46C"/>
+  <text x="140" y="361" font-size="13" font-weight="600" fill="#374151" text-anchor="end">Oracle (ORCL)</text>
+  <text x="638" y="361" font-size="13" font-weight="700" fill="#1B7A4B" text-anchor="start">+8%</text>
+
+  <!-- Legend -->
+  <g font-size="11.5" fill="#6B7280">
+    <rect x="40" y="438" width="12" height="12" rx="2" fill="#E5484D"/>
+    <text x="58" y="448">핵심 SaaS(좌석당 모델 압력)</text>
+    <rect x="232" y="438" width="12" height="12" rx="2" fill="#9CA3AF"/>
+    <text x="250" y="448">섹터 벤치마크</text>
+    <rect x="360" y="438" width="12" height="12" rx="2" fill="#30A46C"/>
+    <text x="378" y="448">AI 인프라 수혜 대비군</text>
+  </g>
+
+  <!-- Footnote -->
+  <text x="555" y="448" font-size="10.5" fill="#9CA3AF" text-anchor="start">4월 저점 대비 부분 회복 반영</text>
+</svg>
