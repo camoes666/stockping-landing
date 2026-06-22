@@ -20,7 +20,8 @@ const BLOG_DIR = "src/content/blog";
 const PUBLIC_DIR = "public/blog-images";
 
 // Match ![alt](filename.ext) where the path is a bare filename (no / prefix)
-const IMG_REGEX = /!\[([^\]]*)\]\((?!https?:\/\/)(?!\/)([^/)]+\.(png|jpg|jpeg|gif|webp|svg|avif|webm))\)/gi;
+// Filename can contain backslash-escaped parens, e.g. file%20\(1\).jpg
+const IMG_REGEX = /!\[([^\]]*)\]\((?!https?:\/\/)(?!\/)((?:\\.|[^()])+?\.(png|jpg|jpeg|gif|webp|svg|avif|webm))\)/gi;
 
 let fixedCount = 0;
 
@@ -37,8 +38,8 @@ for (const mdxFile of mdxFiles) {
 
   for (const match of matches) {
     const [fullMatch, alt, filename] = match;
-    // Decode URL-encoded filename (e.g. ChatGPT%20Image... → ChatGPT Image...)
-    const decodedFilename = decodeURIComponent(filename);
+    // Decode URL-encoding and backslash-escaped parens (e.g. file%20\(1\).jpg → file (1).jpg)
+    const decodedFilename = decodeURIComponent(filename).replace(/\\([()])/g, "$1");
 
     // Look for the image in the Keystatic content directory
     const srcPath = join(BLOG_DIR, slug, "content", decodedFilename);
