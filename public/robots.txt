@@ -2,3 +2,5 @@ User-agent: *
 Allow: /
 
 Sitemap: https://stockping.co.kr/sitemap-index.xml
+
+#DaumWebMasterTool:31e514dde701409c3dd51fce625305ff70ffa2ee39c0f074057f34da61377d5c:KqMtrRaDniV96GOxiqaKXg==
