@@ -1,6 +1,7 @@
 ---
 import { ctaCopy, type CtaType } from "./cta-copy";
 import { TrackedCtaButton } from "../islands/TrackedCtaButton";
+import { links } from "../../config/links";
 
 interface Props {
   ctaType: CtaType;
@@ -9,7 +10,6 @@ interface Props {
 
 const { ctaType, page = "blog" } = Astro.props;
 const copy = ctaCopy[ctaType];
-const playStoreUrl = "https://play.google.com/store/apps/details?id=kr.co.stockping.app&hl=ko";
 ---
 
 <div class="bg-[#1f1633] border border-[#362d59] rounded-xl p-6 my-8">
@@ -17,7 +17,7 @@ const playStoreUrl = "https://play.google.com/store/apps/details?id=kr.co.stockp
   <p class="text-white font-bold text-lg mb-4">{copy.headline}</p>
   <TrackedCtaButton
     client:load
-    href={playStoreUrl}
+    href={links.playStore}
     label={copy.button}
     page={page}
     section={`cta-box:${ctaType}`}
