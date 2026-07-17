@@ -88,7 +88,7 @@ const todayLabel = groups[0]?.label ?? null;
         확인된 사실·시장 관측·루머를 구분해 매일 정리합니다.<br />
         <span class="text-[#c2ef4e] font-semibold">스톡핑</span> 앱에서 더 많은 데이터를 확인할 수 있습니다.
       </p>
-      <div>
+      <div class="flex flex-col gap-3 sm:flex-row sm:items-center">
         <a
           href="https://play.google.com/store/apps/details?id=kr.co.stockping.app&referrer=utm_source%3Dstockping_web%26utm_medium%3Dweb%26utm_campaign%3Dinstall"
           target="_blank"
@@ -96,9 +96,17 @@ const todayLabel = groups[0]?.label ?? null;
           class="inline-flex items-center gap-2 rounded-xl bg-[#c2ef4e] px-6 py-3.5 text-base font-bold text-[#1f1633] transition hover:bg-[#d4f76a] shadow-[0_0_20px_rgba(194,239,78,0.3)]"
         >
           <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M3.18 23.76a2 2 0 0 0 2.15-.22l12.09-6.98-3.5-3.5-10.74 10.7zM.5 1.4A2 2 0 0 0 0 2.75v18.5a2 2 0 0 0 .5 1.35L.6 22.7l10.37-10.37v-.24L.6 1.72l-.1-.32zM20.65 10.4l-2.72-1.57-3.84 3.84 3.84 3.84 2.75-1.59a2.02 2.02 0 0 0 0-4.52zm-17.47 12.6L17.93 14.6l-3.5-3.5L3.18 21.76l-.01.01z"/></svg>
-          Google Play 무료 다운로드
+          Google Play
         </a>
-        <p class="mt-2 text-sm text-[#e5e7eb]/50">Android · 무료</p>
+        <a
+          href="https://apps.apple.com/kr/app/%EC%8A%A4%ED%86%A1%ED%95%91/id6783339448"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 rounded-xl border border-[#362d59] bg-white/10 px-6 py-3.5 text-base font-bold text-white transition hover:bg-white/15"
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          App Store
+        </a>
       </div>
       {lastUpdated && (
         <p class="mt-4 flex items-center gap-1.5 text-xs text-[#e5e7eb]/40">
